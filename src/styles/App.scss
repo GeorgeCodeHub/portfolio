@@ -1,0 +1,19 @@
+// NavBar
+
+.navbar-triangle-left {
+	background: linear-gradient(to bottom right, black 50%, #b1b1b1 51%);
+	width: 100%;
+	height: 100%;
+	-webkit-clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%);
+	clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%);
+	border-right: 1px solid white;
+}
+
+.navbar-triangle-right {
+	background: linear-gradient(to top right, #b1b1b1 49%, black 50%);
+	width: 100%;
+	height: 100%;
+	-webkit-clip-path: polygon(0% 0, 0% 0, 100% 100%, 0 100%);
+	clip-path: polygon(0% 0, 0% 0, 100% 100%, 0 100%);
+	border-left: 1px solid white;
+}
