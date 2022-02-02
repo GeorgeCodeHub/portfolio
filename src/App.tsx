@@ -10,8 +10,8 @@ import ExperienceView from "./components/ExperienceView";
 function App() {
 	return (
 		<div className="App">
-			<HomeView />
-			<AboutView />
+			{/* <HomeView />
+			<AboutView /> */}
 			<ExperienceView />
 			<NavBar />
 		</div>

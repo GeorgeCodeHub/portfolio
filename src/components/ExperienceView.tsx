@@ -1,43 +1,35 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, Suspense } from "react";
 
-import * as THREE from "three";
+import { Canvas } from "@react-three/fiber";
+import { Environment, Stars } from "@react-three/drei";
+import Model from "./3d/Model";
+import Overlay from "./3d/Overlay";
 
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-
-function Box(props: JSX.IntrinsicElements["mesh"]) {
-	// This reference gives us direct access to the THREE.Mesh object
-	const ref = useRef<THREE.Mesh>(null!);
-	// Hold state for hovered and clicked events
-	const [hovered, hover] = useState(false);
-	const [clicked, click] = useState(false);
-	// Subscribe this component to the render-loop, rotate the mesh every frame
-	useFrame((state, delta) => (ref.current.rotation.x += 0.01));
-	// Return the view, these are regular Threejs elements expressed in JSX
-	return (
-		<mesh
-			{...props}
-			ref={ref}
-			scale={clicked ? 1.5 : 1}
-			onClick={(event) => click(!clicked)}
-			onPointerOver={(event) => hover(true)}
-			onPointerOut={(event) => hover(false)}
-		>
-			<boxGeometry args={[1, 1, 1]} />
-			<meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
-		</mesh>
-	);
-}
+import "./3d/3d-styles.scss";
 
 function ExperienceView() {
+	const overlay = useRef();
+	const caption = useRef();
+	const scroll = useRef(0);
 	return (
-		<Canvas style={{ height: "100vh" }}>
-			<OrbitControls enableZoom={false} />
-			<ambientLight />
-			<pointLight position={[10, 10, 10]} />
-			<Box position={[-1.2, 0, 0]} />
-			<Box position={[1.2, 0, 0]} />
-		</Canvas>
+		<>
+			<div className="stars"></div>
+			<div className="twinkling"></div>
+
+			<Canvas
+				shadows
+				onCreated={(state: any) => state.events.connect(overlay.current)}
+				raycaster={{ computeOffsets: ({ clientX, clientY }) => ({ offsetX: clientX, offsetY: clientY }) }}
+				style={{ height: "100vh" }}
+			>
+				<ambientLight intensity={1} />
+				<Suspense fallback={null}>
+					<Model scroll={scroll} />
+					<Environment preset="night" />
+				</Suspense>
+			</Canvas>
+			<Overlay ref={overlay} caption={caption} scroll={scroll} />
+		</>
 	);
 }
 

@@ -33,9 +33,9 @@ function NavBar() {
 			<Grid item style={{ width: 80 }}>
 				<div className="navbar-triangle-left" />
 			</Grid>
-			<Grid item style={{ width: 400 }}>
+			<Grid item>
 				<BottomNavigation
-					sx={{ width: 400 }}
+					sx={{ width: "100%" }}
 					value={value}
 					onChange={handleChange}
 					showLabels={false}
