@@ -6,7 +6,7 @@ import ProfilePic from "../images/profile.jpg";
 
 function AboutView() {
 	return (
-		<div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+		<div className="view-container">
 			<Grid container direction="column" justifyContent="space-around" alignItems="center" style={{ height: "100%" }}>
 				<Grid item xs={4} style={{ display: "flex", alignItems: "center", textAlign: "center" }}>
 					<Typography variant="h2">ABOUT</Typography>

@@ -1,28 +1,32 @@
-// NavBar
+// App
 
-.navbar-triangle-left {
-	background: linear-gradient(to bottom right, black 50%, #b1b1b1 52%);
-	width: 100%;
-	height: 100%;
-	-webkit-clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%);
-	clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%);
-	border-right: 1px solid white;
+html,
+body,
+#root {
+	min-height: 100% !important;
 }
 
-.navbar-triangle-right {
-	background: linear-gradient(to top right, #b1b1b1 48%, black 50%);
+.stars,
+.twinkling {
+	position: absolute;
 	width: 100%;
 	height: 100%;
-	-webkit-clip-path: polygon(0% 0, 0% 0, 100% 100%, 0 100%);
-	clip-path: polygon(0% 0, 0% 0, 100% 100%, 0 100%);
-	border-left: 1px solid white;
 }
 
-// Experience View
+.stars {
+	background: #000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+	z-index: -2;
+}
 
-* {
-	margin: 0;
-	padding: 0;
+.twinkling {
+	background: transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+	z-index: -1;
+
+	-moz-animation: move-twink-back 500s linear infinite;
+	-ms-animation: move-twink-back 500s linear infinite;
+	-o-animation: move-twink-back 500s linear infinite;
+	-webkit-animation: move-twink-back 500s linear infinite;
+	animation: move-twink-back 500s linear infinite;
 }
 
 @keyframes move-twink-back {
@@ -91,25 +95,33 @@
 	}
 }
 
-.stars,
-.twinkling {
-	position: absolute;
+h2 {
+	color: white;
+}
+
+.view-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+// NavBar
+
+.navbar-triangle-left {
+	background: linear-gradient(to bottom right, black 50%, #b1b1b1 52%);
 	width: 100%;
 	height: 100%;
+	-webkit-clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%);
+	clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%);
+	border-right: 1px solid white;
 }
 
-.stars {
-	background: #000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
-	z-index: -2;
-}
-
-.twinkling {
-	background: transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
-	z-index: -1;
-
-	-moz-animation: move-twink-back 200s linear infinite;
-	-ms-animation: move-twink-back 200s linear infinite;
-	-o-animation: move-twink-back 200s linear infinite;
-	-webkit-animation: move-twink-back 200s linear infinite;
-	animation: move-twink-back 200s linear infinite;
+.navbar-triangle-right {
+	background: linear-gradient(to top right, #b1b1b1 48%, black 50%);
+	width: 100%;
+	height: 100%;
+	-webkit-clip-path: polygon(0% 0, 0% 0, 100% 100%, 0 100%);
+	clip-path: polygon(0% 0, 0% 0, 100% 100%, 0 100%);
+	border-left: 1px solid white;
 }
