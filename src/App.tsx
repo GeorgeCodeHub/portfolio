@@ -6,6 +6,8 @@ import ExperienceView from "./components/ExperienceView";
 import SkillView from "./components/SkillView";
 import NavBar from "./components/NavBar";
 
+import { Loader } from "@react-three/drei";
+
 import "./styles/App.scss";
 import "./styles/3d-styles.scss";
 
@@ -14,10 +16,11 @@ function App() {
 		<>
 			<div style={{ position: "fixed", height: "100%", width: "100%", zIndex: -1 }}>
 				<div className="stars"></div>
-				<div className="twinkling"></div>
 			</div>
 			<HomeView />
 			<AboutView />
+			<Loader />
+			<ExperienceView />
 			<SkillView />
 			<NavBar />
 		</>

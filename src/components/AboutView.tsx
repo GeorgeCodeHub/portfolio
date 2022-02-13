@@ -1,6 +1,14 @@
 import React from "react";
 
-import { Grid, Avatar, Typography, Link, Card, CardHeader, CardContent, CardActions, Button } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
+import Link from "@mui/material/Link";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
 
 import ProfilePic from "../images/profile.jpg";
 

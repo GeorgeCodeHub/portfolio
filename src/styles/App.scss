@@ -14,89 +14,16 @@ body,
 }
 
 .stars {
-	background: #000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+	background: #090b1f;
+	background: radial-gradient(at 50% 70%, #200f20 40%, #090b1f 80%, #050523 100%);
+
 	z-index: -2;
-}
-
-.twinkling {
-	background: transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
-	z-index: -1;
-
-	-moz-animation: move-twink-back 500s linear infinite;
-	-ms-animation: move-twink-back 500s linear infinite;
-	-o-animation: move-twink-back 500s linear infinite;
-	-webkit-animation: move-twink-back 500s linear infinite;
-	animation: move-twink-back 500s linear infinite;
-}
-
-@keyframes move-twink-back {
-	from {
-		background-position: 0 0;
-	}
-	to {
-		background-position: -10000px 5000px;
-	}
-}
-@-webkit-keyframes move-twink-back {
-	from {
-		background-position: 0 0;
-	}
-	to {
-		background-position: -10000px 5000px;
-	}
-}
-@-moz-keyframes move-twink-back {
-	from {
-		background-position: 0 0;
-	}
-	to {
-		background-position: -10000px 5000px;
-	}
-}
-@-ms-keyframes move-twink-back {
-	from {
-		background-position: 0 0;
-	}
-	to {
-		background-position: -10000px 5000px;
-	}
-}
-
-@keyframes move-clouds-back {
-	from {
-		background-position: 0 0;
-	}
-	to {
-		background-position: 10000px 0;
-	}
-}
-@-webkit-keyframes move-clouds-back {
-	from {
-		background-position: 0 0;
-	}
-	to {
-		background-position: 10000px 0;
-	}
-}
-@-moz-keyframes move-clouds-back {
-	from {
-		background-position: 0 0;
-	}
-	to {
-		background-position: 10000px 0;
-	}
-}
-@-ms-keyframes move-clouds-back {
-	from {
-		background-position: 0;
-	}
-	to {
-		background-position: 10000px 0;
-	}
 }
 
 h2 {
 	color: white;
+	font-weight: bold !important;
+	letter-spacing: 2rem !important;
 }
 
 .view-container {
@@ -124,4 +51,16 @@ h2 {
 	-webkit-clip-path: polygon(0% 0, 0% 0, 100% 100%, 0 100%);
 	clip-path: polygon(0% 0, 0% 0, 100% 100%, 0 100%);
 	border-left: 1px solid white;
+}
+
+// EXperienceView
+
+.content {
+	padding-top: 10px;
+	transform: translate3d(50%, 0, 0);
+	text-align: left;
+	background: #202035;
+	color: white;
+	padding: 10px 15px;
+	border-radius: 5px;
 }

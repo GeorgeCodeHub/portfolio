@@ -1,15 +1,32 @@
 import { useMemo, Suspense } from "react";
 
-import { Grid, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment } from "@react-three/drei";
+import { Bounds, OrbitControls, Environment, useBounds } from "@react-three/drei";
 
 import { getRandomArbitrary } from "../utils/mathUtils";
 
 import Planet from "./assets/Planet";
 import Word from "./assets/Word";
+
+// This component wraps children in a group with a click handler
+// Clicking any object will refresh and fit bounds
+function SelectToZoom({ children }: any) {
+	const api = useBounds();
+
+	return (
+		<group
+			onClick={(e) => {
+				if (e.object.name) return [e.stopPropagation(), e.delta <= 2 && api.refresh(e.object).fit()];
+			}}
+		>
+			{children}
+		</group>
+	);
+}
 
 const PlanetCluster = ({
 	clusterItems,
@@ -69,14 +86,18 @@ function SkillView() {
 				<Grid item xs={11} style={{ width: "100%" }}>
 					<Canvas camera={{ position: [-85, 0, 0] }}>
 						<fog attach="fog" args={["#202025", 0, 80]} />
-
+						<spotLight intensity={0.5} angle={0.2} penumbra={1} position={[5, 15, 10]} />
 						<Suspense fallback={null}>
-							<PlanetCluster clusterItems={frontEndSkills} position={{ x: -45, y: 0, z: 0 }} />
-							<PlanetCluster clusterItems={frontEndSkills} position={{ x: 0, y: -45, z: -60 }} />
-							<PlanetCluster clusterItems={frontEndSkills} position={{ x: 45, y: 0, z: 0 }} />
-							<Environment preset="warehouse" />
+							<Bounds clip margin={2.2}>
+								<SelectToZoom>
+									<PlanetCluster clusterItems={frontEndSkills} position={{ x: -45, y: 0, z: 0 }} />
+									<PlanetCluster clusterItems={frontEndSkills} position={{ x: 0, y: -25, z: -60 }} />
+									<PlanetCluster clusterItems={frontEndSkills} position={{ x: 45, y: 45, z: 60 }} />
+									<Environment preset="warehouse" />
+								</SelectToZoom>
+							</Bounds>
 						</Suspense>
-						<OrbitControls enableZoom={false} enablePan={false} />
+						<OrbitControls makeDefault enableZoom={false} enablePan={false} />
 					</Canvas>
 				</Grid>
 			</Grid>

@@ -1,13 +1,12 @@
 import React from "react";
 
-import { Grid } from "@mui/material";
-
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
 function HomeView() {
 	return (

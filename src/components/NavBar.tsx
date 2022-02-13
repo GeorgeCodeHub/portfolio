@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-import { BottomNavigation, BottomNavigationAction, Grid, Tooltip } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import Tooltip from "@mui/material/Tooltip";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+
 import { makeStyles } from "@mui/styles";
 
 import HomeIcon from "@mui/icons-material/Home";

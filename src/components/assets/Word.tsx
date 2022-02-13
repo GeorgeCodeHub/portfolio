@@ -52,7 +52,7 @@ function Word({
 					[position.x, position.y, position.z]
 				]}
 				color="white"
-				lineWidth={4}
+				lineWidth={2}
 				dashed={true}
 			/>
 			<Text ref={ref} onPointerOver={over} onPointerOut={out} position={wordPosition} {...fontProps} children={word} />
