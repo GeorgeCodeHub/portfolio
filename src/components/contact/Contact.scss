@@ -1,0 +1,14 @@
+.marker-indicator-container {
+	font-family: monospace;
+	font-size: 1.5rem;
+	color: white;
+	letter-spacing: -0.1rem;
+	text-align: center;
+}
+
+.marker-indicator-title {
+	overflow: hidden;
+
+	pointer-events: none;
+	color: white;
+}

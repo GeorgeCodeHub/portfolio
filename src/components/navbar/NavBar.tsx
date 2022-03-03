@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+
+import { JourneyStepsContext } from "../../App";
 
 import Grid from "@mui/material/Grid";
 import BottomNavigation from "@mui/material/BottomNavigation";
@@ -25,72 +27,77 @@ const useStyles = makeStyles(() => ({
 }));
 
 function NavBar() {
-	const [value, setValue] = useState(0);
 	const classes = useStyles();
 
-	const handleChange = (event: React.SyntheticEvent, newValue: React.SetStateAction<number>) => {
-		setValue(newValue);
-	};
+	const { journeyStep, dispatchJourneyStep } = React.useContext(JourneyStepsContext);
 
+	const onNavBarChange = (event: React.SyntheticEvent, newValue: React.SetStateAction<number>) => {
+		dispatchJourneyStep({ type: newValue });
+	};
 	return (
-		<Grid container justifyContent="center" spacing={0} style={{ position: "fixed", bottom: 0, width: "100%" }}>
+		<Grid
+			container
+			justifyContent="center"
+			spacing={0}
+			style={{ position: "fixed", bottom: 0, width: "100%", zIndex: 20000 }}
+		>
 			<Grid item style={{ width: 80 }}>
 				<div className="navbar-triangle-left" />
 			</Grid>
 			<Grid item>
 				<BottomNavigation
 					sx={{ width: "100%" }}
-					value={value}
-					onChange={handleChange}
+					value={journeyStep.key}
+					onChange={onNavBarChange}
 					showLabels={false}
 					style={{ width: "100%" }}
 				>
 					<Tooltip title="Home">
 						<BottomNavigationAction
 							classes={{ root: classes.root }}
-							value={0}
+							value="Home"
 							icon={<HomeIcon style={{ paddingBottom: 6 }} />}
 						/>
 					</Tooltip>
 					<Tooltip title="About">
 						<BottomNavigationAction
 							classes={{ root: classes.root }}
-							value={1}
+							value="About"
 							icon={<PersonIcon style={{ paddingBottom: 6 }} />}
 						/>
 					</Tooltip>
 					<Tooltip title="Experience">
 						<BottomNavigationAction
 							classes={{ root: classes.root }}
-							value={2}
+							value="Experience"
 							icon={<AutoGraphIcon style={{ paddingBottom: 6 }} />}
-						/>
-					</Tooltip>
-					<Tooltip title="Projects">
-						<BottomNavigationAction
-							classes={{ root: classes.root }}
-							value={3}
-							icon={<IntegrationInstructionsIcon style={{ paddingBottom: 6 }} />}
-						/>
-					</Tooltip>
-					<Tooltip title="Skills">
-						<BottomNavigationAction
-							classes={{ root: classes.root }}
-							value={4}
-							icon={<BarChartIcon style={{ paddingBottom: 6 }} />}
 						/>
 					</Tooltip>
 					<Tooltip title="Education">
 						<BottomNavigationAction
 							classes={{ root: classes.root }}
-							value={5}
+							value="Education"
 							icon={<SchoolIcon style={{ paddingBottom: 6 }} />}
+						/>
+					</Tooltip>
+					<Tooltip title="Skills">
+						<BottomNavigationAction
+							classes={{ root: classes.root }}
+							value="Skills"
+							icon={<BarChartIcon style={{ paddingBottom: 6 }} />}
+						/>
+					</Tooltip>
+					<Tooltip title="Projects">
+						<BottomNavigationAction
+							classes={{ root: classes.root }}
+							value="Projects"
+							icon={<IntegrationInstructionsIcon style={{ paddingBottom: 6 }} />}
 						/>
 					</Tooltip>
 					<Tooltip title="Contact">
 						<BottomNavigationAction
 							classes={{ root: classes.root }}
-							value={6}
+							value="Contact"
 							icon={<EmailIcon style={{ paddingBottom: 6 }} />}
 						/>
 					</Tooltip>
