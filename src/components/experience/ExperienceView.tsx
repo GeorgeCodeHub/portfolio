@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 
 import { JourneyStepsContext } from "../../App";
 
@@ -13,11 +13,22 @@ import Galaxy from "./Galaxy";
 
 import ExperienceIndicator from "./ExperienceIndicator";
 
+import { SpaceBase } from "../../utils/3DModelsSpaceBase";
+
 import { jobsList } from "../../utils/dataSet";
 
 import "./Experience.scss";
 
-function ExperienceView() {
+function ExperienceView({
+	setChangedView
+}: {
+	setChangedView: React.Dispatch<
+		React.SetStateAction<{
+			duration: number;
+			isChanged: boolean;
+		}>
+	>;
+}) {
 	const selectedItemRef: any = useRef();
 
 	const spaceStationRef = useRef<any>();
@@ -45,11 +56,11 @@ function ExperienceView() {
 		[setSprings]
 	);
 
-	const onPointerMissed = () => {};
-
 	const onSpaceStationClick = () => {
 		selectedItemRef.current = spaceStationRef.current;
 		setFollow(true);
+		// Set animation for transition from one view to another
+		setChangedView({ duration: 2000, isChanged: true });
 	};
 
 	// Update position of space station and camera to rotate around the galaxy
@@ -96,8 +107,14 @@ function ExperienceView() {
 		camera.updateProjectionMatrix();
 	});
 
+	useEffect(() => {
+		setChangedView({ duration: 2000, isChanged: false });
+	}, [setChangedView]);
+
 	return (
 		<>
+			<ambientLight />
+			<pointLight position={[0, 0, 0]} />
 			<Galaxy />
 			<group
 				onPointerMissed={(e) => {
@@ -114,10 +131,15 @@ function ExperienceView() {
 						setFollow={setFollow}
 					/>
 				))}
+
 				{/* Space station indicator */}
-				<mesh ref={spaceStationRef} name="space-station" position={[5, 0, 0]}>
-					<sphereBufferGeometry args={[0.01, 32, 32]} />
-					<meshBasicMaterial attach="material" color="hotpink" />
+				<SpaceBase
+					ref={spaceStationRef}
+					name="space-station"
+					position={[5, 0, 0]}
+					rotation={[Math.PI / 2, 0, Math.PI / 6]}
+					scale={0.01}
+				>
 					{!follow && (
 						<Html className="exp-indicator-container" position={[0, 0, 0]} center>
 							<div className="exp-indicator-title">
@@ -140,7 +162,7 @@ function ExperienceView() {
 							</b>
 						</Html>
 					)}
-				</mesh>
+				</SpaceBase>
 			</group>
 			{/* Effects */}
 			<EffectComposer multisampling={0.2}>

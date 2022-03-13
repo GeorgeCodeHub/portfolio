@@ -1,3 +1,15 @@
 {
-	"cSpell.words": ["bokeh", "clearcoat", "drei", "lerp", "linewidth", "metalness", "multisampling", "SMAA", "SSAO"]
+	"cSpell.words": [
+		"bokeh",
+		"clearcoat",
+		"drei",
+		"GLTF",
+		"Icosphere",
+		"lerp",
+		"linewidth",
+		"metalness",
+		"multisampling",
+		"SMAA",
+		"SSAO"
+	]
 }

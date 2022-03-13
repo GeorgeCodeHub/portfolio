@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback } from "react";
 
 import { JourneyStepsContext } from "../../App";
 
@@ -8,7 +8,6 @@ import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
 
-import IconButton from "@mui/material/IconButton";
 import RoomIcon from "@mui/icons-material/Room";
 
 import ContactForm from "./ContactForm";
@@ -17,8 +16,6 @@ import "./Contact.scss";
 
 function ContactView() {
 	const [markerOcclude, setMarkerOcclude] = useState<boolean>();
-
-	const contactMarkerRef: any = useRef();
 
 	const { journeyStep, dispatchJourneyStep } = React.useContext(JourneyStepsContext);
 
@@ -59,66 +56,60 @@ function ContactView() {
 	}, []);
 
 	useFrame(({ camera, clock }) => {
-		const t = clock.getElapsedTime() * 0.06;
+		const t = clock.getElapsedTime() * 0.04;
 
-		const x = 3.8 * Math.sin(t);
-		const y = 2;
-		const z = 3.8 * Math.cos(t);
-
-		contactMarkerRef.current.position.x = x;
-		contactMarkerRef.current.position.y = y;
-		contactMarkerRef.current.position.z = z;
+		const x = 3.9 * Math.sin(t);
+		const y = 3.2;
+		const z = 3.9 * Math.cos(t);
 
 		if (journeyStep.step === 6) {
 			const newCameraPosition = new THREE.Vector3(x * 2, y / 1.1, z * 2);
 
 			camera.position.lerp(newCameraPosition, 0.06);
-			camera.lookAt(new THREE.Vector3(0, 4.5, 0));
+			camera.lookAt(new THREE.Vector3(0, 4.8, 0));
 			camera.updateProjectionMatrix();
 		}
 	});
 
+	const meshPosition: [x: number, y: number, z: number] = journeyStep.step === 6 ? [0.08, 3.26, 3.9] : [0.08, 3.9, 3.9];
+
 	return (
-		<group>
-			<mesh ref={contactMarkerRef}>
-				{/* <sphereGeometry args={[0.1, 64, 64]} />
-			<meshStandardMaterial color="#E1DC59" /> */}
-				<Html
-					className="marker-indicator-container"
-					position={[0, 0, 0]}
-					scale={1}
-					// Hide contents "behind" other meshes
-					occlude
-					// Tells us when contents are occluded (or not)
-					onOcclude={onContactMarkerOcclude}
-					// We just interpolate the visible state into css opacity and transforms
-					style={{
-						transition: "all 0.2s",
-						opacity: markerOcclude ? 0 : 1
-					}}
-					center
-				>
-					<div className="marker-indicator-title">
-						{springs.map((props, index) => (
-							<animated.div key={index} style={props}>
-								<div>CONTACT</div>
-								<hr />
-							</animated.div>
-						))}
-					</div>
-					<IconButton size="large" aria-label="Go to Contact" onClick={() => onContactMarkerClick()}>
-						<RoomIcon
-							style={{ color: "red", fontSize: 52 }}
-							onMouseOver={() => onHover(true)}
-							onMouseLeave={() => onHover(false)}
-						/>
-					</IconButton>
-				</Html>
-				<Html>
-					<ContactForm isOpen={journeyStep.step === 6} onContactBackDropClick={onContactMarkerMiss} />
-				</Html>
-			</mesh>
-		</group>
+		<mesh position={meshPosition}>
+			<Html
+				className="marker-indicator-container"
+				position={[0, 0, 0]}
+				scale={1}
+				// Hide contents "behind" other meshes
+				occlude
+				// Tells us when contents are occluded (or not)
+				onOcclude={onContactMarkerOcclude}
+				// We just interpolate the visible state into css opacity and transforms
+				style={{
+					transition: "all 0.2s",
+					opacity: markerOcclude ? 0 : 1
+				}}
+				center
+			>
+				<div className="marker-indicator-title">
+					{springs.map((props, index) => (
+						<animated.div key={index} style={props}>
+							<div>CONTACT</div>
+							<hr />
+						</animated.div>
+					))}
+				</div>
+
+				<RoomIcon
+					className="marker-indicator-pointer"
+					onMouseOver={() => onHover(true)}
+					onMouseLeave={() => onHover(false)}
+					onClick={() => onContactMarkerClick()}
+				/>
+			</Html>
+			<Html>
+				<ContactForm isOpen={journeyStep.step === 6} onContactBackDropClick={onContactMarkerMiss} />
+			</Html>
+		</mesh>
 	);
 }
 

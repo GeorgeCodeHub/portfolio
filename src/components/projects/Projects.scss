@@ -35,3 +35,21 @@
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none;
 }
+
+.project-dialog-title {
+	border-top: 1px solid #1d5560;
+	border-right: 1px solid #1d5560;
+	border-left: 1px solid #1d5560;
+}
+
+.project-dialog-content {
+	border-right: 1px solid #1d5560;
+	border-left: 1px solid #1d5560;
+}
+
+.project-dialog-actions {
+	border-right: 1px solid #1d5560;
+	border-left: 1px solid #1d5560;
+	border-bottom: 1px solid #1d5560;
+	background: #3c5e61;
+}

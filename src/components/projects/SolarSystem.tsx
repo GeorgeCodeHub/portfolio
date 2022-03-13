@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 
 import { useFrame } from "@react-three/fiber";
 
+import { Sun2, Earth, Moon } from "../../utils/3DModelsPlanets";
+
 import ContactView from "../contact/ContactView";
 
 function SolarSystem() {
@@ -20,6 +22,8 @@ function SolarSystem() {
 		sunRef.current.position.x = sunX;
 		sunRef.current.position.z = sunZ;
 
+		sunRef.current.rotation.y += 0.005;
+
 		// Rotate moon around Earth
 		const moonX = 60 * Math.sin(moonTime);
 		const moonZ = 60 * Math.cos(moonTime);
@@ -28,32 +32,23 @@ function SolarSystem() {
 		moonRef.current.position.z = moonZ;
 
 		// Rotate earth on itself
-		earthRef.current.rotation.y += 0.0006;
+		earthRef.current.rotation.y += 0.00100005;
 	});
 
 	return (
 		<>
 			{/* Sun */}
-			<mesh ref={sunRef}>
+			<Sun2 ref={sunRef}>
 				<pointLight position={[0, 0, 0]} />
-				<sphereGeometry args={[2, 64, 64]} />
-				<meshStandardMaterial color="#E1DC59" />
-			</mesh>
+			</Sun2>
 
 			{/* Earth */}
-			<mesh ref={earthRef} position={[0, 0, 0]}>
-				<sphereGeometry args={[4, 64, 64]} />
-				<meshStandardMaterial color="blue" />
-			</mesh>
-
-			{/* Contact Marker */}
-			<ContactView />
+			<Earth ref={earthRef} position={[0, 0, 0]} scale={0.77}>
+				<ContactView />
+			</Earth>
 
 			{/* Moon */}
-			<mesh ref={moonRef}>
-				<sphereGeometry args={[2, 64, 64]} />
-				<meshStandardMaterial color="blue" />
-			</mesh>
+			<Moon ref={moonRef} scale={0.27} />
 		</>
 	);
 }

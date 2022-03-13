@@ -44,7 +44,7 @@ const stepsReducer = (state: any, action: { type: any; payload: any }) => {
 				key: "Education",
 				step: 3,
 				title: "EDUCATION",
-				titlePosition: new THREE.Vector3(0, 2.3, 0),
+				titlePosition: new THREE.Vector3(0, 2, 0),
 				cameraPosition: new THREE.Vector3(0, 0.22899705722410416, 6)
 			};
 		case "Skills":

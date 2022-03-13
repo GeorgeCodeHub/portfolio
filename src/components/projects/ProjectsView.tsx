@@ -12,55 +12,18 @@ import Satellite from "./Satellite";
 
 import "./Projects.scss";
 
-const random = (a: number, b: number) => a + Math.random() * b;
+import { projectsData } from "../../utils/dataSet";
 
-let projectsData: any[] = [
-	{
-		title: "Project 1",
-		description: "Some text that goes on and on and on and on and on and on and on and on",
-		technologies: ["ReactJS", "Python"],
-		images: ["Image1", "Image2"],
-		githubURL: "http",
-		runningAppURL: "http"
-	},
-	{
-		title: "Project 2",
-		description: "Some text that goes on and on and on and on and on and on",
-		technologies: ["ReactJS"],
-		images: ["Image1", "Image2"],
-		githubURL: "http",
-		runningAppURL: ""
-	},
-	{
-		title: "Project 3",
-		description: "Some text that goes on and on and on and on",
-		technologies: ["ReactJS", "Python", "PostgreSQL"],
-		images: ["Image1", "Image2"],
-		githubURL: "http",
-		runningAppURL: "http"
-	},
-	{
-		title: "Project 4",
-		description: "Some text that goes on and on and on and on and on and on and on and on and on and on and on and on",
-		technologies: ["Python", "Tensorflow"],
-		images: ["Image1", "Image2"],
-		githubURL: "http",
-		runningAppURL: "http"
-	}
-];
-
-projectsData = projectsData.map((item, index) => ({
-	...item,
-	id: index,
-	xRadius: random(1, 4) + 4,
-	zRadius: random(1, 4) + 4,
-	size: random(0.5, 1),
-	speed: random(0.05, 0.1),
-	offset: random(0, Math.PI * 4),
-	rotationSpeed: random(0.008, 0.004)
-}));
-
-function ProjectsView() {
+function ProjectsView({
+	setChangedView
+}: {
+	setChangedView: React.Dispatch<
+		React.SetStateAction<{
+			duration: number;
+			isChanged: boolean;
+		}>
+	>;
+}) {
 	const [projectLoaded, setProjectLoaded] = useState(false);
 
 	const { journeyStep } = React.useContext(JourneyStepsContext);
@@ -76,8 +39,13 @@ function ProjectsView() {
 		}
 	});
 
+	useEffect(() => {
+		setChangedView({ duration: 500, isChanged: false });
+	}, [setChangedView]);
+
 	return (
 		<>
+			<ambientLight intensity={0.1} />
 			{projectLoaded && (
 				<PerspectiveCamera position={journeyStep.cameraPosition} makeDefault={journeyStep.step === 5} />
 			)}

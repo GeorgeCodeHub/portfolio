@@ -47,10 +47,10 @@ function NavBar() {
 			<Grid item>
 				<BottomNavigation
 					sx={{ width: "100%" }}
-					value={journeyStep.key}
+					value={journeyStep.step}
 					onChange={onNavBarChange}
 					showLabels={false}
-					style={{ width: "100%" }}
+					style={{ width: "100%", borderTop: "1px solid #1d5560" }}
 				>
 					<Tooltip title="Home">
 						<BottomNavigationAction

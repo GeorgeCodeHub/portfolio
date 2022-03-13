@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
 // Context
 import { JourneyStepsContext } from "../../App";
@@ -9,22 +9,27 @@ import { useFrame } from "@react-three/fiber";
 import { Html, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
-import technicalSkillsData, { Planet } from "./Planets";
+import { Sun1 } from "../../utils/3DModelsPlanets";
+import { technicalSkillsData } from "../../utils/dataSet";
+
+import Planet from "./Planet";
 
 import "./Skills.scss";
 
-export const Sun = () => {
-	return (
-		<mesh>
-			<sphereGeometry args={[2.5, 32, 32]} />
-			<meshStandardMaterial color="#E1DC59" />
-		</mesh>
-	);
-};
-
-function SkillsView() {
+function SkillsView({
+	setChangedView
+}: {
+	setChangedView: React.Dispatch<
+		React.SetStateAction<{
+			duration: number;
+			isChanged: boolean;
+		}>
+	>;
+}) {
 	const [follow, setFollow] = useState(false);
 	const [goToProjects, setGoToProjects] = useState(false);
+
+	const sunRef: any = useRef();
 
 	const selectedPlanetRef: any = useRef();
 
@@ -51,10 +56,16 @@ function SkillsView() {
 
 	const onProjectsClick = useCallback(() => {
 		setGoToProjects(true);
-	}, []);
+		// Set animation for transition from one view to another
+		setChangedView({ duration: 1000, isChanged: true });
+	}, [setChangedView]);
 
 	// Update position of space station and camera to rotate around the galaxy
-	useFrame(({ camera }) => {
+	useFrame(({ camera, clock }) => {
+		const t = clock.getElapsedTime();
+		// Rotate sun on itself
+		sunRef.current.rotation.y += 0.001;
+
 		// Set camera in accordance to the selected item
 		if (follow) {
 			const newCameraPosition = new THREE.Vector3(
@@ -68,7 +79,7 @@ function SkillsView() {
 		} else {
 			if (goToProjects) {
 				const projectsPosition = new THREE.Vector3(60, -20, -150);
-				camera.position.lerp(projectsPosition, 0.05);
+				camera.position.lerp(projectsPosition, 0.0008 * t);
 				camera.lookAt(projectsPosition);
 
 				// If camera goes over the below value go to Projects
@@ -86,10 +97,14 @@ function SkillsView() {
 		camera.updateProjectionMatrix();
 	});
 
+	useEffect(() => {
+		setChangedView({ duration: 200, isChanged: false });
+	}, [setChangedView]);
+
 	return (
 		<>
 			<pointLight position={[0, 0, 0]} />
-			<Sun />
+			<Sun1 ref={sunRef} position={[0, 0, 0]} scale={0.8} />
 			<Html className="exp-indicator-container" position={[60, -20, -150]} center>
 				<div className="exp-indicator-title">
 					{springs.map((props, index) => (

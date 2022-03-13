@@ -17,6 +17,8 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 import Carousel from "react-material-ui-carousel";
 
+import Palette from "../../utils/Palette";
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 	"& .MuiDialogContent-root": {
 		padding: theme.spacing(2)
@@ -30,14 +32,19 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
 	const { children, onClose, ...other } = props;
 
 	return (
-		<div {...other}>
+		<div className="project-dialog-title" {...other}>
 			<Carousel
+				navButtonsProps={{
+					style: {
+						background: "#4FBDBA"
+					}
+				}}
 				autoPlay={true}
 				indicators={false}
 				swipe={true}
 				cycleNavigation={true}
 				navButtonsAlwaysVisible={true}
-				fullHeightHover={false}
+				fullHeightHover={true}
 				animation="slide"
 				duration={500}
 			>
@@ -71,7 +78,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
 						position: "absolute",
 						right: 8,
 						top: 8,
-						color: (theme) => theme.palette.grey[500]
+						color: "white"
 					}}
 					style={{ zIndex: 5 }}
 				>
@@ -84,34 +91,36 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
 
 function ProjectInfo({ handleClose, open, itemData }: { handleClose: () => void; open: boolean; itemData: any }) {
 	return (
-		<BootstrapDialog
-			onClose={handleClose}
-			aria-labelledby="customized-dialog-title"
-			open={open}
-			style={{ zIndex: 99999999 }}
-		>
-			<BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-				{itemData.title}
-			</BootstrapDialogTitle>
-			<DialogContent dividers>
-				<Typography gutterBottom>{itemData.description}</Typography>
-			</DialogContent>
-			<DialogActions>
-				<div style={{ marginRight: "auto" }}>
-					<IconButton aria-label="Redirect" color="primary" onClick={handleClose}>
-						<ExitToAppIcon />
-					</IconButton>
-					<IconButton aria-label="Github" color="primary" onClick={handleClose}>
-						<GitHubIcon />
-					</IconButton>
-				</div>
-				<Stack direction="row" spacing={1}>
-					{itemData.technologies.map((item: string, index: number) => (
-						<Chip key={index} label={item} color="primary" variant="outlined" />
-					))}
-				</Stack>
-			</DialogActions>
-		</BootstrapDialog>
+		<Palette>
+			<BootstrapDialog
+				onClose={handleClose}
+				aria-labelledby="customized-dialog-title"
+				open={open}
+				style={{ zIndex: 99999999 }}
+			>
+				<BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+					{itemData.title}
+				</BootstrapDialogTitle>
+				<DialogContent className="project-dialog-content" dividers>
+					<Typography gutterBottom>{itemData.description}</Typography>
+				</DialogContent>
+				<DialogActions className="project-dialog-actions">
+					<div style={{ marginRight: "auto" }}>
+						<IconButton aria-label="Redirect" color="primary" onClick={handleClose}>
+							<ExitToAppIcon />
+						</IconButton>
+						<IconButton aria-label="Github" color="primary" onClick={handleClose}>
+							<GitHubIcon />
+						</IconButton>
+					</div>
+					<Stack direction="row" spacing={1}>
+						{itemData.technologies.map((item: string, index: number) => (
+							<Chip key={index} label={item} color="primary" />
+						))}
+					</Stack>
+				</DialogActions>
+			</BootstrapDialog>
+		</Palette>
 	);
 }
 

@@ -10,6 +10,8 @@ import CardActions from "@mui/material/CardActions";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Grid from "@mui/material/Grid";
+import Grow from "@mui/material/Grow";
+import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 
 import IconButton from "@mui/material/IconButton";
@@ -17,6 +19,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { Html } from "@react-three/drei";
 
+import Palette from "../../utils/Palette";
 import { datePatterns } from "../../utils/consts";
 
 export const DegreesListComponent = ({
@@ -42,9 +45,8 @@ export const DegreesListComponent = ({
 
 	return (
 		<Html
-			position={[1.2, 0, 0]}
+			position={[0, 0, 0]}
 			scale={0.2}
-			rotation={[0, Math.PI / 2, 0]}
 			transform
 			occlude
 			onOcclude={onDegreesOcclude}
@@ -55,76 +57,81 @@ export const DegreesListComponent = ({
 				transform: `scale(${occludeDegrees ? 0.25 : 1})`
 			}}
 		>
-			{windowOpenDegrees ? (
-				<Card variant="outlined" sx={{ maxWidth: 700 }}>
-					<CardHeader
-						title="DEGREES"
-						action={
-							<IconButton
-								aria-label="close"
-								component="span"
-								onClick={() => {
-									setWindowOpenDegrees(false);
-								}}
-							>
-								<CloseIcon />
-							</IconButton>
-						}
-						style={{ borderBottom: "1px solid" }}
-					/>
+			<Palette>
+				{windowOpenDegrees ? (
+					<Grow in={windowOpenDegrees}>
+						<Card variant="outlined" sx={{ maxWidth: 700 }}>
+							<CardHeader
+								title="DEGREES"
+								action={
+									<IconButton
+										aria-label="close"
+										component="span"
+										onClick={() => {
+											setWindowOpenDegrees(false);
+										}}
+									>
+										<CloseIcon />
+									</IconButton>
+								}
+								style={{ borderBottom: "1px solid #1D5560" }}
+							/>
 
-					<CardContent>
-						<List
-							sx={{
-								width: "100%",
+							<CardContent>
+								<List
+									sx={{
+										width: "100%",
+										overflow: "auto",
+										maxHeight: 500
+									}}
+								>
+									{list.map((item, index) => (
+										<ListItem key={`item-${index}`}>
+											<Card variant="outlined" sx={{ width: "100%" }}>
+												<CardHeader
+													title={
+														<Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
+															<Grid item>
+																<b style={{ fontSize: 16 }}>{item.title}</b>
+															</Grid>
+															<Grid item>
+																<b style={{ fontSize: 16 }}>{item.school}</b>
+															</Grid>
+														</Grid>
+													}
+													style={{ borderBottom: "1px solid #1D5560" }}
+												/>
 
-								overflow: "auto",
-								maxHeight: 500
+												<CardContent>
+													<Typography>{item.description}</Typography>
+												</CardContent>
+												<CardActions style={{ background: "#3c5e61" }}>
+													<Typography>
+														{format(item.dateStart, datePatterns.monthYear)} -{" "}
+														{format(item.dateEnd, datePatterns.monthYear)}
+													</Typography>
+												</CardActions>
+											</Card>
+										</ListItem>
+									))}
+								</List>
+							</CardContent>
+						</Card>
+					</Grow>
+				) : (
+					<Fade in={!windowOpenDegrees}>
+						<Button
+							variant="contained"
+							disableElevation
+							onClick={() => {
+								setWindowOpenDegrees(true);
 							}}
 						>
-							{list.map((item, index) => (
-								<ListItem key={`item-${index}`}>
-									<Card variant="outlined" sx={{ width: "100%" }}>
-										<CardHeader
-											title={
-												<Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-													<Grid item>
-														<b style={{ fontSize: 16 }}>{item.title}</b>
-													</Grid>
-													<Grid item>
-														<b style={{ fontSize: 16 }}>{item.school}</b>
-													</Grid>
-												</Grid>
-											}
-											style={{ borderBottom: "1px solid #1E2427" }}
-										/>
-
-										<CardContent>
-											<Typography>{item.description}</Typography>
-										</CardContent>
-										<CardActions style={{ background: "#EEEEEE" }}>
-											<Typography>
-												{format(item.dateStart, datePatterns.monthYear)} -{" "}
-												{format(item.dateEnd, datePatterns.monthYear)}
-											</Typography>
-										</CardActions>
-									</Card>
-								</ListItem>
-							))}
-						</List>
-					</CardContent>
-				</Card>
-			) : (
-				<Button
-					variant="contained"
-					disableElevation
-					onClick={() => {
-						setWindowOpenDegrees(true);
-					}}
-				>
-					DEGREES
-				</Button>
-			)}
+							DEGREES
+						</Button>
+					</Fade>
+				)}
+			</Palette>
 		</Html>
 	);
 };
@@ -150,9 +157,8 @@ export const CertificateListComponent = ({
 
 	return (
 		<Html
-			position={[-1.2, 0, 0]}
+			position={[0, 0, 0]}
 			scale={0.2}
-			rotation={[0, -Math.PI / 2, 0]}
 			transform
 			occlude
 			onOcclude={onCertsOcclude} //interpolate the visible state into css opacity and transforms
@@ -162,71 +168,77 @@ export const CertificateListComponent = ({
 				transform: `scale(${occludeCerts ? 0.25 : 1})`
 			}}
 		>
-			{windowOpenCerts ? (
-				<Card variant="outlined" sx={{ maxWidth: 600 }}>
-					<CardHeader
-						title="CERTIFICATES"
-						action={
-							<IconButton
-								aria-label="close"
-								component="span"
-								onClick={() => {
-									setWindowOpenCerts(false);
-								}}
-							>
-								<CloseIcon />
-							</IconButton>
-						}
-						style={{ borderBottom: "1px solid" }}
-					/>
-					<CardContent>
-						<List
-							sx={{
-								width: "100%",
-								overflow: "auto",
-								maxHeight: 400
+			<Palette>
+				{windowOpenCerts ? (
+					<Grow in={windowOpenCerts}>
+						<Card variant="outlined" sx={{ maxWidth: 600 }}>
+							<CardHeader
+								title="CERTIFICATES"
+								action={
+									<IconButton
+										aria-label="close"
+										component="span"
+										onClick={() => {
+											setWindowOpenCerts(false);
+										}}
+									>
+										<CloseIcon />
+									</IconButton>
+								}
+								style={{ borderBottom: "1px solid #1D5560" }}
+							/>
+							<CardContent>
+								<List
+									sx={{
+										width: "100%",
+										overflow: "auto",
+										maxHeight: 400
+									}}
+								>
+									{list.map((item, index) => (
+										<ListItem key={`item-${index}`}>
+											<Card variant="outlined" sx={{ width: "100%" }}>
+												<CardHeader
+													title={
+														<Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
+															<Grid item>
+																<b style={{ fontSize: 16 }}>{item.title}</b>
+															</Grid>
+															<Grid item>
+																<b style={{ fontSize: 16 }}>{item.school}</b>
+															</Grid>
+														</Grid>
+													}
+													style={{ borderBottom: "1px solid #1D5560" }}
+												/>
+
+												<CardContent>
+													<Typography>{item.description}</Typography>
+												</CardContent>
+												<CardActions style={{ background: "#3c5e61" }}>
+													<Typography>{format(item.dateAcquired, datePatterns.monthYear)}</Typography>
+												</CardActions>
+											</Card>
+										</ListItem>
+									))}
+								</List>
+							</CardContent>
+						</Card>
+					</Grow>
+				) : (
+					<Fade in={!windowOpenCerts}>
+						<Button
+							variant="contained"
+							disableElevation
+							onClick={() => {
+								setWindowOpenCerts(true);
 							}}
 						>
-							{list.map((item, index) => (
-								<ListItem key={`item-${index}`}>
-									<Card variant="outlined" sx={{ width: "100%" }}>
-										<CardHeader
-											title={
-												<Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-													<Grid item>
-														<b style={{ fontSize: 16 }}>{item.title}</b>
-													</Grid>
-													<Grid item>
-														<b style={{ fontSize: 16 }}>{item.school}</b>
-													</Grid>
-												</Grid>
-											}
-											style={{ borderBottom: "1px solid #1E2427" }}
-										/>
-
-										<CardContent>
-											<Typography>{item.description}</Typography>
-										</CardContent>
-										<CardActions style={{ background: "#EEEEEE" }}>
-											<Typography>{format(item.dateAcquired, datePatterns.monthYear)}</Typography>
-										</CardActions>
-									</Card>
-								</ListItem>
-							))}
-						</List>
-					</CardContent>
-				</Card>
-			) : (
-				<Button
-					variant="contained"
-					disableElevation
-					onClick={() => {
-						setWindowOpenCerts(true);
-					}}
-				>
-					CERTIFICATES
-				</Button>
-			)}
+							CERTIFICATES
+						</Button>
+					</Fade>
+				)}
+			</Palette>
 		</Html>
 	);
 };

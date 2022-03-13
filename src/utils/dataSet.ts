@@ -70,3 +70,83 @@ export const certificateList = [
 		dateAcquired: new Date(2019, 7, 1)
 	}
 ];
+
+let skillsData: any[] = [
+	{
+		title: "Front-End",
+		techItems: ["HTML", "CSS", "Javascript", "Typescript", "React", "NextJS", "Redux"]
+	},
+	{
+		title: "Back-End",
+		techItems: ["PostgreSQL", "Javascript", "NodeJS", "ExpressJS", "Python", "FastAPI", "Django"]
+	},
+	{
+		title: "Machine Learning",
+		techItems: ["Python", "Numpy", "Pandas", "Scikit-learn", "Matplotlib", "OpenCV", "Keras", "Tensorflow"]
+	},
+	{
+		title: "Game Dev",
+		techItems: ["C#", "Unity3D", "Blender3D"]
+	}
+];
+
+skillsData = skillsData.map((item, index) => ({
+	...item,
+	id: index,
+	xRadius: (index + 2.5) * 4,
+	zRadius: (index + 2.5) * 4,
+	size: random(0.05, 0.2),
+	speed: random(0.05, 0.1),
+	offset: random(0, Math.PI * 4),
+	rotationSpeed: random(0.003, 0.006)
+}));
+
+export const technicalSkillsData = skillsData;
+
+let data: any[] = [
+	{
+		title: "Project 1",
+		description: "Some text that goes on and on and on and on and on and on and on and on",
+		technologies: ["ReactJS", "Python"],
+		images: ["Image1", "Image2"],
+		githubURL: "http",
+		runningAppURL: "http"
+	},
+	{
+		title: "Project 2",
+		description: "Some text that goes on and on and on and on and on and on",
+		technologies: ["ReactJS"],
+		images: ["Image1", "Image2"],
+		githubURL: "http",
+		runningAppURL: ""
+	},
+	{
+		title: "Project 3",
+		description: "Some text that goes on and on and on and on",
+		technologies: ["ReactJS", "Python", "PostgreSQL"],
+		images: ["Image1", "Image2"],
+		githubURL: "http",
+		runningAppURL: "http"
+	},
+	{
+		title: "Project 4",
+		description: "Some text that goes on and on and on and on and on and on and on and on and on and on and on and on",
+		technologies: ["Python", "Tensorflow"],
+		images: ["Image1", "Image2"],
+		githubURL: "http",
+		runningAppURL: "http"
+	}
+];
+
+data = data.map((item, index) => ({
+	...item,
+	id: index,
+	xRadius: random(1, 4) + 4,
+	zRadius: random(1, 4) + 4,
+	size: random(0.5, 1),
+	speed: random(0.05, 0.1),
+	offset: random(0, Math.PI * 4),
+	rotationSpeed: random(0.008, 0.004)
+}));
+
+export const projectsData = data;

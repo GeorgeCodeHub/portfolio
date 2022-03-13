@@ -1,11 +1,15 @@
-import { useState, useCallback, useRef } from "react";
+import React, { useState, useMemo, useCallback, useRef } from "react";
 
 import { useSprings, animated } from "react-spring";
 
 import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 
+import { satelliteArray } from "../../utils/3DModelsSatellites";
+
 import ProjectInfo from "./ProjectInfo";
+
+let selectedModelCounter = 0;
 
 function Satellite({
 	id,
@@ -26,6 +30,7 @@ function Satellite({
 	const [open, setOpen] = useState(false);
 
 	const satelliteRef: any = useRef();
+	const modelRef: any = useRef();
 
 	// Set initial spring settings for animation
 	const [springs, setSprings] = useSprings(1, (i) => ({
@@ -46,18 +51,18 @@ function Satellite({
 		[setSprings]
 	);
 
-	const onTitleOcclude = (value: boolean) => {
+	const onTitleOcclude = useCallback((value: boolean) => {
 		setIsOccluded(value);
 		return null;
-	};
+	}, []);
 
-	const handleClose = () => {
+	const handleClose = useCallback(() => {
 		setOpen(false);
-	};
+	}, []);
 
-	const handleClickOpen = () => {
+	const handleClickOpen = useCallback(() => {
 		setOpen(true);
-	};
+	}, []);
 
 	useFrame(({ clock }) => {
 		const t = clock.getElapsedTime() * speed + offset;
@@ -66,26 +71,44 @@ function Satellite({
 		const y = id * Math.sin(t);
 		const z = zRadius * Math.cos(t);
 
+		// Rotate satellite around earth
 		satelliteRef.current.position.x = x;
 		if (id % 2 === 0) satelliteRef.current.position.y = y;
 		else satelliteRef.current.position.y = -y;
 		satelliteRef.current.position.z = z;
+
+		// Rotate satellite around itself
+		modelRef.current.rotation.x = modelRef.current.rotation.y = modelRef.current.rotation.z = Math.cos(t) * Math.PI;
 	});
 
+	const rendered3dModel = useMemo(() => {
+		let selectedModel = satelliteArray[selectedModelCounter];
+
+		if (selectedModelCounter === satelliteArray.length) selectedModelCounter = 0;
+		else selectedModelCounter++;
+
+		return selectedModel;
+	}, []);
+
 	return (
-		<>
+		<group ref={satelliteRef}>
+			{React.createElement(rendered3dModel, {
+				onPointerOver: (e: { stopPropagation: () => any }) => [e.stopPropagation(), onHover(true)],
+				onPointerOut: () => onHover(false),
+				onClick: () => handleClickOpen(),
+				position: [0, 0, 0],
+				scale: 0.05,
+				ref: modelRef
+			})}
 			<mesh
-				ref={satelliteRef}
 				onPointerOver={(e) => [e.stopPropagation(), onHover(true)]}
 				onPointerOut={(e) => onHover(false)}
 				onClick={() => handleClickOpen()}
 			>
-				<sphereGeometry args={[0.1, 32, 32]} />
-				<meshStandardMaterial color="grey" />
 				<Html
 					className="project-indicator-container"
 					scale={1}
-					position={[0, 0.2, 0]}
+					position={[0, 0.4, 0]}
 					center
 					occlude
 					onOcclude={onTitleOcclude}
@@ -124,7 +147,7 @@ function Satellite({
 					<ProjectInfo handleClose={handleClose} open={open} itemData={itemData} />
 				</Html>
 			</mesh>
-		</>
+		</group>
 	);
 }
 

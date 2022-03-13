@@ -1,4 +1,6 @@
-import React, { useEffect, Suspense } from "react";
+import React, { useState, Suspense } from "react";
+
+import { animated, useSpring } from "react-spring";
 
 import { JourneyStepsContext } from "../App";
 
@@ -17,40 +19,47 @@ import SkillsView from "./skills/SkillsView";
 import ProjectsView from "./projects/ProjectsView";
 
 function CanvasView() {
-	const { journeyStep, dispatchJourneyStep } = React.useContext(JourneyStepsContext);
+	const [changedView, setChangedView] = useState({ duration: 0, isChanged: false });
+
+	const { journeyStep } = React.useContext(JourneyStepsContext);
 
 	const ContextBridge = useContextBridge(JourneyStepsContext);
+
+	const { x } = useSpring({
+		from: { x: 0 },
+		x: changedView.isChanged ? 0 : 1,
+		config: { duration: changedView.duration }
+	});
 
 	const stepController = () => {
 		switch (journeyStep.step) {
 			case 0:
 				return <HomeView />;
 			case 1:
-				return <AboutView />;
+				return <AboutView setChangedView={setChangedView} />;
 			case 2:
-				return <ExperienceView />;
+				return <ExperienceView setChangedView={setChangedView} />;
 			case 3:
-				return <EducationView />;
+				return <EducationView setChangedView={setChangedView} />;
 			case 4:
-				return <SkillsView />;
+				return <SkillsView setChangedView={setChangedView} />;
 			case 5:
 			case 6:
-				return <ProjectsView />;
+				return <ProjectsView setChangedView={setChangedView} />;
 			default:
 				return <></>;
 		}
 	};
 
-	useEffect(() => {
-		dispatchJourneyStep({ type: "Home" });
-	}, [dispatchJourneyStep]);
-
 	return (
-		<div className="view-container">
+		<animated.div
+			className="view-container"
+			style={{
+				opacity: x.to({ range: [0, 1], output: [0, 1] })
+			}}
+		>
 			<Canvas camera={{ position: journeyStep.cameraPosition, zoom: 1.5 }}>
 				<Suspense fallback={null}>
-					<ambientLight />
-					<pointLight position={[0, 0, 0]} />
 					{journeyStep.step < 2 && <StarsCube enableFalling={true} />}
 					<Stars radius={10} depth={100} count={2000} factor={4} saturation={1} fade />
 					<ContextBridge>
@@ -64,7 +73,7 @@ function CanvasView() {
 					</ContextBridge>
 				</Suspense>
 			</Canvas>
-		</div>
+		</animated.div>
 	);
 }
 
