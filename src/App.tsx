@@ -99,7 +99,7 @@ const stepsReducer = (state: any, action: { type: any; payload: any }) => {
 				step: 2,
 				title: "EXPERIENCE",
 				titlePosition: new THREE.Vector3(0, 3, 0),
-				cameraPosition: new THREE.Vector3(0, 6, 6)
+				cameraPosition: new THREE.Vector3(0, 6, 7)
 			};
 		case "Education":
 			return {
@@ -123,7 +123,7 @@ const stepsReducer = (state: any, action: { type: any; payload: any }) => {
 				step: 5,
 				title: "PROJECTS",
 				titlePosition: new THREE.Vector3(0, 7, 0),
-				cameraPosition: new THREE.Vector3(0, 10, 20)
+				cameraPosition: new THREE.Vector3(0, 5, 20)
 			};
 		case "Contact":
 			return {

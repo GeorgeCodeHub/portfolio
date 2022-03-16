@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
+import CodeIcon from "@mui/icons-material/Code";
 
 // Context
 import { JourneyStepsContext } from "../../App";
@@ -119,14 +120,17 @@ function SkillsView({
 						</animated.div>
 					))}
 				</div>
-				<b
+				<div
 					className="skill-indicator-pointer"
+					style={{ display: "inline-block" }}
 					onMouseOver={() => onHover(true)}
 					onMouseLeave={() => onHover(false)}
 					onClick={() => onProjectsClick()}
 				>
-					{"{⨀}"}
-				</b>
+					{"{"}
+					<CodeIcon style={{ marginBottom: -3 }} />
+					{"}"}
+				</div>
 			</Html>
 			<group
 				onPointerMissed={(e) => {

@@ -12,18 +12,21 @@ body,
 /* width */
 ::-webkit-scrollbar {
 	width: 15px;
+	-webkit-overflow-scrolling: touch;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
 	background: #213f44;
 	border-radius: 10px;
+	-webkit-border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
 	background: #4fbdba;
 	border-radius: 10px;
+	-webkit-border-radius: 10px;
 }
 
 /* Handle on hover */

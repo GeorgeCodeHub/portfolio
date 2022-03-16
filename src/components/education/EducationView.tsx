@@ -8,7 +8,6 @@ import { useSprings, animated } from "react-spring";
 
 import { Html, OrbitControls, Float } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { EffectComposer, SSAO, SMAA } from "@react-three/postprocessing";
 
 import * as THREE from "three";
 
@@ -105,54 +104,50 @@ function EducationView({
 			{/* Lights */}
 			<ambientLight intensity={0.02} />
 			<pointLight position={[-5, 2, 0]} />
-			<Float
-				speed={0.4} // Animation speed, defaults to 1
-				rotationIntensity={0.4} // XYZ rotation intensity, defaults to 1
-				floatIntensity={0.4} // Up/down float intensity, defaults to 1
+
+			<mesh
+				scale={0.1}
+				position={[0, 0, 0]}
+				onPointerOver={(e) => [e.stopPropagation(), onHover(true)]}
+				onPointerOut={(e) => onHover(false)}
 			>
-				<mesh
-					scale={0.1}
-					position={[0, 0, 0]}
-					onPointerOver={(e) => [e.stopPropagation(), onHover(true)]}
-					onPointerOut={(e) => onHover(false)}
+				<Html
+					className="exp-indicator-container"
+					scale={3}
+					position={[0, 1, 0]}
+					rotation={[0, -Math.PI / 5, 0]}
+					center
+					transform
+					occlude
 				>
-					<Html
-						className="exp-indicator-container"
-						scale={3}
-						position={[0, 1, 0]}
-						rotation={[0, -Math.PI / 5, 0]}
-						center
-						transform
-						occlude
+					<div className="exp-indicator-title">
+						{springs.map((props, index) => (
+							<animated.div key={index} style={props}>
+								<div>SKILLS</div>
+							</animated.div>
+						))}
+					</div>
+					<div
+						className="exp-indicator-pointer"
+						style={{ transform: "rotate(270deg)" }}
+						onMouseOver={() => onHover(true)}
+						onMouseLeave={() => onHover(false)}
+						onClick={() => {
+							onSkillsClick();
+						}}
 					>
-						<div className="exp-indicator-title">
-							{springs.map((props, index) => (
-								<animated.div key={index} style={props}>
-									<div>SKILLS</div>
-								</animated.div>
-							))}
-						</div>
-						<div
-							className="exp-indicator-pointer"
-							style={{ transform: "rotate(270deg)" }}
-							onMouseOver={() => onHover(true)}
-							onMouseLeave={() => onHover(false)}
-							onClick={() => {
-								onSkillsClick();
-							}}
-						>
-							<ArrowForwardIosIcon />
-						</div>
-					</Html>
-				</mesh>
-				<mesh position={[1, 0, 0.5]} rotation={[0, Math.PI / 3, 0]}>
-					<DegreesListComponent list={degreesList} />
-				</mesh>
-				<mesh position={[-1, 0, -0.6]} rotation={[0, -Math.PI / 1.5, 0]}>
-					<CertificateListComponent list={certificateList} />
-				</mesh>
-				<SpaceBase position={[0, 0, 0]} rotation={[Math.PI / 2, 0, Math.PI / 6]} />
-			</Float>
+						<ArrowForwardIosIcon />
+					</div>
+				</Html>
+			</mesh>
+			<mesh position={[1, 0, 0.5]} rotation={[0, Math.PI / 3, 0]}>
+				<DegreesListComponent list={degreesList} />
+			</mesh>
+			<mesh position={[-1, 0, -0.6]} rotation={[0, -Math.PI / 1.5, 0]}>
+				<CertificateListComponent list={certificateList} />
+			</mesh>
+			<SpaceBase position={[0, 0, 0]} rotation={[Math.PI / 2, 0, Math.PI / 6]} />
+
 			{/* Random spaceships inside the space station */}
 			<Float rotationIntensity={0.5} floatIntensity={0.5} speed={0.2}>
 				<SpaceShip1 position={[0.1, 0.2, 0.5]} scale={0.02} rotation={[0, Math.PI / 3, 0]} />
@@ -163,12 +158,6 @@ function EducationView({
 			<Float rotationIntensity={0.55} floatIntensity={0.3} speed={0.6}>
 				<SpaceShip3 position={[1, -0.6, 1.8]} scale={0.02} rotation={[0, Math.PI / 1, 0]} />
 			</Float>
-
-			{/* Effects */}
-			<EffectComposer multisampling={0.2}>
-				<SSAO />
-				<SMAA />
-			</EffectComposer>
 
 			<OrbitControls enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 4} maxPolarAngle={Math.PI / 1.7} />
 		</>

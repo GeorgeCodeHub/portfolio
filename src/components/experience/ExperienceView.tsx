@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
+import SchoolIcon from "@mui/icons-material/School";
 
 import { JourneyStepsContext } from "../../App";
 
@@ -8,7 +9,7 @@ import { useSprings, animated } from "react-spring";
 
 import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
-import { EffectComposer, Bloom, SSAO, SMAA } from "@react-three/postprocessing";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 import Galaxy from "./Galaxy";
@@ -53,7 +54,6 @@ function ExperienceView({
 			setSprings((i) => ({
 				opacity: isHover ? 1 : 0,
 				transform: isHover ? `translateY(0px) scale(1, 1)` : `translateY(40px) scale(0.8, 0.2)`,
-
 				delay: isHover ? i * 100 : i * 100
 			}));
 		},
@@ -70,8 +70,8 @@ function ExperienceView({
 	// Update position of space station and camera to rotate around the galaxy
 	useFrame(({ camera, clock }) => {
 		const t = clock.getElapsedTime() * 0.06;
-		const x = 3.2 * Math.sin(t);
-		const z = 3.2 * Math.cos(t);
+		const x = 3.5 * Math.sin(t);
+		const z = 3.5 * Math.cos(t);
 		spaceStationRef.current.position.x = x;
 		spaceStationRef.current.position.z = z;
 
@@ -98,7 +98,7 @@ function ExperienceView({
 					}, 0);
 				}
 
-				camera.position.lerp(newCameraPosition, 0.02);
+				camera.position.lerp(newCameraPosition, 0.03);
 			} else {
 				camera.position.lerp(newCameraPosition, 0.04);
 			}
@@ -129,7 +129,7 @@ function ExperienceView({
 					<ExperienceIndicator
 						key={index}
 						ref={selectedItemRef}
-						radius={index + 1}
+						radius={index + 0.8}
 						jobItem={item}
 						follow={follow}
 						setFollow={setFollow}
@@ -158,12 +158,12 @@ function ExperienceView({
 
 							<div
 								className="exp-indicator-pointer"
-								style={{ transform: "scaleX(1.5)" }}
+								style={{ transform: "rotate(0deg)" }}
 								onMouseOver={() => onHover(true)}
 								onMouseLeave={() => onHover(false)}
 								onClick={() => onSpaceStationClick()}
 							>
-								[]
+								[<SchoolIcon style={{ marginBottom: -3 }} />]
 							</div>
 						</Html>
 					)}
@@ -175,8 +175,6 @@ function ExperienceView({
 					intensity={0.5} // The bloom intensity.
 					luminanceThreshold={0.2} // luminance threshold. Raise this value to mask out darker elements in the scene.
 				/>
-				<SSAO />
-				<SMAA />
 			</EffectComposer>
 		</>
 	);

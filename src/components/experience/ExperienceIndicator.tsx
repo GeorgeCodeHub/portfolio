@@ -58,6 +58,7 @@ const ExperienceIndicator = React.forwardRef(
 			const t = clock.getElapsedTime() * jobItem.speed + jobItem.offset;
 			const x = radius * Math.sin(t);
 			const z = radius * Math.cos(t);
+
 			refIndicator.current.position.x = x;
 			refIndicator.current.position.z = z;
 		});
@@ -86,6 +87,7 @@ const ExperienceIndicator = React.forwardRef(
 
 						<div
 							className="exp-indicator-pointer"
+							style={{ WebkitTextStroke: "1px black" }}
 							onMouseOver={() => onHover(true)}
 							onMouseLeave={() => onHover(false)}
 							onClick={() => onIndicatorClick()}

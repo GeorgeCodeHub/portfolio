@@ -14,7 +14,7 @@ import { makeStyles } from "@mui/styles";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
-import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
+import CodeIcon from "@mui/icons-material/Code";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import SchoolIcon from "@mui/icons-material/School";
 import EmailIcon from "@mui/icons-material/Email";
@@ -118,7 +118,7 @@ function NavBar() {
 						<BottomNavigationAction
 							classes={{ root: classes.root }}
 							value="Projects"
-							icon={<IntegrationInstructionsIcon style={{ paddingBottom: 6 }} />}
+							icon={<CodeIcon style={{ paddingBottom: 6 }} />}
 						/>
 					</Tooltip>
 					<Tooltip title="Contact">

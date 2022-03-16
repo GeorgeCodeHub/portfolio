@@ -28,7 +28,7 @@ const breakpointsCardWindows = {
 		sm: "85vw", // theme.breakpoints.up('sm')
 		md: "75vw", // theme.breakpoints.up('md')
 		lg: "60vw", // theme.breakpoints.up('lg')
-		xl: "50vw" // theme.breakpoints.up('xl')
+		xl: "45vw" // theme.breakpoints.up('xl')
 	}
 };
 

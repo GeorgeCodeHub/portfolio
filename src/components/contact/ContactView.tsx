@@ -56,7 +56,7 @@ function ContactView() {
 	}, []);
 
 	useFrame(({ camera, clock }) => {
-		const t = clock.getElapsedTime() * 0.02;
+		const t = clock.getElapsedTime() * 0.01;
 
 		const x = 3.9 * Math.sin(t);
 		const y = 3.2;
@@ -71,7 +71,7 @@ function ContactView() {
 		}
 	});
 
-	const meshPosition: [x: number, y: number, z: number] = journeyStep.step === 6 ? [0.08, 3.26, 3.9] : [0.08, 3.9, 3.9];
+	const meshPosition: [x: number, y: number, z: number] = journeyStep.step === 6 ? [0.08, 3.3, 4] : [0.08, 3.8, 4];
 
 	return (
 		<mesh position={meshPosition}>

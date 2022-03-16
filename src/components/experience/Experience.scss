@@ -9,12 +9,19 @@
 }
 
 .exp-indicator-container {
-	font-family: monospace;
 	font-size: 1.5rem;
 	color: white;
+	white-space: nowrap;
 	letter-spacing: -0.1rem;
 	text-align: center;
-	margin-top: -30px;
+	margin-top: -31px;
+	margin-left: 1px;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
 }
 
 .exp-indicator-title {
@@ -32,11 +39,12 @@
 
 .exp-indicator-pointer {
 	margin: auto;
-	width: 45px;
-	font-weight: lighter;
-	font-size: 35px;
+	width: 60px;
 	transform: rotate(45deg);
+	font-weight: bold;
+	font-size: 35px;
 	cursor: pointer;
+	-webkit-text-stroke: 1px black;
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
 	-khtml-user-select: none; /* Konqueror HTML */
