@@ -9,7 +9,15 @@ export interface InitialStateJourney {
 
 export interface ExperienceIndicatorTypes {
 	radius: number;
-	jobItem: { title: string; dateFrom: string; dateTo: string; speed: number };
+	jobItem: {
+		id: number;
+		positionTitle: string;
+		companyTitle: string;
+		dateFrom: string;
+		dateTo: string;
+		speed: number;
+		offset: number;
+	};
 	follow: boolean;
 	setFollow: Dispatch<SetStateAction<boolean>>;
 }

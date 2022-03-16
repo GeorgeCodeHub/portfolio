@@ -27,12 +27,12 @@ const Planet = forwardRef(({ technicalSkillItem, follow, setFollow }: any, ref: 
 			// Taken from https://discourse.threejs.org/t/can-i-place-obects-on-a-sphere-surface-evenly/4773/6
 			temp.push({
 				position: new THREE.Vector3().setFromSpherical(
-					spherical.set(10, phiSpan * i + getRandomArbitrary(0, 1), thetaSpan * i + getRandomArbitrary(0, 1))
+					spherical.set(technicalSkillItem.size + 8, phiSpan * i + getRandomArbitrary(0, 1), thetaSpan * i)
 				),
 				word: technicalSkillItem.techItems[i]
 			});
 		return temp;
-	}, [technicalSkillItem.techItems]);
+	}, [technicalSkillItem.techItems, technicalSkillItem.size]);
 
 	// Set camera position on click
 	const onIndicatorClick = () => {
@@ -72,14 +72,14 @@ const Planet = forwardRef(({ technicalSkillItem, follow, setFollow }: any, ref: 
 				userData: technicalSkillItem,
 				children: (
 					<>
-						<Html className="skill-type-title" position={[0, 0, 0]} center>
-							<b
-								className="exp-indicator-pointer"
+						<Html className="skill-type-title" position={[0, 10, 0]} center>
+							<div
+								className="skill-indicator-pointer"
 								onClick={() => onIndicatorClick()}
-								style={{ fontSize: follow ? "3rem" : "1.1rem", transition: "transform 0.3s ease-out" }}
+								style={{ fontSize: "1.1rem", transition: "transform 0.3s ease-out" }}
 							>
-								{technicalSkillItem.title}
-							</b>
+								{!isSelected && technicalSkillItem.title}
+							</div>
 						</Html>
 
 						{isSelected &&
@@ -89,7 +89,13 @@ const Planet = forwardRef(({ technicalSkillItem, follow, setFollow }: any, ref: 
 					</>
 				)
 			})}
-			<Ellipsis xRadius={technicalSkillItem.xRadius} zRadius={technicalSkillItem.zRadius} />
+			<Ellipsis
+				xRadius={technicalSkillItem.xRadius}
+				zRadius={technicalSkillItem.zRadius}
+				onClick={() => {
+					setFollow(false);
+				}}
+			/>
 		</>
 	);
 });

@@ -18,6 +18,16 @@ import EducationView from "./education/EducationView";
 import SkillsView from "./skills/SkillsView";
 import ProjectsView from "./projects/ProjectsView";
 
+const breakpointsCard = {
+	fontSize: {
+		xs: "1.1rem", // theme.breakpoints.up('xxs')
+		sm: "2.5rem", // theme.breakpoints.up('sm')
+		md: "3.75rem", // theme.breakpoints.up('md')
+		lg: "3.75rem", // theme.breakpoints.up('lg')
+		xl: "3.75rem" // theme.breakpoints.up('xl')
+	}
+};
+
 function CanvasView() {
 	const [changedView, setChangedView] = useState({ duration: 0, isChanged: false });
 
@@ -61,14 +71,13 @@ function CanvasView() {
 			<Canvas camera={{ position: journeyStep.cameraPosition, zoom: 1.5 }}>
 				<Suspense fallback={null}>
 					{journeyStep.step < 2 && <StarsCube enableFalling={true} />}
-					<Stars radius={10} depth={100} count={2000} factor={4} saturation={1} fade />
+					<Stars radius={10} depth={100} count={5000} factor={4} saturation={1} fade />
 					<ContextBridge>
 						<Html position={journeyStep.titlePosition} center style={{ textAlign: "center" }}>
-							<Typography className="step-title-top" variant="h2">
+							<Typography sx={breakpointsCard} className="step-title-top" variant="h2">
 								{journeyStep.title}
 							</Typography>
 						</Html>
-
 						{stepController()}
 					</ContextBridge>
 				</Suspense>

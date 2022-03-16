@@ -1,0 +1,161 @@
+.error-container {
+	width: 100%;
+	height: 100%;
+}
+
+// n is number of stars required
+@function multiple-box-shadow($n) {
+	$value: "#{random(2000)}px #{random(2000)}px #FFF";
+	@for $i from 2 through $n {
+		$value: "#{$value} , #{random(2000)}px #{random(2000)}px #FFF";
+	}
+
+	@return unquote($value);
+}
+
+$shadows-small: multiple-box-shadow(700);
+$shadows-big: multiple-box-shadow(100);
+
+.stars {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	width: 1px;
+	height: 1px;
+	background: transparent;
+	box-shadow: $shadows-small;
+	animation: animStar 50s linear infinite;
+
+	&:after {
+		content: " ";
+		position: absolute;
+		top: 0px;
+		width: 1px;
+		height: 1px;
+		background: transparent;
+		box-shadow: $shadows-small;
+	}
+}
+
+.stars2 {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	width: 3px;
+	height: 3px;
+	background: transparent;
+	box-shadow: $shadows-big;
+	animation: animStar 150s linear infinite;
+
+	&:after {
+		content: " ";
+		position: absolute;
+		top: 0px;
+		width: 3px;
+		height: 3px;
+		background: transparent;
+		box-shadow: $shadows-big;
+	}
+}
+
+.central-body {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	z-index: 200;
+}
+
+.objects img {
+	z-index: 90;
+	pointer-events: none;
+}
+
+.rocket {
+	z-index: 95;
+	position: absolute;
+	transform: translateX(-50px);
+	top: 75%;
+	pointer-events: none;
+	animation: rocket-movement 200s linear infinite both running;
+}
+
+.earth {
+	position: absolute;
+	top: 20%;
+	left: 15%;
+	z-index: 90;
+}
+
+.moon {
+	position: absolute;
+	top: 12%;
+	left: 25%;
+
+	transform: rotate(0deg);
+	transition: transform ease-in 99999999999s;
+}
+
+.astronaut-animation {
+	animation: rotate-astronaut 200s infinite linear both alternate;
+}
+
+.astronaut-container {
+	z-index: 110 !important;
+	position: absolute;
+	top: 60%;
+	right: 20%;
+	will-change: transform;
+	animation: move-astronaut 50s infinite linear both alternate;
+}
+
+@-moz-keyframes rocket-movement {
+	100% {
+		-moz-transform: translate(700px, -400px);
+	}
+}
+@-webkit-keyframes rocket-movement {
+	100% {
+		-webkit-transform: translate(700px, -400px);
+	}
+}
+@keyframes rocket-movement {
+	100% {
+		transform: translate(700px, -400px);
+	}
+}
+
+@-moz-keyframes move-astronaut {
+	100% {
+		-moz-transform: translate(-160px, -160px);
+	}
+}
+@-webkit-keyframes move-astronaut {
+	100% {
+		-webkit-transform: translate(-160px, -160px);
+	}
+}
+@keyframes move-astronaut {
+	100% {
+		-webkit-transform: translate(-160px, -160px);
+		transform: translate(-160px, -160px);
+	}
+}
+@-moz-keyframes rotate-astronaut {
+	100% {
+		-moz-transform: rotate(-720deg);
+	}
+}
+@-webkit-keyframes rotate-astronaut {
+	100% {
+		-webkit-transform: rotate(-720deg);
+	}
+}
+@keyframes rotate-astronaut {
+	100% {
+		-webkit-transform: rotate(-720deg);
+		transform: rotate(-720deg);
+	}
+}

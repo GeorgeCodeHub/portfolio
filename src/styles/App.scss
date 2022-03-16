@@ -2,15 +2,40 @@
 
 html,
 body,
-#root {
-	min-height: 100% !important;
+#root,
+.space-container {
+	width: 100%;
+	min-height: 700px;
+	height: 100% !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #213f44;
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #4fbdba;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #89c2c1;
 }
 
 canvas {
 	touch-action: none;
 }
 
-.stars {
+.space-background {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -39,29 +64,5 @@ hr {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
-}
-
-// NavBar
-
-.navbar-triangle-left {
-	background: linear-gradient(to bottom right, #1d5560 50%, #072227 52%);
-	width: 100%;
 	height: 100%;
-	-webkit-clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%);
-	clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%);
-	border-right: 1px solid #072227;
-}
-
-.navbar-triangle-right {
-	background: linear-gradient(to top right, #072227 48%, #1d5560 48%);
-	width: 100%;
-	height: 100%;
-	-webkit-clip-path: polygon(0% 0, 0% 0, 100% 100%, 0 100%);
-	clip-path: polygon(0% 0, 0% 0, 100% 100%, 0 100%);
-	border-left: 1px solid #072227;
-}
-
-.Mui-selected {
-	border-bottom: 6px solid !important;
 }

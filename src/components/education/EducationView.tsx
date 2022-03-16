@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 
 import { JourneyStepsContext } from "../../App";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import { useSprings, animated } from "react-spring";
 
 import { Html, OrbitControls, Float } from "@react-three/drei";
@@ -9,6 +11,8 @@ import { useFrame } from "@react-three/fiber";
 import { EffectComposer, SSAO, SMAA } from "@react-three/postprocessing";
 
 import * as THREE from "three";
+
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import { DegreesListComponent, CertificateListComponent } from "./EducationLists";
 
@@ -28,6 +32,8 @@ function EducationView({
 		}>
 	>;
 }) {
+	const isScreenMobile = useMediaQuery("(max-width:500px)");
+
 	const [projectLoaded, setProjectLoaded] = useState(false);
 	const [goToSkills, setGoToSkills] = useState(false);
 
@@ -71,13 +77,17 @@ function EducationView({
 			if (camera.position.z < -70) {
 				// This is a hacky way of updating the state of the item. If setTimeout is removed the UI breaks and keeps both views on the scene
 				setTimeout(() => {
-					dispatchJourneyStep({ type: "Skills" });
+					dispatchJourneyStep({ type: "Skills", payload: isScreenMobile });
 				}, 0);
 			}
 		} else {
 			// Animate camera position before reaching landing spot
 			if (!projectLoaded) {
-				if (journeyStep.cameraPosition.z === parseFloat(camera.position.z.toFixed(1))) setProjectLoaded(true);
+				if (
+					journeyStep.cameraPosition.x === parseFloat(camera.position.x.toFixed(1)) &&
+					journeyStep.cameraPosition.z === parseFloat(camera.position.z.toFixed(1))
+				)
+					setProjectLoaded(true);
 
 				camera.position.lerp(journeyStep.cameraPosition, 0.04);
 				camera.lookAt(new THREE.Vector3(0, 0, 0));
@@ -98,7 +108,7 @@ function EducationView({
 	return (
 		<>
 			{/* Lights */}
-			<ambientLight intensity={0.05} />
+			<ambientLight intensity={0.02} />
 			<pointLight position={[-5, 2, 0]} />
 			<Float
 				speed={0.4} // Animation speed, defaults to 1
@@ -114,7 +124,7 @@ function EducationView({
 					<Html
 						className="exp-indicator-container"
 						scale={3}
-						position={[0, 0, 0]}
+						position={[0, 1, 0]}
 						rotation={[0, -Math.PI / 5, 0]}
 						center
 						transform
@@ -124,20 +134,20 @@ function EducationView({
 							{springs.map((props, index) => (
 								<animated.div key={index} style={props}>
 									<div>SKILLS</div>
-									<hr />
 								</animated.div>
 							))}
 						</div>
-						<b
+						<div
 							className="exp-indicator-pointer"
+							style={{ transform: "rotate(270deg)" }}
 							onMouseOver={() => onHover(true)}
 							onMouseLeave={() => onHover(false)}
 							onClick={() => {
 								onSkillsClick();
 							}}
 						>
-							●
-						</b>
+							<ArrowForwardIosIcon />
+						</div>
 					</Html>
 				</mesh>
 				<mesh position={[1, 0, 0.5]} rotation={[0, Math.PI / 3, 0]}>

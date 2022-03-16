@@ -25,8 +25,8 @@ function SolarSystem() {
 		sunRef.current.rotation.y += 0.005;
 
 		// Rotate moon around Earth
-		const moonX = 60 * Math.sin(moonTime);
-		const moonZ = 60 * Math.cos(moonTime);
+		const moonX = 30 * Math.sin(moonTime);
+		const moonZ = 30 * Math.cos(moonTime);
 
 		moonRef.current.position.x = moonX;
 		moonRef.current.position.z = moonZ;

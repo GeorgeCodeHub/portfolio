@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 // Context
 import { JourneyStepsContext } from "../../App";
 
@@ -26,6 +28,8 @@ function SkillsView({
 		}>
 	>;
 }) {
+	const isScreenMobile = useMediaQuery("(max-width:500px)");
+
 	const [follow, setFollow] = useState(false);
 	const [goToProjects, setGoToProjects] = useState(false);
 
@@ -38,7 +42,8 @@ function SkillsView({
 	// Set initial spring settings for animation
 	const [springs, setSprings] = useSprings(1, (i) => ({
 		opacity: 0,
-		transform: `translateY(40px) scale(0.8, 0.2)`
+		transform: `translateY(40px) scale(0.1, 0.1)`,
+		width: 50
 	}));
 
 	// Show hide info of the Job on hover
@@ -46,8 +51,8 @@ function SkillsView({
 		(isHover: any) => {
 			setSprings((i) => ({
 				opacity: isHover ? 1 : 0,
-				transform: isHover ? `translateY(0px) scale(1, 1)` : `translateY(40px) scale(0.8, 0.2)`,
-
+				transform: isHover ? `translateY(0px) scale(1, 1)` : `translateY(40px) scale(0.1, 0.1)`,
+				width: isHover ? "initial" : 50,
 				delay: isHover ? i * 100 : i * 100
 			}));
 		},
@@ -69,9 +74,9 @@ function SkillsView({
 		// Set camera in accordance to the selected item
 		if (follow) {
 			const newCameraPosition = new THREE.Vector3(
-				selectedPlanetRef.current.position.x * (selectedPlanetRef.current.userData.size / 2 + 1.1),
+				selectedPlanetRef.current.position.x * (selectedPlanetRef.current.userData.size + 1.2),
 				4,
-				selectedPlanetRef.current.position.z * (selectedPlanetRef.current.userData.size / 2 + 1.1)
+				selectedPlanetRef.current.position.z * (selectedPlanetRef.current.userData.size + 1.2)
 			);
 
 			camera.position.lerp(newCameraPosition, 0.04);
@@ -86,7 +91,7 @@ function SkillsView({
 				if (camera.position.z < -120) {
 					// This is a hacky way of updating the state of the item. If setTimeout is removed the UI breaks and keeps both views on the scene
 					setTimeout(() => {
-						dispatchJourneyStep({ type: "Projects" });
+						dispatchJourneyStep({ type: "Projects", payload: isScreenMobile });
 					}, 0);
 				}
 			} else {
@@ -103,24 +108,24 @@ function SkillsView({
 
 	return (
 		<>
+			<ambientLight intensity={0.02} />
 			<pointLight position={[0, 0, 0]} />
 			<Sun1 ref={sunRef} position={[0, 0, 0]} scale={0.8} />
-			<Html className="exp-indicator-container" position={[60, -20, -150]} center>
-				<div className="exp-indicator-title">
+			<Html className="skill-indicator-container" position={isScreenMobile ? [30, -20, -150] : [60, -20, -150]} center>
+				<div className="skill-indicator-title">
 					{springs.map((props, index) => (
 						<animated.div key={index} style={props}>
 							<div>PROJECTS</div>
-							<hr />
 						</animated.div>
 					))}
 				</div>
 				<b
-					className="exp-indicator-pointer"
+					className="skill-indicator-pointer"
 					onMouseOver={() => onHover(true)}
 					onMouseLeave={() => onHover(false)}
 					onClick={() => onProjectsClick()}
 				>
-					{"{ ● }"}
+					{"{⨀}"}
 				</b>
 			</Html>
 			<group

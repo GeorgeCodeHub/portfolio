@@ -15,6 +15,15 @@ const theme = createTheme({
 		},
 
 		divider: "#1D5560"
+	},
+	breakpoints: {
+		values: {
+			xs: 200, // phone
+			sm: 380, // tablets
+			md: 768, // small laptop
+			lg: 1200, // desktop
+			xl: 1536 // large screens
+		}
 	}
 });
 

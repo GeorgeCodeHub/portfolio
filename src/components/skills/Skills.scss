@@ -1,5 +1,41 @@
+.skill-indicator-container {
+	position: absolute;
+	transform: translate3d(-50%, -50%, 0px);
+	font-family: monospace;
+	font-size: 1.5rem;
+	color: white;
+	letter-spacing: -0.1rem;
+	text-align: center;
+	margin-top: -30px;
+	margin-left: 0px;
+}
+
+.skill-indicator-title {
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	pointer-events: none;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
+}
+
+.skill-indicator-pointer {
+	font-weight: lighter;
+	font-size: 35px;
+	cursor: pointer;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
+}
+
 .skill-type-title {
-	font-family: "/fonts/Inter-Bold.woff";
 	color: white;
 	letter-spacing: -0.05rem;
 	line-height: 1;
@@ -9,7 +45,9 @@
 
 .skill-item {
 	color: white;
-	font-size: 2rem;
+	font-size: 1.8rem;
+	white-space: nowrap;
+	font-weight: 480;
 	letter-spacing: -0.05px;
 	line-height: 1;
 	-webkit-text-stroke: 1px black;
@@ -19,4 +57,8 @@
 	-moz-user-select: none; /* Old versions of Firefox */
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none;
+}
+
+.skill-item:hover {
+	color: #4fbdba;
 }

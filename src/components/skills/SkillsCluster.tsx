@@ -15,9 +15,7 @@ function SkillsCluster({ wordPosition, word }: { wordPosition: any; word: string
 				dashScale={10}
 			/>
 			<Html position={wordPosition} center>
-				<b className="skill-item" style={{ font: process.env.PUBLIC_URL + "/fonts/Inter-Bold.woff" }}>
-					{word}
-				</b>
+				<div className="skill-item">{word}</div>
 			</Html>
 		</>
 	);

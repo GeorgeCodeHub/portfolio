@@ -19,6 +19,16 @@ import Carousel from "react-material-ui-carousel";
 
 import Palette from "../../utils/Palette";
 
+const breakpointsCard = {
+	maxWidth: {
+		xs: "100vw", // theme.breakpoints.up('xxs')
+		sm: "80vw", // theme.breakpoints.up('sm')
+		md: "60vw", // theme.breakpoints.up('md')
+		lg: "40vw", // theme.breakpoints.up('lg')
+		xl: "35vw" // theme.breakpoints.up('xl')
+	}
+};
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 	"& .MuiDialogContent-root": {
 		padding: theme.spacing(2)
@@ -90,28 +100,41 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
 };
 
 function ProjectInfo({ handleClose, open, itemData }: { handleClose: () => void; open: boolean; itemData: any }) {
+	const onWorkingAppRedirect = () => {
+		window.open(itemData.runningAppURL, "_blank");
+	};
+
+	const onGithubRedirect = () => {
+		window.open(itemData.githubURL, "_blank");
+	};
+
 	return (
 		<Palette>
 			<BootstrapDialog
 				onClose={handleClose}
 				aria-labelledby="customized-dialog-title"
 				open={open}
+				maxWidth={false}
 				style={{ zIndex: 99999999 }}
 			>
 				<BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
 					{itemData.title}
 				</BootstrapDialogTitle>
-				<DialogContent className="project-dialog-content" dividers>
+				<DialogContent className="project-dialog-content" dividers sx={breakpointsCard}>
 					<Typography gutterBottom>{itemData.description}</Typography>
 				</DialogContent>
 				<DialogActions className="project-dialog-actions">
 					<div style={{ marginRight: "auto" }}>
-						<IconButton aria-label="Redirect" color="primary" onClick={handleClose}>
-							<ExitToAppIcon />
-						</IconButton>
-						<IconButton aria-label="Github" color="primary" onClick={handleClose}>
-							<GitHubIcon />
-						</IconButton>
+						{itemData.runningAppURL ? (
+							<IconButton aria-label="Redirect" color="primary" onClick={onWorkingAppRedirect}>
+								<ExitToAppIcon />
+							</IconButton>
+						) : null}
+						{itemData.githubURL ? (
+							<IconButton aria-label="Github" color="primary" onClick={onGithubRedirect}>
+								<GitHubIcon />
+							</IconButton>
+						) : null}
 					</div>
 					<Stack direction="row" spacing={1}>
 						{itemData.technologies.map((item: string, index: number) => (

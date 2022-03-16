@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export default function Ellipsis({ xRadius = 1, zRadius = 1 }) {
+export default function Ellipsis({ xRadius = 1, zRadius = 1, onClick = () => {} }) {
 	const points = [];
 	for (let index = 0; index < 128; index++) {
 		const angle = (index / 128) * 2 * Math.PI;
@@ -13,7 +13,7 @@ export default function Ellipsis({ xRadius = 1, zRadius = 1 }) {
 	const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
 
 	return (
-		<line geometry={lineGeometry}>
+		<line geometry={lineGeometry} onClick={onClick}>
 			<lineBasicMaterial attach="material" color="#BFBBDA" linewidth={5} />
 		</line>
 	);

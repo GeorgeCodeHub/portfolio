@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import { JourneyStepsContext } from "../../App";
 
 import { useSprings, animated } from "react-spring";
@@ -29,6 +31,8 @@ function ExperienceView({
 		}>
 	>;
 }) {
+	const isScreenMobile = useMediaQuery("(max-width:600px)");
+
 	const selectedItemRef: any = useRef();
 
 	const spaceStationRef = useRef<any>();
@@ -90,7 +94,7 @@ function ExperienceView({
 				if (camera.position.y <= 0.1) {
 					// This is a hacky way of updating the state of the item. If setTimeout is removed the UI breaks and keeps both views on the scene
 					setTimeout(() => {
-						dispatchJourneyStep({ type: "Education" });
+						dispatchJourneyStep({ type: "Education", payload: isScreenMobile });
 					}, 0);
 				}
 
@@ -152,14 +156,15 @@ function ExperienceView({
 								))}
 							</div>
 
-							<b
+							<div
 								className="exp-indicator-pointer"
+								style={{ transform: "scaleX(1.5)" }}
 								onMouseOver={() => onHover(true)}
 								onMouseLeave={() => onHover(false)}
 								onClick={() => onSpaceStationClick()}
 							>
-								[ ]
-							</b>
+								[]
+							</div>
 						</Html>
 					)}
 				</SpaceBase>

@@ -14,7 +14,7 @@
 }
 
 .marker-indicator-pointer {
-	color: red;
+	color: #eb3030;
 	font-size: 3rem !important;
 	cursor: pointer;
 	-webkit-touch-callout: none; /* iOS Safari */
@@ -23,4 +23,17 @@
 	-moz-user-select: none; /* Old versions of Firefox */
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none;
+}
+
+.contact-dialog-content {
+	border-top: 1px solid #1d5560;
+	border-right: 1px solid #1d5560;
+	border-left: 1px solid #1d5560;
+}
+
+.contact-dialog-actions {
+	border-right: 1px solid #1d5560;
+	border-left: 1px solid #1d5560;
+	border-bottom: 1px solid #1d5560;
+	background: #3c5e61;
 }

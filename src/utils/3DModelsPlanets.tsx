@@ -210,12 +210,12 @@ export const Planet13 = React.forwardRef((props: any, ref: any) => {
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
-			<group position={[0.04, -0.11, 0.22]} rotation={[0.79, -0.06, -0.13]}>
+			<group position={[-0.78, 1.37, 0.13]} rotation={[-2.98, 0.4, -2.07]}>
 				<mesh geometry={nodes.Icosphere005.geometry} material={materials["Black.002"]} />
 				<mesh geometry={nodes.Icosphere005_1.geometry} material={materials["Fire Red.002"]} />
 				<mesh geometry={nodes.Icosphere005_2.geometry} material={materials["Fire Orange.002"]} />
 			</group>
-			<group position={[-0.17, -0.38, -0.07]} rotation={[0.79, -0.06, -0.13]}>
+			<group position={[-1.05, 1.06, -0.03]} rotation={[-2.98, 0.4, -2.07]}>
 				<mesh geometry={nodes.Icosphere007.geometry} material={materials["Black.003"]} />
 				<mesh geometry={nodes.Icosphere007_1.geometry} material={materials["Fire Red.003"]} />
 				<mesh geometry={nodes.Icosphere007_2.geometry} material={materials["Fire Orange.003"]} />
@@ -229,7 +229,7 @@ export const Planet14 = React.forwardRef((props: any, ref: any) => {
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
-			<group position={[0.04, -0.11, 0.22]} rotation={[0.79, -0.06, -0.13]}>
+			<group position={[-0.78, 1.37, 0.13]} rotation={[2.73, -0.11, 0.13]}>
 				<mesh geometry={nodes.Icosphere005.geometry} material={materials["Black.002"]} />
 				<mesh geometry={nodes.Icosphere005_1.geometry} material={materials["Fire Red.002"]} />
 				<mesh geometry={nodes.Icosphere005_2.geometry} material={materials["Fire Orange.002"]} />
@@ -243,17 +243,17 @@ export const Planet15 = React.forwardRef((props: any, ref: any) => {
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
-			<group position={[-0.14, -0.16, -0.03]} rotation={[2.73, -0.1, 0.1]}>
+			<group position={[-0.73, 1.31, -0.03]} rotation={[2.95, -0.38, 0.99]}>
 				<mesh geometry={nodes.Icosphere004.geometry} material={materials["Black.004"]} />
 				<mesh geometry={nodes.Icosphere004_1.geometry} material={materials["Fire Red"]} />
 				<mesh geometry={nodes.Icosphere004_2.geometry} material={materials["Fire Orange"]} />
 			</group>
-			<group position={[-0.03, -0.55, 0.13]} rotation={[2.73, -0.1, 0.1]}>
+			<group position={[-1.1, 1.12, 0.13]} rotation={[2.98, -0.4, 1.07]}>
 				<mesh geometry={nodes.Icosphere005.geometry} material={materials["Black.002"]} />
 				<mesh geometry={nodes.Icosphere005_1.geometry} material={materials["Fire Red.002"]} />
 				<mesh geometry={nodes.Icosphere005_2.geometry} material={materials["Fire Orange.002"]} />
 			</group>
-			<group position={[-0.14, -0.16, -0.03]} rotation={[2.73, -0.1, 0.1]}>
+			<group position={[-0.73, 1.31, -0.03]} rotation={[2.95, -0.38, 0.99]}>
 				<mesh geometry={nodes.Icosphere007.geometry} material={materials["Black.003"]} />
 				<mesh geometry={nodes.Icosphere007_1.geometry} material={materials["Fire Red.003"]} />
 				<mesh geometry={nodes.Icosphere007_2.geometry} material={materials["Fire Orange.003"]} />

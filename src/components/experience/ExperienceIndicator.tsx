@@ -18,7 +18,8 @@ const ExperienceIndicator = React.forwardRef(
 		// Set initial spring settings for animation
 		const [springs, setSprings] = useSprings(1, (i) => ({
 			opacity: 0,
-			transform: `translateY(40px) scale(0.8, 0.2)`
+			transform: `translateY(40px) scale(0.1, 0.1)`,
+			width: 50
 		}));
 
 		// Show hide info of the Job on hover
@@ -26,8 +27,8 @@ const ExperienceIndicator = React.forwardRef(
 			(isHover: any) => {
 				setSprings((i) => ({
 					opacity: isHover ? 1 : 0,
-					transform: isHover ? `translateY(0px) scale(1, 1)` : `translateY(40px) scale(0.8, 0.2)`,
-
+					transform: isHover ? `translateY(0px) scale(1, 1)` : `translateY(40px) scale(0.1, 0.1)`,
+					width: isHover ? "initial" : 50,
 					delay: isHover ? i * 100 : i * 100
 				}));
 			},
@@ -54,7 +55,7 @@ const ExperienceIndicator = React.forwardRef(
 
 		// Update position of each job to rotate around the galaxy
 		useFrame(({ clock }) => {
-			const t = clock.getElapsedTime() * jobItem.speed;
+			const t = clock.getElapsedTime() * jobItem.speed + jobItem.offset;
 			const x = radius * Math.sin(t);
 			const z = radius * Math.cos(t);
 			refIndicator.current.position.x = x;
@@ -73,26 +74,24 @@ const ExperienceIndicator = React.forwardRef(
 				/>
 				{!follow && (
 					<Html className="exp-indicator-container" center>
-						<div className="exp-indicator-title">
-							{springs.map((props, index) => (
-								<animated.div key={index} style={props}>
-									<div>{jobItem.title}</div>
-									<hr />
-									<div style={{ fontSize: "1rem" }}>
-										{jobItem.dateFrom} - {jobItem.dateTo}
-									</div>
-								</animated.div>
-							))}
-						</div>
-						<b
+						{springs.map((props, index) => (
+							<animated.div key={index} className="exp-indicator-title" style={props}>
+								<div>{jobItem.positionTitle}</div>
+								<hr />
+								<div style={{ fontSize: "1rem" }}>
+									{jobItem.dateFrom} - {jobItem.dateTo}
+								</div>
+							</animated.div>
+						))}
+
+						<div
 							className="exp-indicator-pointer"
 							onMouseOver={() => onHover(true)}
 							onMouseLeave={() => onHover(false)}
 							onClick={() => onIndicatorClick()}
 						>
-							( )
-						</b>
-						{/* <b className="exp-indicator-pointer">(●)</b> */}
+							◻
+						</div>
 					</Html>
 				)}
 

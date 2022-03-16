@@ -122,7 +122,6 @@ function Satellite({
 						onClick={() => handleClickOpen()}
 					>
 						{itemData.title}
-						<hr />
 					</b>
 				</Html>
 				<Html

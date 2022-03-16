@@ -9,15 +9,11 @@
 }
 
 .exp-indicator-container {
-	position: absolute;
-	transform: translate3d(-50%, -50%, 0px);
 	font-family: monospace;
 	font-size: 1.5rem;
 	color: white;
 	letter-spacing: -0.1rem;
 	text-align: center;
-	margin-top: -30px;
-	margin-left: 0px;
 }
 
 .exp-indicator-title {
@@ -34,6 +30,11 @@
 }
 
 .exp-indicator-pointer {
+	margin: auto;
+	width: 45px;
+	font-weight: lighter;
+	font-size: 35px;
+	transform: rotate(45deg);
 	cursor: pointer;
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */

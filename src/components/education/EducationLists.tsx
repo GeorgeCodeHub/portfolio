@@ -22,6 +22,16 @@ import { Html } from "@react-three/drei";
 import Palette from "../../utils/Palette";
 import { datePatterns } from "../../utils/consts";
 
+const breakpointsCardWindows = {
+	width: {
+		xs: "85vw", // theme.breakpoints.up('xxs')
+		sm: "85vw", // theme.breakpoints.up('sm')
+		md: "75vw", // theme.breakpoints.up('md')
+		lg: "60vw", // theme.breakpoints.up('lg')
+		xl: "50vw" // theme.breakpoints.up('xl')
+	}
+};
+
 export const DegreesListComponent = ({
 	list
 }: {
@@ -60,7 +70,7 @@ export const DegreesListComponent = ({
 			<Palette>
 				{windowOpenDegrees ? (
 					<Grow in={windowOpenDegrees}>
-						<Card variant="outlined" sx={{ maxWidth: 700 }}>
+						<Card variant="outlined" sx={breakpointsCardWindows}>
 							<CardHeader
 								title="DEGREES"
 								action={
@@ -171,7 +181,7 @@ export const CertificateListComponent = ({
 			<Palette>
 				{windowOpenCerts ? (
 					<Grow in={windowOpenCerts}>
-						<Card variant="outlined" sx={{ maxWidth: 600 }}>
+						<Card variant="outlined" sx={breakpointsCardWindows}>
 							<CardHeader
 								title="CERTIFICATES"
 								action={

@@ -56,7 +56,7 @@ function ContactView() {
 	}, []);
 
 	useFrame(({ camera, clock }) => {
-		const t = clock.getElapsedTime() * 0.04;
+		const t = clock.getElapsedTime() * 0.02;
 
 		const x = 3.9 * Math.sin(t);
 		const y = 3.2;
@@ -94,7 +94,6 @@ function ContactView() {
 					{springs.map((props, index) => (
 						<animated.div key={index} style={props}>
 							<div>CONTACT</div>
-							<hr />
 						</animated.div>
 					))}
 				</div>

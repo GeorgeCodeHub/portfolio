@@ -18,6 +18,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import Palette from "../../utils/Palette";
 import { datePatterns } from "../../utils/consts";
 
+const breakpointsCard = {
+	maxWidth: {
+		xs: "100vw", // theme.breakpoints.up('xxs')
+		sm: "80vw", // theme.breakpoints.up('sm')
+		md: "60vw", // theme.breakpoints.up('md')
+		lg: "45vw", // theme.breakpoints.up('lg')
+		xl: "40vw" // theme.breakpoints.up('xl')
+	}
+};
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 	"& .MuiDialogContent-root": {
 		padding: theme.spacing(2)
@@ -62,11 +72,16 @@ function ExperienceIndicatorInfo({
 }) {
 	return (
 		<Palette>
-			<BootstrapDialog aria-labelledby="Contact-dialog" open={isIndicatorSelected} onBackdropClick={onCloseInfo}>
+			<BootstrapDialog
+				aria-labelledby="Contact-dialog"
+				open={isIndicatorSelected}
+				onBackdropClick={onCloseInfo}
+				maxWidth={false}
+			>
 				<BootstrapDialogTitle id="customized-dialog-title" onClose={onCloseInfo}>
-					{jobItem.title}
+					{jobItem.positionTitle}
 				</BootstrapDialogTitle>
-				<DialogContent className="dialog-content" dividers>
+				<DialogContent className="dialog-content" dividers sx={breakpointsCard}>
 					<Typography gutterBottom>{jobItem.description}</Typography>
 				</DialogContent>
 				<DialogActions className="dialog-actions">
@@ -74,6 +89,7 @@ function ExperienceIndicatorInfo({
 						{format(new Date(jobItem.dateFrom), datePatterns.monthYear)} -{" "}
 						{format(new Date(jobItem.dateTo), datePatterns.monthYear)}
 					</Typography>
+					<Typography style={{ marginLeft: "auto", marginRight: 8 }}>{jobItem.companyTitle}</Typography>
 				</DialogActions>
 			</BootstrapDialog>
 		</Palette>
