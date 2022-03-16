@@ -89,7 +89,7 @@ function EducationView({
 				)
 					setProjectLoaded(true);
 
-				camera.position.lerp(journeyStep.cameraPosition, 0.04);
+				camera.position.lerp(journeyStep.cameraPosition, 0.08);
 				camera.lookAt(new THREE.Vector3(0, 0, 0));
 				camera.updateProjectionMatrix();
 			}
@@ -99,11 +99,6 @@ function EducationView({
 	useEffect(() => {
 		setChangedView({ duration: 200, isChanged: false });
 	}, [setChangedView]);
-
-	useEffect(() => {
-		setProjectLoaded(false);
-		setGoToSkills(false);
-	}, []);
 
 	return (
 		<>

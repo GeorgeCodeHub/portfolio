@@ -29,13 +29,15 @@ function ProjectsView({
 	const { journeyStep } = React.useContext(JourneyStepsContext);
 
 	useFrame(({ camera, clock }) => {
-		// Animate camera position before reaching landing spot
-		if (!projectLoaded) {
-			if (journeyStep.cameraPosition.x === parseFloat(camera.position.x.toFixed(1))) setProjectLoaded(true);
+		if (journeyStep.step === 5) {
+			// Animate camera position before reaching landing spot
+			if (!projectLoaded) {
+				if (journeyStep.cameraPosition.x === parseFloat(camera.position.x.toFixed(1))) setProjectLoaded(true);
 
-			camera.position.lerp(journeyStep.cameraPosition, 0.04);
-			camera.lookAt(new THREE.Vector3(0, 0, 0));
-			camera.updateProjectionMatrix();
+				camera.position.lerp(journeyStep.cameraPosition, 0.08);
+				camera.lookAt(new THREE.Vector3(0, 0, 0));
+				camera.updateProjectionMatrix();
+			}
 		}
 	});
 
@@ -43,11 +45,22 @@ function ProjectsView({
 		setChangedView({ duration: 500, isChanged: false });
 	}, [setChangedView]);
 
+	useEffect(() => {
+		if (journeyStep.step === 5) {
+			setProjectLoaded(false);
+		}
+	}, [journeyStep.step]);
+
+	console.log(projectLoaded);
+
 	return (
 		<>
 			<ambientLight intensity={0.1} />
 			{projectLoaded && (
-				<PerspectiveCamera position={journeyStep.cameraPosition} makeDefault={journeyStep.step === 5} />
+				<PerspectiveCamera
+					position={journeyStep.cameraPosition}
+					makeDefault={journeyStep.step === 5 || journeyStep.step === 6}
+				/>
 			)}
 			<SolarSystem />
 
