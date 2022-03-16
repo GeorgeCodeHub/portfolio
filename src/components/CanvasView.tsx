@@ -68,7 +68,7 @@ function CanvasView() {
 				opacity: x.to({ range: [0, 1], output: [0, 1] })
 			}}
 		>
-			<Canvas camera={{ position: journeyStep.cameraPosition, zoom: 1.5 }}>
+			<Canvas mode="concurrent" frameloop="demand" camera={{ position: journeyStep.cameraPosition, zoom: 1.5 }}>
 				<Suspense fallback={null}>
 					{journeyStep.step < 2 && <StarsCube enableFalling={true} />}
 					<Stars radius={10} depth={100} count={5000} factor={4} saturation={1} fade />

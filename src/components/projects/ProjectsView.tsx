@@ -51,8 +51,6 @@ function ProjectsView({
 		}
 	}, [journeyStep.step]);
 
-	console.log(projectLoaded);
-
 	return (
 		<>
 			<ambientLight intensity={0.1} />

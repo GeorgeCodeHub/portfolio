@@ -3,6 +3,7 @@
 		"bokeh",
 		"clearcoat",
 		"drei",
+		"frameloop",
 		"GLTF",
 		"Icosphere",
 		"lerp",
