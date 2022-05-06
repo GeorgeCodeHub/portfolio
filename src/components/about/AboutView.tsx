@@ -18,6 +18,8 @@ import { PerspectiveCamera, Html } from "@react-three/drei";
 
 import Palette from "../../utils/Palette";
 
+import { personalInfo } from "../../utils/dataSet";
+
 import ProfilePic from "../../images/profile.jpg";
 
 const breakpointsImage = {
@@ -107,22 +109,22 @@ function AboutView({
 									</Grid>
 									<Grid item xs={12} md={8} sx={breakpointsAboutText}>
 										<Typography variant="subtitle1" gutterBottom>
-											I am an experienced software developer eager to always learn new things and experiment with new
-											technologies.
+											A passionate and creative individual with the ability to innovate and design in a fast-paced
+											environment. Capable of utilizing new methodologies and work other people with motivation for
+											professionalism. As an engineer, my path has taken me through many twists and turns. From a game
+											developer at a non-profit to a software lead in many companies. This has made me a great advocate
+											of communication, social skills, and teamwork.
 										</Typography>
 										<Typography variant="subtitle1" gutterBottom>
-											I have never stopped chasing my passion and creating new experiences with other people. As a
-											result my path has taken me through many twists and turns. From a game developer at a non-profit,
-											to a software lead in many companies.
+											Available remotely: {personalInfo.remotelyAvailable}
 										</Typography>
 										<Typography variant="subtitle1" gutterBottom>
-											Available remotely: UTC +2
-										</Typography>
-										<Typography variant="subtitle1" gutterBottom>
-											Current Focus: <Link href="https://reactjs.org/">React</Link> {"// "}
-											<Link href="https://fastapi.tiangolo.com/">FastAPI</Link> {"// "}
-											<Link href="https://www.tensorflow.org/">Tensorflow</Link> {"// "}
-											<Link href="https://pytorch.org/">Pytorch</Link>
+											Current Focus:{" "}
+											{personalInfo.focusedTechnologies.map((tech) => (
+												<span key={tech.name}>
+													<Link href={tech.url}>{tech.name}</Link> {"// "}
+												</span>
+											))}
 										</Typography>
 									</Grid>
 								</Grid>

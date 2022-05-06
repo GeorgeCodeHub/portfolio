@@ -1,7 +1,9 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 
 // Error handler
 import { ErrorBoundary } from "react-error-boundary";
+
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { Loader } from "@react-three/drei";
 import * as THREE from "three";
@@ -24,6 +26,8 @@ const defaultJourneyStep = {
 export const JourneyStepsContext = React.createContext<any>(null);
 
 const stepsReducer = (state: any, action: { type: any; payload: any }) => {
+	localStorage.setItem("lastViewedStep", action.type);
+
 	// If screen is mobile then use other cameras
 	if (action.payload) {
 		switch (action.type) {
@@ -122,7 +126,7 @@ const stepsReducer = (state: any, action: { type: any; payload: any }) => {
 				key: "Projects",
 				step: 5,
 				title: "PROJECTS",
-				titlePosition: new THREE.Vector3(0, 7, 0),
+				titlePosition: new THREE.Vector3(0, 6.5, 0),
 				cameraPosition: new THREE.Vector3(0, 5, 20)
 			};
 		case "Contact":
@@ -130,7 +134,7 @@ const stepsReducer = (state: any, action: { type: any; payload: any }) => {
 				key: "Contact",
 				step: 6,
 				title: "CONTACT",
-				titlePosition: new THREE.Vector3(0, 8, 0),
+				titlePosition: new THREE.Vector3(0, 7.5, 0),
 				cameraPosition: new THREE.Vector3(0, 10, 20)
 			};
 		default:
@@ -139,7 +143,14 @@ const stepsReducer = (state: any, action: { type: any; payload: any }) => {
 };
 
 function App() {
+	const isScreenMobile = useMediaQuery("(max-width:500px)");
+
 	const [journeyStep, dispatchJourneyStep] = useReducer(stepsReducer, defaultJourneyStep);
+
+	useEffect(() => {
+		const lastViewedStep = localStorage.getItem("lastViewedStep");
+		if (lastViewedStep) dispatchJourneyStep({ type: lastViewedStep, payload: isScreenMobile });
+	}, [isScreenMobile]);
 
 	return (
 		<JourneyStepsContext.Provider value={{ journeyStep, dispatchJourneyStep }}>

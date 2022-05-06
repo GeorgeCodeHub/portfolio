@@ -2,7 +2,14 @@ const random = (a: number, b: number) => a + Math.random() * b;
 
 export const personalInfo = {
 	name: "George Karampelas",
-	roles: ["full stack web engineer", "machine learning practitioner"]
+	roles: ["full stack web engineer", "machine learning practitioner"],
+	remotelyAvailable: "UTC +2",
+	focusedTechnologies: [
+		{ name: "React", url: "https://reactjs.org/" },
+		{ name: "FastAPI", url: "https://fastapi.tiangolo.com/" },
+		{ name: "Tensorflow", url: "https://www.tensorflow.org/" },
+		{ name: "Pytorch", url: "https://pytorch.org/" }
+	]
 };
 
 export const jobsList = [
@@ -10,7 +17,8 @@ export const jobsList = [
 		id: 1,
 		positionTitle: "Software Engineer",
 		companyTitle: "EmDOT",
-		description: "I use ReactJS, Typescript and other tools to create web applications for many well-known companies.",
+		description:
+			"I use ReactJS, NodeJS, Javascript, Typescript and other tools to develop flexible and expansive web applications that are used by administrators and operators in many companies. The usage of maps, tables and forms are some of the essential elements that consist them.",
 		dateFrom: "12/12/2021",
 		dateTo: "12/12/2022",
 		speed: random(0.05, 0.07),
@@ -21,7 +29,7 @@ export const jobsList = [
 		positionTitle: "Computer Operator",
 		companyTitle: "Military Service",
 		description:
-			"During my military services, I was assigned to cover secretarial services and computer operations. I used managing tools to schedule tasks for the higher ups.",
+			"During my military services, I was assigned to cover secretarial services and computer operations. I used managing tools to schedule tasks for the higher ups of the military camp.",
 		dateFrom: "1/7/2018",
 		dateTo: "1/2/2019",
 		speed: random(0.05, 0.07),
@@ -32,7 +40,7 @@ export const jobsList = [
 		positionTitle: "Internship",
 		companyTitle: "EYDAP",
 		description:
-			"During my internship, I was responsible for maintaining the telecommunications of the company and installing new network systems. I covered positions as a network and computer technician.",
+			"During my internship, I was responsible for maintaining the telecommunications of the company and installing new network systems. I covered positions as a network and computer technician and provided support.",
 		dateFrom: "1/4/2017",
 		dateTo: "1/9/2017",
 		speed: random(0.05, 0.07),
@@ -43,7 +51,7 @@ export const jobsList = [
 		positionTitle: "Research Assistant",
 		companyTitle: "University of Thessaly",
 		description:
-			"During my studies at the University of Thessaly I took part to various projects in my university such as game and software development.",
+			"During my studies at the University of Thessaly I took part to various projects in my university. Some of those projects where related to educational games that taught children how physics work. In addition, workshops were done to fellow students to learn about technologies and tools outside of the universities curriculum.",
 		dateFrom: "1/10/2014",
 		dateTo: "1/10/2017",
 		speed: random(0.05, 0.07),

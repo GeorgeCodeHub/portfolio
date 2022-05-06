@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
+import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
 import SchoolIcon from "@mui/icons-material/School";
 
 import { JourneyStepsContext } from "../../App";
@@ -45,7 +46,8 @@ function ExperienceView({
 	// Set initial spring settings for animation
 	const [springs, setSprings] = useSprings(1, (i) => ({
 		opacity: 0,
-		transform: `translateY(40px) scale(0.8, 0.2)`
+		transform: `translateY(40px) scale(0.8, 0.2)`,
+		width: 0
 	}));
 
 	// Show hide info of the Job on hover
@@ -54,6 +56,7 @@ function ExperienceView({
 			setSprings((i) => ({
 				opacity: isHover ? 1 : 0,
 				transform: isHover ? `translateY(0px) scale(1, 1)` : `translateY(40px) scale(0.8, 0.2)`,
+				width: isHover ? "initial" : 0,
 				delay: isHover ? i * 100 : i * 100
 			}));
 		},
@@ -151,11 +154,12 @@ function ExperienceView({
 									<animated.div key={index} style={props}>
 										<div>EDUCATION</div>
 										<hr />
-										<div style={{ fontSize: "1rem" }}>12/9/2011 - present</div>
+										<div style={{ fontSize: "1.3rem" }}>
+											12/9/2011 - <AllInclusiveIcon style={{ marginBottom: -6 }} />
+										</div>
 									</animated.div>
 								))}
 							</div>
-
 							<div
 								className="exp-indicator-pointer"
 								style={{ transform: "rotate(0deg)" }}

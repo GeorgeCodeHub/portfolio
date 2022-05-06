@@ -43,8 +43,7 @@ function SkillsView({
 	// Set initial spring settings for animation
 	const [springs, setSprings] = useSprings(1, (i) => ({
 		opacity: 0,
-		transform: `translateY(40px) scale(0.1, 0.1)`,
-		width: 50
+		transform: `translateY(40px) scale(0.1, 0.1)`
 	}));
 
 	// Show hide info of the Job on hover
@@ -53,8 +52,8 @@ function SkillsView({
 			setSprings((i) => ({
 				opacity: isHover ? 1 : 0,
 				transform: isHover ? `translateY(0px) scale(1, 1)` : `translateY(40px) scale(0.1, 0.1)`,
-				width: isHover ? "initial" : 50,
-				delay: isHover ? i * 100 : i * 100
+				delay: isHover ? i * 100 : i * 100,
+				width: 150
 			}));
 		},
 		[setSprings]

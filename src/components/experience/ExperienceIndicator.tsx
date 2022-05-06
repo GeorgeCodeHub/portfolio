@@ -19,7 +19,7 @@ const ExperienceIndicator = React.forwardRef(
 		const [springs, setSprings] = useSprings(1, (i) => ({
 			opacity: 0,
 			transform: `translateY(40px) scale(0.1, 0.1)`,
-			width: 50
+			width: 0
 		}));
 
 		// Show hide info of the Job on hover
@@ -28,7 +28,7 @@ const ExperienceIndicator = React.forwardRef(
 				setSprings((i) => ({
 					opacity: isHover ? 1 : 0,
 					transform: isHover ? `translateY(0px) scale(1, 1)` : `translateY(40px) scale(0.1, 0.1)`,
-					width: isHover ? "initial" : 50,
+					width: isHover ? "initial" : 0,
 					delay: isHover ? i * 100 : i * 100
 				}));
 			},
@@ -79,7 +79,7 @@ const ExperienceIndicator = React.forwardRef(
 							<animated.div key={index} className="exp-indicator-title" style={props}>
 								<div>{jobItem.positionTitle}</div>
 								<hr />
-								<div style={{ fontSize: "1rem" }}>
+								<div style={{ fontSize: "1.2rem" }}>
 									{jobItem.dateFrom} - {jobItem.dateTo}
 								</div>
 							</animated.div>

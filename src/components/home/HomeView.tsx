@@ -43,7 +43,8 @@ function HomeView() {
 							<CardContent>
 								<Typography variant="subtitle1" gutterBottom style={{ margin: 16, textAlign: "center" }}>
 									Hello, I am <b>{personalInfo.name}</b>,
-									<br />a {personalInfo.roles.join(", ").replace(/, ([^,]*)$/, " and $1")}.
+									<br />a {personalInfo.roles.join(", ").replace(/, ([^,]*)$/, " and $1")} eager to always learn and
+									work with new technologies.
 								</Typography>
 							</CardContent>
 							<CardActions style={{ justifyContent: "center" }}>

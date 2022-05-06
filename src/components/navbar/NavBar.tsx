@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { JourneyStepsContext } from "../../App";
 
@@ -10,6 +10,8 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import IconButton from "@mui/material/IconButton";
 
 import { makeStyles } from "@mui/styles";
+
+import ThreeSixtyIcon from "@mui/icons-material/ThreeSixty";
 
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
@@ -49,6 +51,9 @@ const useStyles = makeStyles(({ breakpoints }: any) => ({
 }));
 
 function NavBar() {
+	const [unlockedViewedStep, setUnlockedViewedStep] = useState(
+		parseInt(localStorage.getItem("unlockedViewedStep") as string)
+	);
 	const isScreenMobile = useMediaQuery("(max-width:500px)");
 
 	const classes = useStyles();
@@ -58,92 +63,120 @@ function NavBar() {
 	const onNavBarChange = (event: React.SyntheticEvent, newValue: React.SetStateAction<number>) => {
 		dispatchJourneyStep({ type: newValue, payload: isScreenMobile });
 	};
+
+	useEffect(() => {
+		if (!unlockedViewedStep || journeyStep.step > unlockedViewedStep) {
+			localStorage.setItem("unlockedViewedStep", journeyStep.step);
+			setUnlockedViewedStep(journeyStep.step);
+		}
+	}, [journeyStep, unlockedViewedStep]);
+
 	return (
-		<Grid
-			container
-			justifyContent="center"
-			spacing={0}
-			style={{ position: "fixed", bottom: 0, width: "100%", zIndex: 50000000 }}
-		>
-			<Grid item sx={breakpointsNavBarTriangles}>
-				<div className="navbar-triangle-left" />
-			</Grid>
-			<Grid item style={{ borderTop: "1px solid #1d5560" }}>
-				<BottomNavigation
-					sx={{ width: "100%" }}
-					value={journeyStep.step}
-					onChange={onNavBarChange}
-					style={{ width: "100%" }}
-				>
-					<Tooltip title="Home">
-						<BottomNavigationAction
-							classes={{ root: classes.root }}
-							sx={breakpointsButtons}
-							value="Home"
-							icon={<HomeIcon style={{ paddingBottom: 6 }} />}
-						/>
-					</Tooltip>
-					<Tooltip title="About">
-						<BottomNavigationAction
-							classes={{ root: classes.root }}
-							sx={breakpointsButtons}
-							value="About"
-							icon={<PersonIcon style={{ paddingBottom: 6 }} />}
-						/>
-					</Tooltip>
-					<Tooltip title="Experience">
-						<BottomNavigationAction
-							classes={{ root: classes.root }}
-							sx={breakpointsButtons}
-							value="Experience"
-							icon={<AutoGraphIcon style={{ paddingBottom: 6 }} />}
-						/>
-					</Tooltip>
-					<Tooltip title="Education">
-						<BottomNavigationAction
-							classes={{ root: classes.root }}
-							sx={breakpointsButtons}
-							value="Education"
-							icon={<SchoolIcon style={{ paddingBottom: 6 }} />}
-						/>
-					</Tooltip>
-					<Tooltip title="Skills">
-						<BottomNavigationAction
-							classes={{ root: classes.root }}
-							value="Skills"
-							icon={<BarChartIcon style={{ paddingBottom: 6 }} />}
-						/>
-					</Tooltip>
-					<Tooltip title="Projects">
-						<BottomNavigationAction
-							classes={{ root: classes.root }}
-							value="Projects"
-							icon={<CodeIcon style={{ paddingBottom: 6 }} />}
-						/>
-					</Tooltip>
-					<Tooltip title="Contact">
-						<BottomNavigationAction
-							classes={{ root: classes.root }}
-							value="Contact"
-							icon={<EmailIcon style={{ paddingBottom: 6 }} />}
-						/>
-					</Tooltip>
-				</BottomNavigation>
-			</Grid>
-			<Grid className="resume-button-container">
-				<Tooltip title="Resume">
-					<IconButton
-						classes={{ root: classes.root }}
-						color="primary"
-						aria-label="delete"
-						style={{ borderRadius: 0, borderLeft: "1px solid" }}
-					>
-						<InsertDriveFileIcon style={{ paddingBottom: 0 }} />
-					</IconButton>
-				</Tooltip>
-			</Grid>
-			<Grid item sx={breakpointsNavBarTriangles}>
-				<div className="navbar-triangle-right" />
+		<Grid container spacing={2} style={{ position: "fixed", bottom: 0, width: "100%", zIndex: 50000000 }}>
+			{journeyStep.step === 3 || journeyStep.step === 5 ? (
+				<Grid item xs={12} style={{ textAlign: "center", marginBottom: 24 }}>
+					<ThreeSixtyIcon fontSize="large" style={{ color: "white" }} />
+					<div style={{ color: "white" }}>You can look around here</div>
+				</Grid>
+			) : (
+				<></>
+			)}
+			<Grid item xs={12}>
+				<Grid container justifyContent="center" spacing={0}>
+					<Grid item sx={breakpointsNavBarTriangles}>
+						<div className="navbar-triangle-left" />
+					</Grid>
+					<Grid item style={{ borderTop: "1px solid #1d5560" }}>
+						<BottomNavigation
+							sx={{ width: "100%" }}
+							value={journeyStep.step}
+							onChange={onNavBarChange}
+							style={{ width: "100%" }}
+						>
+							<Tooltip title="Home">
+								<BottomNavigationAction
+									classes={{ root: classes.root }}
+									sx={breakpointsButtons}
+									value="Home"
+									icon={<HomeIcon style={{ paddingBottom: 6 }} />}
+								/>
+							</Tooltip>
+
+							{unlockedViewedStep >= 1 && (
+								<Tooltip title="About">
+									<BottomNavigationAction
+										classes={{ root: classes.root }}
+										sx={breakpointsButtons}
+										value="About"
+										icon={<PersonIcon style={{ paddingBottom: 6 }} />}
+									/>
+								</Tooltip>
+							)}
+							{unlockedViewedStep >= 2 && (
+								<Tooltip title="Experience">
+									<BottomNavigationAction
+										classes={{ root: classes.root }}
+										sx={breakpointsButtons}
+										value="Experience"
+										icon={<AutoGraphIcon style={{ paddingBottom: 6 }} />}
+									/>
+								</Tooltip>
+							)}
+							{unlockedViewedStep >= 3 && (
+								<Tooltip title="Education">
+									<BottomNavigationAction
+										classes={{ root: classes.root }}
+										sx={breakpointsButtons}
+										value="Education"
+										icon={<SchoolIcon style={{ paddingBottom: 6 }} />}
+									/>
+								</Tooltip>
+							)}
+							{unlockedViewedStep >= 4 && (
+								<Tooltip title="Skills">
+									<BottomNavigationAction
+										classes={{ root: classes.root }}
+										value="Skills"
+										icon={<BarChartIcon style={{ paddingBottom: 6 }} />}
+									/>
+								</Tooltip>
+							)}
+							{unlockedViewedStep >= 5 && (
+								<Tooltip title="Projects">
+									<BottomNavigationAction
+										classes={{ root: classes.root }}
+										value="Projects"
+										icon={<CodeIcon style={{ paddingBottom: 6 }} />}
+									/>
+								</Tooltip>
+							)}
+							{unlockedViewedStep >= 6 && (
+								<Tooltip title="Contact">
+									<BottomNavigationAction
+										classes={{ root: classes.root }}
+										value="Contact"
+										icon={<EmailIcon style={{ paddingBottom: 6 }} />}
+									/>
+								</Tooltip>
+							)}
+						</BottomNavigation>
+					</Grid>
+					<Grid className="resume-button-container">
+						<Tooltip title="Resume">
+							<IconButton
+								classes={{ root: classes.root }}
+								color="primary"
+								aria-label="delete"
+								style={{ borderRadius: 0, borderLeft: "1px solid" }}
+							>
+								<InsertDriveFileIcon style={{ paddingBottom: 0 }} />
+							</IconButton>
+						</Tooltip>
+					</Grid>
+					<Grid item sx={breakpointsNavBarTriangles}>
+						<div className="navbar-triangle-right" />
+					</Grid>
+				</Grid>
 			</Grid>
 		</Grid>
 	);
