@@ -1,18 +1,15 @@
-import React, { useState, useMemo, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef } from "react";
 
 import { useSprings, animated } from "react-spring";
 
 import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 
-import { satelliteArray } from "../../utils/3DModelsSatellites";
-
 import ProjectInfo from "./ProjectInfo";
-
-let selectedModelCounter = 0;
 
 function Satellite({
 	id,
+	selectedModel,
 	speed,
 	offset,
 	xRadius,
@@ -20,6 +17,7 @@ function Satellite({
 	itemData
 }: {
 	id: number;
+	selectedModel: any;
 	speed: number;
 	offset: number;
 	xRadius: number;
@@ -81,18 +79,9 @@ function Satellite({
 		modelRef.current.rotation.x = modelRef.current.rotation.y = modelRef.current.rotation.z = Math.cos(t) * Math.PI;
 	});
 
-	const rendered3dModel = useMemo(() => {
-		let selectedModel = satelliteArray[selectedModelCounter];
-
-		if (selectedModelCounter === satelliteArray.length) selectedModelCounter = 0;
-		else selectedModelCounter++;
-
-		return selectedModel;
-	}, []);
-
 	return (
 		<group ref={satelliteRef}>
-			{React.createElement(rendered3dModel, {
+			{React.createElement(selectedModel, {
 				onPointerOver: (e: { stopPropagation: () => any }) => [e.stopPropagation(), onHover(true)],
 				onPointerOut: () => onHover(false),
 				onClick: () => handleClickOpen(),

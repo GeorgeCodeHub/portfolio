@@ -24,6 +24,6 @@ export interface ExperienceIndicatorTypes {
 
 export interface DialogTitleProps {
 	id: string;
-	children?: React.ReactNode;
+	itemData?: any;
 	onClose: () => void;
 }

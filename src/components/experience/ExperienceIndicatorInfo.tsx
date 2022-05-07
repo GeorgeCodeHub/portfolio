@@ -38,11 +38,11 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const BootstrapDialogTitle = (props: DialogTitleProps) => {
-	const { children, onClose, ...other } = props;
+	const { itemData, onClose, ...other } = props;
 
 	return (
 		<DialogTitle className="dialog-title" sx={{ m: 0, p: 2 }} {...other}>
-			{children}
+			{itemData.title}
 			{onClose ? (
 				<IconButton
 					aria-label="close"
@@ -78,9 +78,8 @@ function ExperienceIndicatorInfo({
 				onBackdropClick={onCloseInfo}
 				maxWidth={false}
 			>
-				<BootstrapDialogTitle id="customized-dialog-title" onClose={onCloseInfo}>
-					{jobItem.positionTitle}
-				</BootstrapDialogTitle>
+				<BootstrapDialogTitle id="customized-dialog-title" itemData={jobItem} onClose={onCloseInfo} />
+
 				<DialogContent className="dialog-content" dividers sx={breakpointsCard}>
 					<Typography gutterBottom>{jobItem.description}</Typography>
 				</DialogContent>

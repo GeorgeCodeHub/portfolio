@@ -13,6 +13,7 @@ import Satellite from "./Satellite";
 import "./Projects.scss";
 
 import { projectsData } from "../../utils/dataSet";
+import { satelliteArray } from "../../utils/3DModelsSatellites";
 
 function ProjectsView({
 	setChangedView
@@ -65,7 +66,8 @@ function ProjectsView({
 			{projectsData.map((item, index) => (
 				<Satellite
 					key={index}
-					id={item.id + 1}
+					selectedModel={satelliteArray[item.selectedModelKey]}
+					id={item.id}
 					speed={item.speed}
 					offset={item.offset}
 					xRadius={item.xRadius}
@@ -81,4 +83,4 @@ function ProjectsView({
 	);
 }
 
-export default ProjectsView;
+export default React.memo(ProjectsView);

@@ -152,51 +152,132 @@ export const technicalSkillsData = skillsData;
 
 let data: any[] = [
 	{
-		title: "Project 1",
+		title: "Air Pollution Prediction",
 		description:
-			"Some text that goes on and on and on and on and on and on and on and on on and on and on and on and on and onon and on and on and on and on and onon and on and on and on and on and onon and on and on and on and on and onon and on and on and on and on and onon and on and on and on and on and on",
-		technologies: ["ReactJS", "Python"],
-		images: ["Image1", "Image2"],
-		githubURL: "http",
+			"The goal was to use Neural Networks to predict future values from historical data in specific locations. In the context of this master thesis, 6 research papers were studied for the different types of neural network models on data related to air pollution and time series forecasting. Furthermore, multiple different types of neural networks were developed in order to realize the final architecture of the proposed model.",
+		technologies: ["Python", "Tensorflow", "Scikit-learn"],
+		images: [
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Analysis-and-prediction-of-air-pollution-using-BiLSTM-Conv1D/main/BiLSTM-COnv1D.jpg",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Analysis-and-prediction-of-air-pollution-using-BiLSTM-Conv1D/main/MapCountries.png"
+		],
+		githubURL: "https://github.com/GeorgeCodeHub/Analysis-and-prediction-of-air-pollution-using-BiLSTM-Conv1D",
 		runningAppURL: ""
 	},
 	{
-		title: "Project 2",
-		description: "Some text that goes on and on and on and on and on and on on and on and on and on and on and on",
-		technologies: ["ReactJS"],
-		images: ["Image1", "Image2"],
-		githubURL: "http",
+		title: "Appointment Scheduler",
+		description:
+			"An appointment Scheduler tool for doctors and secretaries created with C#. It enables the users to create, edit, delete appointments and assign them to specific hours and days. In addition it notifies the user for holidays and upcoming appoitments that they have created.",
+		technologies: ["C#"],
+		images: [
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Appointment-Scheduler/main/Screenshots/Appointment-day.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Appointment-Scheduler/main/Screenshots/Appointment-month.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Appointment-Scheduler/main/Screenshots/Appointment-search.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Appointment-Scheduler/main/Screenshots/Appointment-create.png"
+		],
+		githubURL: "https://github.com/GeorgeCodeHub/Appointment-Scheduler",
 		runningAppURL: ""
 	},
 	{
-		title: "Project 3",
+		title: "Digit Speech Recognition",
 		description:
-			"Some text that goes on and on and on and on and on and on and on and on and onon and on and on and on and on and onon and on and on and on and on and onon and on and on and on and on and onon and on and on and on and on and onon and on and on and on and on and onon and on and on and on and on and onon and on and on and on and on and on",
-		technologies: ["ReactJS", "Python", "PostgreSQL"],
-		images: ["Image1", "Image2"],
-		githubURL: "http",
-		runningAppURL: ""
-	},
-	{
-		title: "Project 4",
-		description:
-			"Some text that goes on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+			"This project demonstrates the utilization of Neural Networks and machine learning that can distinguish numbers from 0-9 with a great accuracy.",
 		technologies: ["Python", "Tensorflow"],
-		images: ["Image1", "Image2"],
-		githubURL: "http",
+		images: [
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Neural-Networks-for-digit-speech-recognition/main/Screenshots/Spectogram.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Neural-Networks-for-digit-speech-recognition/main/Screenshots/training-graph.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Neural-Networks-for-digit-speech-recognition/main/Screenshots/MFCC-Features.png"
+		],
+		githubURL: "https://github.com/GeorgeCodeHub/Neural-Networks-for-digit-speech-recognition",
+		runningAppURL: ""
+	},
+	{
+		title: "E-learning Mock Up App",
+		description:
+			"A project showcasing the use of UML diagrams for the creation of a an e-learning app for both teachers and students. Numerous diagrams were created to define the parameters of the app.",
+		technologies: ["ReactJS", "Firebase"],
+		images: [
+			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-mock-up/master/Screenshots/Use-Case-Diagram.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-mock-up/master/Screenshots/New-Assignment-Description.PNG",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-mock-up/master/Screenshots/Algorithms.PNG"
+		],
+		githubURL: "https://github.com/GeorgeCodeHub/e-learning-mock-up",
+		runningAppURL: ""
+	},
+	{
+		title: "Evolution Simulator",
+		description:
+			"The objective of this project was the implementation of genetic algorithms at the synchronous and asynchronous level. Technologies such as artificial intelligence and search algorithms were applied to 3D environments where they enabled the following functions: features for each agent, the choice of mutations of these characteristics at a synchronous or asynchronous level, the monitoring of the above in graphs and the influence of the environment towards the agents.",
+		technologies: ["Unity3D", "C#", "Blender3D"],
+		images: [
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Evolution-Simulator/main/Screenshots/4.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Evolution-Simulator/main/Screenshots/5.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Evolution-Simulator/main/Screenshots/6.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Evolution-Simulator/main/Screenshots/11.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Evolution-Simulator/main/Screenshots/13.png"
+		],
+		githubURL: "https://github.com/GeorgeCodeHub/Evolution-Simulator",
+		runningAppURL: ""
+	},
+	{
+		title: "StackOverflow Social Network Analysis",
+		description:
+			"This project aims to analyze a Stack Overflow time-varying network with Python. More specifically, methods were applied that allowed us to the visualization of large data sets in graphs, splitting them into subscribers by time periods, the graphical presentation of distribution values for centralization measures for each sub-signature, the calculation of common data sets for successive signatures, calculation of similarity tables in the above sets and forecast of future edges according to similarity tables.",
+		technologies: ["Python", "Numpy", "Pandas", "Networkx"],
+		images: [
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Stack-Overflow-Social-Network-Analysis/main/Screenshots/sub-graphs.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Stack-Overflow-Social-Network-Analysis/main/Screenshots/Degree-Centrality.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Stack-Overflow-Social-Network-Analysis/main/Screenshots/Short-Graph-Common-Neighbors.png"
+		],
+		githubURL: "https://github.com/GeorgeCodeHub/Stack-Overflow-Social-Network-Analysis",
+		runningAppURL: ""
+	},
+	{
+		title: "Football Outcome Prediction",
+		description:
+			"The project's goal was the analysis of european football matches and the use of Neural Networks for match outcome prediction.",
+		technologies: ["Python", "Tensorflow", "Pandas"],
+		images: [
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Football-outcome-prediction/main/Images/PredictionsB365.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Football-outcome-prediction/main/Images/PredictionsBW.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/Football-outcome-prediction/main/Images/PredictionsIW.png"
+		],
+		githubURL: "https://github.com/GeorgeCodeHub/Football-Outcome-Prediction",
+		runningAppURL: ""
+	},
+	{
+		title: "e-learning Platform",
+		description:
+			"An e-learning platform aimed at teaching Communication Skills with lessons, chapters and quizzes for visual and reading learners.",
+		technologies: ["ReactJS", "Firebase"],
+		images: [
+			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/1.login.PNG",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/4.Main.PNG",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/9.LearnerVisual.PNG",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/20.Finish.PNG"
+		],
+		githubURL: "https://github.com/GeorgeCodeHub/e-learning-platform",
 		runningAppURL: ""
 	}
 ];
 
-data = data.map((item, index) => ({
-	...item,
-	id: index,
-	xRadius: random(1, 4) + 4,
-	zRadius: random(1, 4) + 4,
-	size: random(0.5, 1),
-	speed: random(0.05, 0.1),
-	offset: random(0, Math.PI * 4),
-	rotationSpeed: random(0.008, 0.004)
-}));
+let selectedModelKey = 0;
+
+data = data.map((item, index) => {
+	// 15 is the length of available items
+	if (selectedModelKey === 15 || selectedModelKey >= 15) selectedModelKey = 0;
+	else selectedModelKey++;
+
+	return {
+		...item,
+		id: index,
+		selectedModelKey: selectedModelKey,
+		xRadius: random(1, 4) + 4,
+		zRadius: random(1, 4) + 4,
+		size: random(0.5, 1),
+		speed: random(0.02, 0.06),
+		offset: random(0, Math.PI * 4),
+		rotationSpeed: random(0.008, 0.004)
+	};
+});
 
 export const projectsData = data;

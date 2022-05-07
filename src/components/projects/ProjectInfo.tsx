@@ -39,7 +39,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const BootstrapDialogTitle = (props: DialogTitleProps) => {
-	const { children, onClose, ...other } = props;
+	const { itemData, onClose, ...other } = props;
 
 	return (
 		<div className="project-dialog-title" {...other}>
@@ -57,27 +57,13 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
 				fullHeightHover={true}
 				animation="slide"
 				duration={500}
+				height={250}
 			>
-				<img
-					width="100%"
-					height={250}
-					src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
-					alt="1"
-				/>
-				<img
-					width="100%"
-					height={250}
-					src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-					alt="2"
-				/>
-				<img
-					width="100%"
-					height={250}
-					src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
-					alt="3"
-				/>
+				{itemData.images.map((item: string, key: string) => (
+					<img key={key} width="100%" src={item} alt={key} />
+				))}
 			</Carousel>
-			<h3 style={{ paddingLeft: 16 }}>{children}</h3>
+			<h3 style={{ paddingLeft: 16 }}>{itemData.title}</h3>
 
 			{onClose ? (
 				<IconButton
@@ -117,22 +103,30 @@ function ProjectInfo({ handleClose, open, itemData }: { handleClose: () => void;
 				maxWidth={false}
 				style={{ zIndex: 99999999 }}
 			>
-				<BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-					{itemData.title}
-				</BootstrapDialogTitle>
+				<BootstrapDialogTitle id="customized-dialog-title" itemData={itemData} onClose={handleClose} />
 				<DialogContent className="project-dialog-content" dividers sx={breakpointsCard}>
 					<Typography gutterBottom>{itemData.description}</Typography>
 				</DialogContent>
 				<DialogActions className="project-dialog-actions">
 					<div style={{ marginRight: "auto" }}>
 						{itemData.runningAppURL ? (
-							<IconButton aria-label="Redirect" color="primary" onClick={onWorkingAppRedirect}>
-								<ExitToAppIcon />
+							<IconButton
+								style={{ border: "1px solid" }}
+								aria-label="Redirect"
+								color="primary"
+								onClick={onWorkingAppRedirect}
+							>
+								<ExitToAppIcon style={{ color: "#FFF" }} />
 							</IconButton>
 						) : null}
 						{itemData.githubURL ? (
-							<IconButton aria-label="Github" color="primary" onClick={onGithubRedirect}>
-								<GitHubIcon />
+							<IconButton
+								style={{ border: "1px solid" }}
+								aria-label="Github"
+								color="primary"
+								onClick={onGithubRedirect}
+							>
+								<GitHubIcon style={{ color: "#FFF" }} />
 							</IconButton>
 						) : null}
 					</div>
