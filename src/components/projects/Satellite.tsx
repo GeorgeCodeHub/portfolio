@@ -104,14 +104,14 @@ function Satellite({
 					// We interpolate the visible state into css opacity and transforms
 					style={{ transition: "all 0.2s", opacity: isOccluded ? 0 : 1 }}
 				>
-					<b
+					<div
 						className="project-indicator-title project-indicator-pointer"
 						onMouseOver={() => onHover(true)}
 						onMouseLeave={() => onHover(false)}
 						onClick={() => handleClickOpen()}
 					>
 						{itemData.title}
-					</b>
+					</div>
 				</Html>
 				<Html
 					className="project-indicator-container"
@@ -126,7 +126,7 @@ function Satellite({
 					<div className="project-indicator-title project-indicator-technologies">
 						{springs.map((props, index) => (
 							<animated.div key={index} style={props}>
-								{itemData.technologies.toString()}
+								{itemData.technologies.join(", ")}
 							</animated.div>
 						))}
 					</div>

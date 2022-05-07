@@ -41,3 +41,11 @@
 	border-bottom: 1px solid #1d5560;
 	background: #3c5e61;
 }
+
+.contact-social-media {
+	border: 1px solid !important;
+}
+
+.contact-social-media + .contact-social-media {
+	margin-left: 10px;
+}

@@ -19,6 +19,8 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 import Palette from "../../utils/Palette";
 
+import "./Contact.scss";
+
 const breakpointsCard = {
 	width: {
 		xs: 220, // theme.breakpoints.up('xxs')
@@ -63,7 +65,7 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 				hideBackdrop={true}
 				maxWidth={false}
 				onBackdropClick={onContactBackDropClick}
-				style={{ zIndex: 900 }}
+				style={{ zIndex: 999999999 }}
 			>
 				<form
 					onSubmit={handleSubmit((data) => {
@@ -135,16 +137,26 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 					</DialogContent>
 					<DialogActions className="contact-dialog-actions">
 						<div style={{ marginRight: "auto", marginLeft: 16 }}>
-							<IconButton onClick={() => onSocialMediaClick("https://twitter.com/ge_karampelas")}>
-								<TwitterIcon color="primary" />
-							</IconButton>
-							<IconButton onClick={() => onSocialMediaClick("https://github.com/GeorgeCodeHub")}>
-								<GitHubIcon color="primary" />
+							<IconButton
+								className="contact-social-media"
+								color="primary"
+								onClick={() => onSocialMediaClick("https://twitter.com/ge_karampelas")}
+							>
+								<TwitterIcon style={{ color: "#FFF" }} />
 							</IconButton>
 							<IconButton
+								className="contact-social-media"
+								color="primary"
+								onClick={() => onSocialMediaClick("https://github.com/GeorgeCodeHub")}
+							>
+								<GitHubIcon style={{ color: "#FFF" }} />
+							</IconButton>
+							<IconButton
+								className="contact-social-media"
+								color="primary"
 								onClick={() => onSocialMediaClick("https://www.linkedin.com/in/george-karampelas-453598137/")}
 							>
-								<LinkedInIcon color="primary" />
+								<LinkedInIcon style={{ color: "#FFF" }} />
 							</IconButton>
 						</div>
 						<div style={{ marginLeft: "auto", marginRight: 16 }}>
