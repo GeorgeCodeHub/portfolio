@@ -54,6 +54,13 @@ hr {
 	margin-bottom: 0.2rem;
 }
 
+.step-title-select {
+	color: white;
+	font-weight: lighter !important;
+	letter-spacing: 1rem !important;
+	text-transform: uppercase;
+}
+
 .step-title-top {
 	color: white;
 	font-weight: lighter !important;
@@ -68,4 +75,8 @@ hr {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+}
+
+.MuiMenu-root {
+	z-index: 999999999 !important;
 }

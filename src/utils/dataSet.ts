@@ -121,15 +121,15 @@ export const certificateList = [
 let skillsData: any[] = [
 	{
 		title: "Front-End",
-		techItems: ["HTML", "CSS", "Javascript", "Typescript", "React", "NextJS", "Redux"]
+		techItems: ["HTML", "CSS", "Javascript", "Typescript", "ReactJS", "NextJS", "Redux"]
 	},
 	{
 		title: "Back-End",
-		techItems: ["PostgreSQL", "Javascript", "NodeJS", "ExpressJS", "Python", "FastAPI", "Django"]
+		techItems: ["PostgreSQL", "Firebase", "Javascript", "NodeJS", "ExpressJS", "Python", "FastAPI", "Django"]
 	},
 	{
 		title: "Machine Learning",
-		techItems: ["Python", "Numpy", "Pandas", "Scikit-learn", "Matplotlib", "OpenCV", "Keras", "Tensorflow"]
+		techItems: ["Python", "Numpy", "Pandas", "Scikit-learn", "OpenCV", "Keras", "Tensorflow"]
 	},
 	{
 		title: "Game Dev",
@@ -150,9 +150,23 @@ skillsData = skillsData.map((item, index) => ({
 
 export const technicalSkillsData = skillsData;
 
+export const projectFilters = [
+	"Featured",
+	"Python",
+	"Javascript",
+	"Typescript",
+	"C#",
+	"PostgreSQL",
+	"Firebase",
+	"ReactJS",
+	"Tensorflow",
+	"Unity3D"
+];
+
 let data: any[] = [
 	{
 		title: "Air Pollution Prediction",
+		featured: true,
 		description:
 			"The goal was to use Neural Networks to predict future values from historical data in specific locations. In the context of this master thesis, 6 research papers were studied for the different types of neural network models on data related to air pollution and time series forecasting. Furthermore, multiple different types of neural networks were developed in order to realize the final architecture of the proposed model.",
 		technologies: ["Python", "Tensorflow", "Scikit-learn"],
@@ -165,6 +179,7 @@ let data: any[] = [
 	},
 	{
 		title: "Appointment Scheduler",
+		featured: false,
 		description:
 			"An appointment Scheduler tool for doctors and secretaries created with C#. It enables the users to create, edit, delete appointments and assign them to specific hours and days. In addition it notifies the user for holidays and upcoming appoitments that they have created.",
 		technologies: ["C#"],
@@ -179,6 +194,7 @@ let data: any[] = [
 	},
 	{
 		title: "Digit Speech Recognition",
+		featured: true,
 		description:
 			"This project demonstrates the utilization of Neural Networks and machine learning that can distinguish numbers from 0-9 with a great accuracy.",
 		technologies: ["Python", "Tensorflow"],
@@ -192,9 +208,10 @@ let data: any[] = [
 	},
 	{
 		title: "E-learning Mock Up App",
+		featured: false,
 		description:
 			"A project showcasing the use of UML diagrams for the creation of a an e-learning app for both teachers and students. Numerous diagrams were created to define the parameters of the app.",
-		technologies: ["ReactJS", "Firebase"],
+		technologies: ["Firebase", "ReactJS", "Javascript"],
 		images: [
 			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-mock-up/master/Screenshots/Use-Case-Diagram.png",
 			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-mock-up/master/Screenshots/New-Assignment-Description.PNG",
@@ -205,6 +222,7 @@ let data: any[] = [
 	},
 	{
 		title: "Evolution Simulator",
+		featured: true,
 		description:
 			"The objective of this project was the implementation of genetic algorithms at the synchronous and asynchronous level. Technologies such as artificial intelligence and search algorithms were applied to 3D environments where they enabled the following functions: features for each agent, the choice of mutations of these characteristics at a synchronous or asynchronous level, the monitoring of the above in graphs and the influence of the environment towards the agents.",
 		technologies: ["Unity3D", "C#", "Blender3D"],
@@ -220,6 +238,7 @@ let data: any[] = [
 	},
 	{
 		title: "StackOverflow Social Network Analysis",
+		featured: false,
 		description:
 			"This project aims to analyze a Stack Overflow time-varying network with Python. More specifically, methods were applied that allowed us to the visualization of large data sets in graphs, splitting them into subscribers by time periods, the graphical presentation of distribution values for centralization measures for each sub-signature, the calculation of common data sets for successive signatures, calculation of similarity tables in the above sets and forecast of future edges according to similarity tables.",
 		technologies: ["Python", "Numpy", "Pandas", "Networkx"],
@@ -233,6 +252,7 @@ let data: any[] = [
 	},
 	{
 		title: "Football Outcome Prediction",
+		featured: true,
 		description:
 			"The project's goal was the analysis of european football matches and the use of Neural Networks for match outcome prediction.",
 		technologies: ["Python", "Tensorflow", "Pandas"],
@@ -246,9 +266,10 @@ let data: any[] = [
 	},
 	{
 		title: "e-learning Platform",
+		featured: true,
 		description:
 			"An e-learning platform aimed at teaching Communication Skills with lessons, chapters and quizzes for visual and reading learners.",
-		technologies: ["ReactJS", "Firebase"],
+		technologies: ["Firebase", "ReactJS", "Javascript"],
 		images: [
 			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/1.login.PNG",
 			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/4.Main.PNG",

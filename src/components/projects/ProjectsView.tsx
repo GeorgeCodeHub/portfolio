@@ -16,8 +16,10 @@ import { projectsData } from "../../utils/dataSet";
 import { satelliteArray } from "../../utils/3DModelsSatellites";
 
 function ProjectsView({
+	selectedFilter,
 	setChangedView
 }: {
+	selectedFilter: string;
 	setChangedView: React.Dispatch<
 		React.SetStateAction<{
 			duration: number;
@@ -61,20 +63,26 @@ function ProjectsView({
 					makeDefault={journeyStep.step === 5 || journeyStep.step === 6}
 				/>
 			)}
+
 			<SolarSystem />
 
-			{projectsData.map((item, index) => (
-				<Satellite
-					key={index}
-					selectedModel={satelliteArray[item.selectedModelKey]}
-					id={item.id}
-					speed={item.speed}
-					offset={item.offset}
-					xRadius={item.xRadius}
-					zRadius={item.zRadius}
-					itemData={item}
-				/>
-			))}
+			{projectsData
+				.filter((item) => {
+					if (selectedFilter === "Featured") return item.featured;
+					else return item.technologies.some((item: string) => item === selectedFilter);
+				})
+				.map((item, index) => (
+					<Satellite
+						key={index}
+						selectedModel={satelliteArray[item.selectedModelKey]}
+						id={item.id}
+						speed={item.speed}
+						offset={item.offset}
+						xRadius={item.xRadius}
+						zRadius={item.zRadius}
+						itemData={item}
+					/>
+				))}
 
 			{journeyStep.step === 5 && (
 				<OrbitControls enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 4} maxPolarAngle={Math.PI / 1.5} />
