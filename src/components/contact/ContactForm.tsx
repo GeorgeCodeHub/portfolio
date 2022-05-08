@@ -80,6 +80,10 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 								flexDirection: "column"
 							}}
 						>
+							<div>
+								I'm looking for opportunities to work as a Fullstack or Machine Learning engineer at the moment.
+							</div>
+
 							<Controller
 								rules={{ required: true }}
 								render={({ field }: any) => (
@@ -96,7 +100,6 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 								name="Name"
 								control={control}
 							/>
-
 							<Controller
 								rules={{ required: true, pattern: /^\S+@\S+$/i }}
 								render={({ field }: any) => (
@@ -113,7 +116,6 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 								name="Email"
 								control={control}
 							/>
-
 							<Controller
 								rules={{ required: true }}
 								render={({ field }: any) => (
@@ -133,6 +135,10 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 								name="Message"
 								control={control}
 							/>
+							<div>
+								Currently the messaging tool is offline due to being under construction. Please contact me through the
+								social media available below.
+							</div>
 						</Box>
 					</DialogContent>
 					<DialogActions className="contact-dialog-actions">
@@ -161,10 +167,7 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 						</div>
 						<div style={{ marginLeft: "auto", marginRight: 16 }}>
 							<Tooltip title="Feature currently unavailable" placement="top" arrow>
-								<Button
-									// type="submit"
-									variant="contained"
-								>
+								<Button type="submit" variant="contained" disabled={true}>
 									SEND
 								</Button>
 							</Tooltip>

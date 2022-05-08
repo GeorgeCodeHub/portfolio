@@ -8,7 +8,6 @@ import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 import { Canvas } from "@react-three/fiber";
 import { Html, Stars, useContextBridge } from "@react-three/drei";
@@ -149,7 +148,6 @@ function CanvasView() {
 											))}
 										</Select>
 									)}
-
 									{journeyStep.title}
 								</Typography>
 							</Html>

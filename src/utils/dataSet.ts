@@ -278,6 +278,21 @@ let data: any[] = [
 		],
 		githubURL: "https://github.com/GeorgeCodeHub/e-learning-platform",
 		runningAppURL: ""
+	},
+	{
+		title: "Personal Landing Page",
+		featured: true,
+		description:
+			"Yes the page that you are looking at is one of my most proud projects I have created. Utilizing the ThreeJS library I was able to use 3D models on the browser and create this application you are currently using. I hope you like it as much as I liked making it.",
+		technologies: ["ReactJS", "Typescript", "Blender3D"],
+		images: [
+			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/1.login.PNG",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/4.Main.PNG",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/9.LearnerVisual.PNG",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/20.Finish.PNG"
+		],
+		githubURL: "https://github.com/GeorgeCodeHub/e-learning-platform",
+		runningAppURL: ""
 	}
 ];
 
