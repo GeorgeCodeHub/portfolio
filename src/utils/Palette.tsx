@@ -13,7 +13,6 @@ const theme = createTheme({
 		background: {
 			paper: "#072227"
 		},
-
 		divider: "#1D5560"
 	},
 	breakpoints: {

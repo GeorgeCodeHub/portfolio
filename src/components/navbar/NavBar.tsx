@@ -24,6 +24,10 @@ import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 
 import "./Navbar.scss";
 
+const onResumeButton = () => {
+	window.open(process.env.REACT_APP_RESUME_FILE, "_blank");
+};
+
 const breakpointsNavBarTriangles = {
 	width: {
 		xs: 10, // theme.breakpoints.up('xxs')
@@ -47,6 +51,9 @@ const useStyles = makeStyles(({ breakpoints }: any) => ({
 	root: {
 		minWidth: "20px !important",
 		maxWidth: 90
+	},
+	tooltip: {
+		fontSize: "2em"
 	}
 }));
 
@@ -93,7 +100,7 @@ function NavBar() {
 							onChange={onNavBarChange}
 							style={{ width: "100%" }}
 						>
-							<Tooltip title="Home">
+							<Tooltip title="Home" classes={{ tooltip: classes.tooltip }}>
 								<BottomNavigationAction
 									classes={{ root: classes.root }}
 									sx={breakpointsButtons}
@@ -103,7 +110,7 @@ function NavBar() {
 							</Tooltip>
 
 							{unlockedViewedStep >= 1 && (
-								<Tooltip title="About">
+								<Tooltip title="About" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
 										sx={breakpointsButtons}
@@ -113,7 +120,7 @@ function NavBar() {
 								</Tooltip>
 							)}
 							{unlockedViewedStep >= 2 && (
-								<Tooltip title="Experience">
+								<Tooltip title="Experience" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
 										sx={breakpointsButtons}
@@ -123,7 +130,7 @@ function NavBar() {
 								</Tooltip>
 							)}
 							{unlockedViewedStep >= 3 && (
-								<Tooltip title="Education">
+								<Tooltip title="Education" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
 										sx={breakpointsButtons}
@@ -133,7 +140,7 @@ function NavBar() {
 								</Tooltip>
 							)}
 							{unlockedViewedStep >= 4 && (
-								<Tooltip title="Skills">
+								<Tooltip title="Skills" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
 										value="Skills"
@@ -142,7 +149,7 @@ function NavBar() {
 								</Tooltip>
 							)}
 							{unlockedViewedStep >= 5 && (
-								<Tooltip title="Projects">
+								<Tooltip title="Projects" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
 										value="Projects"
@@ -151,7 +158,7 @@ function NavBar() {
 								</Tooltip>
 							)}
 							{unlockedViewedStep >= 6 && (
-								<Tooltip title="Contact">
+								<Tooltip title="Contact" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
 										value="Contact"
@@ -162,12 +169,13 @@ function NavBar() {
 						</BottomNavigation>
 					</Grid>
 					<Grid className="resume-button-container">
-						<Tooltip title="Resume">
+						<Tooltip title="Resume" classes={{ tooltip: classes.tooltip }}>
 							<IconButton
 								classes={{ root: classes.root }}
+								style={{ borderRadius: 0, borderLeft: "1px solid" }}
 								color="primary"
 								aria-label="delete"
-								style={{ borderRadius: 0, borderLeft: "1px solid" }}
+								onClick={onResumeButton}
 							>
 								<InsertDriveFileIcon style={{ paddingBottom: 0 }} />
 							</IconButton>
