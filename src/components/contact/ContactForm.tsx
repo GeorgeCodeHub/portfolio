@@ -12,7 +12,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
-import Button from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
 import IconButton from "@mui/material/IconButton";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertColor, AlertProps } from "@mui/material/Alert";
@@ -20,6 +20,7 @@ import MuiAlert, { AlertColor, AlertProps } from "@mui/material/Alert";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import SendIcon from "@mui/icons-material/Send";
 
 import Palette from "../../utils/Palette";
 
@@ -45,7 +46,7 @@ const defaultValues = {
 	Message: ""
 };
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+const BootstrapDialog = styled(Dialog)(({ theme }: any) => ({
 	"& .MuiDialogContent-root": {
 		padding: theme.spacing(2)
 	},
@@ -75,7 +76,7 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 			return;
 		}
 
-		setMessageStatus((state) => ({ flag: "error", status: false }));
+		setMessageStatus((state) => ({ ...state, status: false }));
 	};
 
 	return (
@@ -93,7 +94,7 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 						setMessageStatus({ flag: "info", status: true });
 						axios
 							.post("https://georgecodehub-portfolio-server.herokuapp.com/contact/", {
-								name: data.Name,
+								name: `${data.Email} - ${data.Name}`,
 								email: data.Email,
 								message: data.Message
 							})
@@ -196,9 +197,15 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 						</div>
 						<div style={{ marginLeft: "auto", marginRight: 16 }}>
 							<Tooltip title="Feature currently unavailable" placement="top" arrow>
-								<Button type="submit" variant="contained">
+								<LoadingButton
+									type="submit"
+									variant="contained"
+									loading={messageStatus.status}
+									endIcon={<SendIcon />}
+									loadingPosition="end"
+								>
 									SEND
-								</Button>
+								</LoadingButton>
 							</Tooltip>
 						</div>
 					</DialogActions>
@@ -207,6 +214,8 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 					<Alert severity={messageStatus.flag}>
 						{messageStatus.flag === "success"
 							? "Message was sent successfully!"
+							: messageStatus.flag === "info"
+							? "Trying to make contact..."
 							: "Something went wrong. Please try again later!"}
 					</Alert>
 				</Snackbar>
