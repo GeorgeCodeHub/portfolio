@@ -154,7 +154,7 @@ function App() {
 	}, [isScreenMobile]);
 
 	useEffect(() => {
-		axios.get("/api/get_all");
+		axios.get("https://georgecodehub-portfolio-server.herokuapp.com/api/get_all");
 	}, []);
 
 	return (
