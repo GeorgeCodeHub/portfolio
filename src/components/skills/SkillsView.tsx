@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
+// Context
+import { JourneyStepsContext } from "../../App";
+import { DatasetContext } from "../CanvasView";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CodeIcon from "@mui/icons-material/Code";
 
-// Context
-import { JourneyStepsContext } from "../../App";
+import LoadingPanel from "../../utils/LoadingPanel";
 
 import { animated, useSprings } from "react-spring";
 
@@ -39,6 +42,8 @@ function SkillsView({
 	const selectedPlanetRef: any = useRef();
 
 	const { journeyStep, dispatchJourneyStep } = React.useContext(JourneyStepsContext);
+
+	const dataset = React.useContext(DatasetContext);
 
 	// Set initial spring settings for animation
 	const [springs, setSprings] = useSprings(1, (i) => ({
@@ -106,6 +111,8 @@ function SkillsView({
 		setChangedView({ duration: 200, isChanged: false });
 	}, [setChangedView]);
 
+	if (dataset?.skills.length === 0) return <LoadingPanel />;
+
 	return (
 		<>
 			<ambientLight intensity={0.02} />
@@ -136,15 +143,27 @@ function SkillsView({
 					setFollow(false);
 				}}
 			>
-				{technicalSkillsData.map((technicalSkillItem) => (
-					<Planet
-						ref={selectedPlanetRef}
-						technicalSkillItem={technicalSkillItem}
-						key={technicalSkillItem.id}
-						follow={follow}
-						setFollow={setFollow}
-					/>
-				))}
+				{dataset.skills.map(
+					(technicalSkillItem: {
+						id: number;
+						offset: number;
+						rotationSpeed: number;
+						size: number;
+						speed: number;
+						technologies: string[];
+						title: string;
+						xRadius: number;
+						zRadius: number;
+					}) => (
+						<Planet
+							ref={selectedPlanetRef}
+							technicalSkillItem={technicalSkillItem}
+							key={technicalSkillItem.id}
+							follow={follow}
+							setFollow={setFollow}
+						/>
+					)
+				)}
 			</group>
 			<Environment preset="warehouse" />
 		</>

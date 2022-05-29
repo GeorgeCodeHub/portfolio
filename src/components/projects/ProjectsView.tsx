@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 
 // Context
 import { JourneyStepsContext } from "../../App";
+import { DatasetContext } from "../CanvasView";
 
 import { useFrame } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
+
+import LoadingPanel from "../../utils/LoadingPanel";
 
 import SolarSystem from "./SolarSystem";
 import Satellite from "./Satellite";
@@ -31,6 +34,8 @@ function ProjectsView({
 
 	const { journeyStep } = React.useContext(JourneyStepsContext);
 
+	const dataset = React.useContext(DatasetContext);
+
 	useFrame(({ camera, clock }) => {
 		if (journeyStep.step === 5) {
 			// Animate camera position before reaching landing spot
@@ -54,6 +59,8 @@ function ProjectsView({
 		}
 	}, [journeyStep.step]);
 
+	if (dataset?.projects.length === 0) return <LoadingPanel />;
+
 	return (
 		<>
 			<ambientLight intensity={0.1} />
@@ -66,23 +73,35 @@ function ProjectsView({
 
 			<SolarSystem />
 
-			{projectsData
-				.filter((item) => {
-					if (selectedFilter === "Featured") return item.featured;
+			{dataset.projects
+				.filter((item: { isFeatured: boolean; technologies: string[] }) => {
+					if (selectedFilter === "Featured") return item.isFeatured;
 					else return item.technologies.some((item: string) => item === selectedFilter);
 				})
-				.map((item, index) => (
-					<Satellite
-						key={index}
-						selectedModel={satelliteArray[item.selectedModelKey]}
-						id={item.id}
-						speed={item.speed}
-						offset={item.offset}
-						xRadius={item.xRadius}
-						zRadius={item.zRadius}
-						itemData={item}
-					/>
-				))}
+				.map(
+					(
+						item: {
+							selectedModelKey: any;
+							id: number;
+							speed: number;
+							offset: number;
+							xRadius: number;
+							zRadius: number;
+						},
+						index: number
+					) => (
+						<Satellite
+							key={index}
+							selectedModel={satelliteArray[item.selectedModelKey]}
+							id={item.id}
+							speed={item.speed}
+							offset={item.offset}
+							xRadius={item.xRadius}
+							zRadius={item.zRadius}
+							itemData={item}
+						/>
+					)
+				)}
 
 			{journeyStep.step === 5 && (
 				<OrbitControls enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 4} maxPolarAngle={Math.PI / 1.5} />

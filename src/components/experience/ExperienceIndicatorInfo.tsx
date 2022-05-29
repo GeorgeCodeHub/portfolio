@@ -42,7 +42,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
 
 	return (
 		<DialogTitle className="dialog-title" sx={{ m: 0, p: 2 }} {...other}>
-			{itemData.title}
+			{itemData.positionTitle}
 			{onClose ? (
 				<IconButton
 					aria-label="close"
@@ -70,6 +70,8 @@ function ExperienceIndicatorInfo({
 	onCloseInfo: () => void;
 	jobItem: any;
 }) {
+	console.log(jobItem);
+
 	return (
 		<Palette>
 			<BootstrapDialog

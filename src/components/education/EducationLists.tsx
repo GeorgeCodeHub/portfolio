@@ -39,8 +39,8 @@ export const DegreesListComponent = ({
 		title: string;
 		school: string;
 		description: string;
-		dateStart: Date;
-		dateEnd: Date;
+		dateFrom: Date;
+		dateTo: Date;
 	}[];
 }) => {
 	const [occludeDegrees, setOccludeDegrees] = useState<boolean>();
@@ -117,8 +117,8 @@ export const DegreesListComponent = ({
 												</CardContent>
 												<CardActions style={{ background: "#3c5e61" }}>
 													<Typography>
-														{format(item.dateStart, datePatterns.monthYear)} -{" "}
-														{format(item.dateEnd, datePatterns.monthYear)}
+														{format(new Date(item.dateFrom), datePatterns.monthYear)} -{" "}
+														{format(new Date(item.dateTo), datePatterns.monthYear)}
 													</Typography>
 												</CardActions>
 											</Card>
@@ -226,7 +226,7 @@ export const CertificateListComponent = ({
 													<Typography>{item.description}</Typography>
 												</CardContent>
 												<CardActions style={{ background: "#3c5e61" }}>
-													<Typography>{format(item.dateAcquired, datePatterns.monthYear)}</Typography>
+													<Typography>{format(new Date(item.dateAcquired), datePatterns.monthYear)}</Typography>
 												</CardActions>
 											</Card>
 										</ListItem>

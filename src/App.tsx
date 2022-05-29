@@ -14,7 +14,6 @@ import CanvasView from "./components/CanvasView";
 import NavBar from "./components/navbar/NavBar";
 
 import "./styles/App.scss";
-import axios from "axios";
 
 const defaultJourneyStep = {
 	key: "Home",
@@ -152,10 +151,6 @@ function App() {
 		const lastViewedStep = localStorage.getItem("lastViewedStep");
 		if (lastViewedStep) dispatchJourneyStep({ type: lastViewedStep, payload: isScreenMobile });
 	}, [isScreenMobile]);
-
-	useEffect(() => {
-		axios.get("https://georgecodehub-portfolio-server.herokuapp.com/api/get_all");
-	}, []);
 
 	return (
 		<JourneyStepsContext.Provider value={{ journeyStep, dispatchJourneyStep }}>

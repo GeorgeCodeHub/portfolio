@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+
+import axios from "axios";
 
 import { useForm, Controller } from "react-hook-form";
 
@@ -12,6 +14,8 @@ import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertColor, AlertProps } from "@mui/material/Alert";
 
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -20,6 +24,10 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Palette from "../../utils/Palette";
 
 import "./Contact.scss";
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
+	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const breakpointsCard = {
 	width: {
@@ -47,6 +55,11 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onContactBackDropClick: () => void }) {
+	const [messageStatus, setMessageStatus] = useState<{
+		flag: AlertColor;
+		status: boolean;
+	}>({ flag: "error", status: false });
+
 	const {
 		handleSubmit,
 		control,
@@ -55,6 +68,14 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 
 	const onSocialMediaClick = (url: string | URL) => {
 		window.open(url, "_blank");
+	};
+
+	const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+		if (reason === "clickaway") {
+			return;
+		}
+
+		setMessageStatus((state) => ({ flag: "error", status: false }));
 	};
 
 	return (
@@ -69,7 +90,19 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 			>
 				<form
 					onSubmit={handleSubmit((data) => {
-						console.log(data);
+						setMessageStatus({ flag: "info", status: true });
+						axios
+							.post("https://georgecodehub-portfolio-server.herokuapp.com/contact/", {
+								name: data.Name,
+								email: data.Email,
+								message: data.Message
+							})
+							.then(() => {
+								setMessageStatus({ flag: "success", status: true });
+							})
+							.catch(() => {
+								setMessageStatus({ flag: "error", status: true });
+							});
 					})}
 				>
 					<DialogContent className="contact-dialog-content" dividers sx={breakpointsCard}>
@@ -135,10 +168,6 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 								name="Message"
 								control={control}
 							/>
-							<div>
-								Currently the messaging tool is offline due to being under construction. Please contact me through the
-								social media available below.
-							</div>
 						</Box>
 					</DialogContent>
 					<DialogActions className="contact-dialog-actions">
@@ -167,13 +196,20 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 						</div>
 						<div style={{ marginLeft: "auto", marginRight: 16 }}>
 							<Tooltip title="Feature currently unavailable" placement="top" arrow>
-								<Button type="submit" variant="contained" disabled={true}>
+								<Button type="submit" variant="contained">
 									SEND
 								</Button>
 							</Tooltip>
 						</div>
 					</DialogActions>
 				</form>
+				<Snackbar open={messageStatus.status} autoHideDuration={6000} onClose={handleClose}>
+					<Alert severity={messageStatus.flag}>
+						{messageStatus.flag === "success"
+							? "Message was sent successfully!"
+							: "Something went wrong. Please try again later!"}
+					</Alert>
+				</Snackbar>
 			</BootstrapDialog>
 		</Palette>
 	);

@@ -1,4 +1,6 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
+
+import axios from "axios";
 
 import { animated, useSpring } from "react-spring";
 
@@ -22,6 +24,12 @@ import SkillsView from "./skills/SkillsView";
 import ProjectsView from "./projects/ProjectsView";
 
 import { projectFilters } from "../utils/dataSet";
+
+export const DatasetContext = React.createContext<any>(null);
+
+const random = (a: number, b: number) => a + Math.random() * b;
+
+let selectedModelKey = 0;
 
 const color = "#4FBDBA !important";
 
@@ -67,10 +75,14 @@ function CanvasView() {
 	const classes = useStyles();
 
 	const [changedView, setChangedView] = useState({ duration: 0, isChanged: false });
-	const [selectedFilter, setSelectedFilter] = React.useState("Featured");
+
+	const [selectedFilter, setSelectedFilter] = useState("Featured");
+
+	const [dataset, setDataset] = useState({ certificates: [], degrees: [], jobs: [], projects: [], skills: [] });
 
 	const { journeyStep } = React.useContext(JourneyStepsContext);
 
+	// Used to bridge Context inside the ThreeJS views
 	const ContextBridge = useContextBridge(JourneyStepsContext);
 
 	const handleSelectedChange = (event: SelectChangeEvent) => {
@@ -102,6 +114,43 @@ function CanvasView() {
 				return <></>;
 		}
 	};
+
+	useEffect(() => {
+		axios.get("https://georgecodehub-portfolio-server.herokuapp.com/api/get_all").then(({ data }) => {
+			data.jobs = data.jobs.map((job: any) => ({ ...job, speed: random(0.05, 0.07), offset: random(0, Math.PI * 4) }));
+
+			data.skills = data.skills.map((item: any, index: number) => ({
+				...item,
+				id: index,
+				xRadius: (index + 2.5) * 4,
+				zRadius: (index + 2.5) * 4,
+				size: random(0.08, 0.2),
+				speed: random(0.05, 0.08),
+				offset: random(0, Math.PI * 4),
+				rotationSpeed: random(0.003, 0.005)
+			}));
+
+			data.projects = data.projects.map((item: any, index: any) => {
+				// 15 is the length of available items
+				if (selectedModelKey === 15 || selectedModelKey >= 15) selectedModelKey = 0;
+				else selectedModelKey++;
+
+				return {
+					...item,
+					id: index,
+					selectedModelKey: selectedModelKey,
+					xRadius: random(1, 4) + 4,
+					zRadius: random(1, 4) + 4,
+					size: random(0.5, 1),
+					speed: random(0.02, 0.06),
+					offset: random(0, Math.PI * 4),
+					rotationSpeed: random(0.008, 0.004)
+				};
+			});
+
+			setDataset(data);
+		});
+	}, []);
 
 	return (
 		<>
@@ -151,7 +200,7 @@ function CanvasView() {
 									{journeyStep.title}
 								</Typography>
 							</Html>
-							{stepController()}
+							<DatasetContext.Provider value={dataset}>{stepController()}</DatasetContext.Provider>
 						</ContextBridge>
 					</Suspense>
 				</Canvas>

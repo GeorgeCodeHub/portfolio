@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 
+// Context
+import { DatasetContext } from "../CanvasView";
+
+import LoadingPanel from "../../utils/LoadingPanel";
+
 import { JourneyStepsContext } from "../../App";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -37,6 +42,8 @@ function EducationView({
 	const [goToSkills, setGoToSkills] = useState(false);
 
 	const { journeyStep, dispatchJourneyStep } = React.useContext(JourneyStepsContext);
+
+	const dataset = React.useContext(DatasetContext);
 
 	// Set initial spring settings for animation
 	const [springs, setSprings] = useSprings(1, (i) => ({
@@ -99,6 +106,8 @@ function EducationView({
 		setChangedView({ duration: 200, isChanged: false });
 	}, [setChangedView]);
 
+	if (dataset.degrees.length === 0) return <LoadingPanel />;
+
 	return (
 		<>
 			{/* Lights */}
@@ -141,10 +150,10 @@ function EducationView({
 				</Html>
 			</mesh>
 			<mesh position={[1, 0, 0.5]} rotation={[0, Math.PI / 3, 0]}>
-				<DegreesListComponent list={degreesList} />
+				<DegreesListComponent list={dataset.degrees} />
 			</mesh>
 			<mesh position={[-1, 0, -0.6]} rotation={[0, -Math.PI / 1.5, 0]}>
-				<CertificateListComponent list={certificateList} />
+				<CertificateListComponent list={dataset.certificates} />
 			</mesh>
 			<SpaceBase position={[0, 0, 0]} rotation={[Math.PI / 2, 0, Math.PI / 6]} />
 

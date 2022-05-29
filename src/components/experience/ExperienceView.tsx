@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 
+import LoadingPanel from "../../utils/LoadingPanel";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
 import SchoolIcon from "@mui/icons-material/School";
@@ -18,6 +20,8 @@ import Galaxy from "./Galaxy";
 import ExperienceIndicator from "./ExperienceIndicator";
 
 import { SpaceBase } from "../../utils/3DModelsSpaceBase";
+
+import { DatasetContext } from "../CanvasView";
 
 import { jobsList } from "../../utils/dataSet";
 
@@ -40,6 +44,8 @@ function ExperienceView({
 	const spaceStationRef = useRef<any>();
 
 	const { journeyStep, dispatchJourneyStep } = React.useContext(JourneyStepsContext);
+
+	const { jobs } = React.useContext(DatasetContext);
 
 	const [follow, setFollow] = useState(false);
 
@@ -128,16 +134,34 @@ function ExperienceView({
 					setFollow(false);
 				}}
 			>
-				{jobsList.map((item, index) => (
-					<ExperienceIndicator
-						key={index}
-						ref={selectedItemRef}
-						radius={index + 0.8}
-						jobItem={item}
-						follow={follow}
-						setFollow={setFollow}
-					/>
-				))}
+				{jobs.length ? (
+					jobs.map(
+						(
+							item: {
+								id: number;
+								positionTitle: string;
+								companyTitle: string;
+								description: string;
+								dateFrom: string;
+								dateTo: string;
+								speed: number;
+								offset: number;
+							},
+							index: number
+						) => (
+							<ExperienceIndicator
+								key={index}
+								ref={selectedItemRef}
+								radius={index + 0.8}
+								jobItem={item}
+								follow={follow}
+								setFollow={setFollow}
+							/>
+						)
+					)
+				) : (
+					<LoadingPanel />
+				)}
 
 				{/* Space station indicator */}
 				<SpaceBase

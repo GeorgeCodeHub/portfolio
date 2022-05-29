@@ -21,18 +21,18 @@ const Planet = forwardRef(({ technicalSkillItem, follow, setFollow }: any, ref: 
 	const skillWords = useMemo(() => {
 		const temp = [];
 		const spherical = new THREE.Spherical();
-		const phiSpan = Math.PI / technicalSkillItem.techItems.length;
-		const thetaSpan = (Math.PI * 2) / technicalSkillItem.techItems.length;
-		for (let i = 0; i < technicalSkillItem.techItems.length; i++)
+		const phiSpan = Math.PI / technicalSkillItem.technologies.length;
+		const thetaSpan = (Math.PI * 2) / technicalSkillItem.technologies.length;
+		for (let i = 0; i < technicalSkillItem.technologies.length; i++)
 			// Taken from https://discourse.threejs.org/t/can-i-place-obects-on-a-sphere-surface-evenly/4773/6
 			temp.push({
 				position: new THREE.Vector3().setFromSpherical(
 					spherical.set(technicalSkillItem.size + 8, phiSpan * i + getRandomArbitrary(0, 1), thetaSpan * i)
 				),
-				word: technicalSkillItem.techItems[i]
+				word: technicalSkillItem.technologies[i]
 			});
 		return temp;
-	}, [technicalSkillItem.techItems, technicalSkillItem.size]);
+	}, [technicalSkillItem.technologies, technicalSkillItem.size]);
 
 	// Set camera position on click
 	const onIndicatorClick = () => {
