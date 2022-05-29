@@ -3,6 +3,7 @@
 	"homepage": "https://GeorgeCodeHub.github.io/portfolio",
 	"version": "0.1.0",
 	"private": true,
+	"proxy": "https://georgecodehub-portfolio-server.herokuapp.com",
 	"dependencies": {
 		"@emotion/react": "^11.7.1",
 		"@emotion/styled": "^11.6.0",
@@ -19,6 +20,7 @@
 		"@types/node": "^16.11.21",
 		"@types/react": "^17.0.38",
 		"@types/react-dom": "^17.0.11",
+		"axios": "^0.27.2",
 		"date-fns": "^2.28.0",
 		"lerp": "^1.0.3",
 		"leva": "^0.9.20",
