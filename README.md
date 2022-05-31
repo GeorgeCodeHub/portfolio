@@ -1,8 +1,8 @@
-# A landing page holding all projects I have worked over the years.
+# A landing page holding all projects I have worked on over the years.
 
-The goal of creating this project was an oppurtunity to use ReactJS with ThreeJS. More specifically, with the use of React-Three-Fiber I was able to create interactive views with 3D models.
+The goal of creating this project was an opportunity to use ReactJS with ThreeJS. More specifically, with the use of React-Three-Fiber, I was able to create interactive views with 3D models.
 
-The space theme of the app was chosen from my love of the subject of space. Below are some screenshot of how the app looks:
+The space theme of the app was chosen from my love of the subject of space. Below are some screenshots of how the app looks:
 
 ## Experiences View
 
@@ -12,7 +12,7 @@ This view shows my professional experiences and how long each one took. The user
 
 ## Education View
 
-This view shows all the degrees and certificates that I have aquired over the years. The user can hover around the view and click on the buttons that are side by side to the base. If they want to continue they can click at the center of the space base.
+This view shows all the degrees and certificates that I have acquired over the years. The user can hover around the view and click on the buttons that are side by side with the base. If they want to continue they can click at the center of the space base.
 
 ![education-view](https://raw.githubusercontent.com/GeorgeCodeHub/portfolio/main/Screenshots/education-view.png)
 
@@ -26,14 +26,14 @@ This view shows various skills and technologies that I have experience and knowl
 
 ## Projects View
 
-This views shows all personal and professional projects that I have worked over the years. The user can filter out the visible projects in accordance to the technology shown. In addition, they can click on any of the projects to learn more.
+This view shows all the personal and professional projects that I have worked on over the years. The user can filter out the visible projects in accordance with the technology shown. In addition, they can click on any of the projects to learn more.
 
 ![projects-view](https://raw.githubusercontent.com/GeorgeCodeHub/portfolio/main/Screenshots/projects-view.png)
 
 ## Contact View
 
-This view allows the user to make contact with me in various ways. Either through Twitter, Github, Linkedin or even through e-mail.
+This view allows the user to make contact with me in various ways. Either through Twitter, Github, Linkedin, or even through e-mail.
 
 ![contact-view](https://raw.githubusercontent.com/GeorgeCodeHub/portfolio/main/Screenshots/contact-view.png)
 
-Last but not least a server is set up providing the data shown on the page.
+Last but not least a [server](https://github.com/GeorgeCodeHub/portfolio-server) is set up to provide the data shown on the page.
