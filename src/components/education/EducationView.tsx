@@ -21,7 +21,6 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { DegreesListComponent, CertificateListComponent } from "./EducationLists";
 
 import { SpaceBase, SpaceShip1, SpaceShip2, SpaceShip3 } from "../../utils/3DModelsSpaceBase";
-import { degreesList, certificateList } from "../../utils/dataSet";
 
 import "./Education.scss";
 import "../experience/Experience.scss";

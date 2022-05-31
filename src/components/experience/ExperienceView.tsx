@@ -23,8 +23,6 @@ import { SpaceBase } from "../../utils/3DModelsSpaceBase";
 
 import { DatasetContext } from "../CanvasView";
 
-import { jobsList } from "../../utils/dataSet";
-
 import "./Experience.scss";
 
 function ExperienceView({

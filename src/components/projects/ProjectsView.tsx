@@ -13,10 +13,9 @@ import LoadingPanel from "../../utils/LoadingPanel";
 import SolarSystem from "./SolarSystem";
 import Satellite from "./Satellite";
 
-import "./Projects.scss";
-
-import { projectsData } from "../../utils/dataSet";
 import { satelliteArray } from "../../utils/3DModelsSatellites";
+
+import "./Projects.scss";
 
 function ProjectsView({
 	selectedFilter,
