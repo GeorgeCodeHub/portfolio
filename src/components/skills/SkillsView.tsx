@@ -16,7 +16,6 @@ import { Html, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
 import { Sun1 } from "../../utils/3DModelsPlanets";
-import { technicalSkillsData } from "../../utils/dataSet";
 
 import Planet from "./Planet";
 
@@ -74,7 +73,7 @@ function SkillsView({
 	useFrame(({ camera, clock }) => {
 		const t = clock.getElapsedTime();
 		// Rotate sun on itself
-		sunRef.current.rotation.y += 0.001;
+		if (sunRef.current) sunRef.current.rotation.y += 0.001;
 
 		// Set camera in accordance to the selected item
 		if (follow) {

@@ -1,5 +1,9 @@
 import React, { useState, useCallback, useRef } from "react";
 
+import { format } from "date-fns";
+
+import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
+
 import { useSprings, animated } from "react-spring";
 
 import { useFrame } from "@react-three/fiber";
@@ -8,6 +12,8 @@ import { Html } from "@react-three/drei";
 import { ExperienceIndicatorTypes } from "../../utils/types";
 
 import ExperienceIndicatorInfo from "./ExperienceIndicatorInfo";
+
+import { datePatterns } from "../../utils/consts";
 
 const ExperienceIndicator = React.forwardRef(
 	({ radius, jobItem, follow, setFollow }: ExperienceIndicatorTypes, ref: any) => {
@@ -80,7 +86,12 @@ const ExperienceIndicator = React.forwardRef(
 								<div>{jobItem.positionTitle}</div>
 								<hr />
 								<div style={{ fontSize: "1.2rem" }}>
-									{jobItem.dateFrom} - {jobItem.dateTo}
+									{format(new Date(jobItem.dateFrom), datePatterns.monthYear)} -{" "}
+									{jobItem.dateTo ? (
+										format(new Date(jobItem.dateTo), datePatterns.monthYear)
+									) : (
+										<AllInclusiveIcon style={{ marginBottom: -6 }} />
+									)}
 								</div>
 							</animated.div>
 						))}

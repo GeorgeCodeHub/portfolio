@@ -12,10 +12,12 @@ import DialogActions from "@mui/material/DialogActions";
 
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
+import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
 
 import CloseIcon from "@mui/icons-material/Close";
 
 import Palette from "../../utils/Palette";
+
 import { datePatterns } from "../../utils/consts";
 
 const breakpointsCard = {
@@ -70,8 +72,6 @@ function ExperienceIndicatorInfo({
 	onCloseInfo: () => void;
 	jobItem: any;
 }) {
-	console.log(jobItem);
-
 	return (
 		<Palette>
 			<BootstrapDialog
@@ -88,7 +88,11 @@ function ExperienceIndicatorInfo({
 				<DialogActions className="dialog-actions">
 					<Typography style={{ marginRight: "auto", marginLeft: 8, fontWeight: 500 }}>
 						{format(new Date(jobItem.dateFrom), datePatterns.monthYear)} -{" "}
-						{format(new Date(jobItem.dateTo), datePatterns.monthYear)}
+						{jobItem.dateTo ? (
+							format(new Date(jobItem.dateTo), datePatterns.monthYear)
+						) : (
+							<AllInclusiveIcon style={{ marginBottom: -6 }} />
+						)}
 					</Typography>
 					<Typography style={{ marginLeft: "auto", marginRight: 8 }}>{jobItem.companyTitle}</Typography>
 				</DialogActions>

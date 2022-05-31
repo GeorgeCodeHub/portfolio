@@ -70,6 +70,7 @@ const Planet = forwardRef(({ technicalSkillItem, follow, setFollow }: any, ref: 
 				scale: technicalSkillItem.size,
 				ref: planetRef,
 				userData: technicalSkillItem,
+				onClick: () => onIndicatorClick(),
 				children: (
 					<>
 						<Html className="skill-type-title" position={[0, 10, 0]} center>
@@ -81,7 +82,6 @@ const Planet = forwardRef(({ technicalSkillItem, follow, setFollow }: any, ref: 
 								{!isSelected && technicalSkillItem.title}
 							</div>
 						</Html>
-
 						{isSelected &&
 							skillWords.map((item, index) => {
 								return <SkillsCluster key={index} wordPosition={item.position} word={item.word} />;

@@ -117,7 +117,7 @@ function CanvasView() {
 
 	useEffect(() => {
 		axios.get("https://georgecodehub-portfolio-server.herokuapp.com/api/get_all").then(({ data }) => {
-			data.jobs = data.jobs.map((job: any) => ({ ...job, speed: random(0.05, 0.07), offset: random(0, Math.PI * 4) }));
+			data.jobs = data.jobs.map((job: any) => ({ ...job, speed: 0.05, offset: random(0, Math.PI * 4) }));
 
 			data.skills = data.skills.map((item: any, index: number) => ({
 				...item,
@@ -127,7 +127,7 @@ function CanvasView() {
 				size: random(0.08, 0.2),
 				speed: random(0.05, 0.08),
 				offset: random(0, Math.PI * 4),
-				rotationSpeed: random(0.003, 0.005)
+				rotationSpeed: random(0.002, 0.003)
 			}));
 
 			data.projects = data.projects.map((item: any, index: any) => {
@@ -142,7 +142,7 @@ function CanvasView() {
 					xRadius: random(1, 4) + 4,
 					zRadius: random(1, 4) + 4,
 					size: random(0.5, 1),
-					speed: random(0.02, 0.06),
+					speed: random(0.02, 0.04),
 					offset: random(0, Math.PI * 4),
 					rotationSpeed: random(0.008, 0.004)
 				};
