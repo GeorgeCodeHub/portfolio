@@ -41,10 +41,8 @@ function HomeView() {
 							<CardContent>
 								<Typography variant="subtitle1" gutterBottom style={{ margin: 16, textAlign: "center" }}>
 									Hello traveler,
-									<br /> you are about to embark to a journey through galaxies and planets. I have left messages to
-									guide you through it all.
-									<br />
-									Hopefully at the end we will be able to meet. Good luck!
+									<br /> you are about to embark on a journey through galaxies and planets. I have left messages to
+									guide you through out the way. Hopefully at the end we will be able to meet. Good luck!
 									<br />
 									<i>WARNING: This app uses 3D graphics that might be disorienting for some people.</i>
 								</Typography>
