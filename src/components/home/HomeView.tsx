@@ -57,7 +57,7 @@ function HomeView() {
 										dispatchJourneyStep({ type: "About" });
 									}}
 								>
-									Continue?
+									Begin Journey
 								</Button>
 							</CardActions>
 						</Card>
