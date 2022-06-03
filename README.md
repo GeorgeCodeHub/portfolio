@@ -2,7 +2,14 @@
 
 The goal of creating this project was an opportunity to use ReactJS with ThreeJS. More specifically, with the use of React-Three-Fiber, I was able to create interactive views with 3D models.
 
-The space theme of the app was chosen from my love of the subject of space. Below are some screenshots of how the app looks:
+The space theme of the app was chosen from my love of the subject of space. 
+
+### Tech Stack
+
+Front-end: ReactJS, Typescript, React-Three-Fiber
+Back-end: Django, PostgreSQL
+
+Below are some screenshots of how the app looks:
 
 ## Experiences View
 
