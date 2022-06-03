@@ -14,8 +14,6 @@ import { PerspectiveCamera, Html } from "@react-three/drei";
 
 import Palette from "../../utils/Palette";
 
-import { personalInfo } from "../../utils/dataSet";
-
 const breakpointsCard = {
 	width: {
 		xs: 200, // theme.breakpoints.up('xxs')
@@ -42,9 +40,13 @@ function HomeView() {
 							/>
 							<CardContent>
 								<Typography variant="subtitle1" gutterBottom style={{ margin: 16, textAlign: "center" }}>
-									Hello, I am <b>{personalInfo.name}</b>,
-									<br />a {personalInfo.roles.join(", ").replace(/, ([^,]*)$/, " and $1")} eager to always learn and
-									work with new technologies.
+									Hello traveler,
+									<br /> you are about to embark to a journey through galaxies and planets. I have left messages to
+									guide you through it all.
+									<br />
+									Hopefully at the end we will be able to meet. Good luck!
+									<br />
+									<i>WARNING: This app uses 3D graphics that might be disorienting for some people.</i>
 								</Typography>
 							</CardContent>
 							<CardActions style={{ justifyContent: "center" }}>
@@ -55,7 +57,7 @@ function HomeView() {
 										dispatchJourneyStep({ type: "About" });
 									}}
 								>
-									Continue
+									Continue?
 								</Button>
 							</CardActions>
 						</Card>

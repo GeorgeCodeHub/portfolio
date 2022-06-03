@@ -1,17 +1,5 @@
 const random = (a: number, b: number) => a + Math.random() * b;
 
-export const personalInfo = {
-	name: "George Karampelas",
-	roles: ["full stack web engineer", "machine learning practitioner"],
-	remotelyAvailable: "UTC +2",
-	focusedTechnologies: [
-		{ name: "React", url: "https://reactjs.org/" },
-		{ name: "FastAPI", url: "https://fastapi.tiangolo.com/" },
-		{ name: "Tensorflow", url: "https://www.tensorflow.org/" },
-		{ name: "Pytorch", url: "https://pytorch.org/" }
-	]
-};
-
 export const jobsList = [
 	{
 		id: 1,
@@ -118,7 +106,7 @@ export const certificateList = [
 	}
 ];
 
-let skillsData: any[] = [
+export const technicalSkillsData: any[] = [
 	{
 		title: "Front-End",
 		techItems: ["HTML", "CSS", "Javascript", "Typescript", "ReactJS", "NextJS", "Redux"]
@@ -137,19 +125,6 @@ let skillsData: any[] = [
 	}
 ];
 
-skillsData = skillsData.map((item, index) => ({
-	...item,
-	id: index,
-	xRadius: (index + 2.5) * 4,
-	zRadius: (index + 2.5) * 4,
-	size: random(0.08, 0.2),
-	speed: random(0.05, 0.1),
-	offset: random(0, Math.PI * 4),
-	rotationSpeed: random(0.003, 0.006)
-}));
-
-export const technicalSkillsData = skillsData;
-
 export const projectFilters = [
 	"Featured",
 	"Python",
@@ -163,7 +138,7 @@ export const projectFilters = [
 	"Unity3D"
 ];
 
-let data: any[] = [
+export const projectsData: any[] = [
 	{
 		title: "Air Pollution Prediction",
 		featured: true,
@@ -295,25 +270,3 @@ let data: any[] = [
 		runningAppURL: ""
 	}
 ];
-
-let selectedModelKey = 0;
-
-data = data.map((item, index) => {
-	// 15 is the length of available items
-	if (selectedModelKey === 15 || selectedModelKey >= 15) selectedModelKey = 0;
-	else selectedModelKey++;
-
-	return {
-		...item,
-		id: index,
-		selectedModelKey: selectedModelKey,
-		xRadius: random(1, 4) + 4,
-		zRadius: random(1, 4) + 4,
-		size: random(0.5, 1),
-		speed: random(0.02, 0.06),
-		offset: random(0, Math.PI * 4),
-		rotationSpeed: random(0.008, 0.004)
-	};
-});
-
-export const projectsData = data;

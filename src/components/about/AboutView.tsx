@@ -18,9 +18,14 @@ import { PerspectiveCamera, Html } from "@react-three/drei";
 
 import Palette from "../../utils/Palette";
 
-import { personalInfo } from "../../utils/dataSet";
+import ProfilePic from "../../images/profile-pic.png";
 
-import ProfilePic from "../../images/profile.jpg";
+const focusedTechnologies = [
+	{ name: "ReactJS", url: "https://reactjs.org/" },
+	{ name: "FastAPI", url: "https://fastapi.tiangolo.com/" },
+	{ name: "Tensorflow", url: "https://www.tensorflow.org/" },
+	{ name: "Pytorch", url: "https://pytorch.org/" }
+];
 
 const breakpointsImage = {
 	width: {
@@ -109,18 +114,17 @@ function AboutView({
 									</Grid>
 									<Grid item xs={12} md={8} sx={breakpointsAboutText}>
 										<Typography variant="subtitle1" gutterBottom>
-											A passionate and creative individual with the ability to innovate and design in a fast-paced
-											environment. Capable of utilizing new methodologies and work other people with motivation for
-											professionalism. As an engineer, my path has taken me through many twists and turns. From a game
-											developer at a non-profit to a software lead in many companies. This has made me a great advocate
-											of communication, social skills, and teamwork.
+											I am <b>George Karampelas</b>, a full stack web engineer and machine learning practitioner eager
+											to always learn and work with new technologies. My path has taken me through many twists and
+											turns. From a game developer at a non-profit to a software lead in many companies. This has made
+											me a great advocate of communication, and teamwork.
 										</Typography>
 										<Typography variant="subtitle1" gutterBottom>
-											Available remotely: {personalInfo.remotelyAvailable}
+											Available remotely: UTC +2
 										</Typography>
 										<Typography variant="subtitle1" gutterBottom>
 											Current Focus:{" "}
-											{personalInfo.focusedTechnologies.map((tech) => (
+											{focusedTechnologies.map((tech) => (
 												<span key={tech.name}>
 													<Link href={tech.url}>{tech.name}</Link> {"// "}
 												</span>
@@ -137,7 +141,7 @@ function AboutView({
 										onBeginJourneyClick();
 									}}
 								>
-									Begin Journey
+									Continue
 								</Button>
 							</CardActions>
 						</Card>
