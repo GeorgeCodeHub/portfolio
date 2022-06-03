@@ -7,6 +7,7 @@ The space theme of the app was chosen from my love of the subject of space.
 ### Tech Stack
 
 Front-end: ReactJS, Typescript, React-Three-Fiber
+
 Back-end: Django, PostgreSQL
 
 Below are some screenshots of how the app looks:
