@@ -44,7 +44,6 @@ function HomeView() {
 									<br /> you are about to embark on a journey through galaxies and planets. I have left messages to
 									guide you through out the way. Hopefully at the end we will be able to meet. Good luck!
 									<br />
-									<i>WARNING: This app uses 3D graphics that might be disorienting for some people.</i>
 								</Typography>
 							</CardContent>
 							<CardActions style={{ justifyContent: "center" }}>
