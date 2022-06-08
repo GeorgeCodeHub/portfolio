@@ -114,10 +114,10 @@ function AboutView({
 									</Grid>
 									<Grid item xs={12} md={8} sx={breakpointsAboutText}>
 										<Typography variant="subtitle1" gutterBottom>
-											I am <b>George Karampelas</b>, a full stack web engineer and machine learning practitioner eager
-											to always learn and work with new technologies. My path has taken me through many twists and
-											turns. From a game developer at a non-profit to a software lead in many companies. This has made
-											me a great advocate of communication, and teamwork.
+											I am <b>George Karampelas</b>, a Full Stack Engineer and Machine Learning Practitioner eager to
+											always learn and work with new technologies. My path has taken me through many twists and turns.
+											From a game developer at a non-profit to a software lead in many companies. This has made me a
+											great advocate of communication, and teamwork.
 										</Typography>
 										<Typography variant="subtitle1" gutterBottom>
 											Available remotely: UTC +2
