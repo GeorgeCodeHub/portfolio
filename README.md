@@ -4,6 +4,8 @@ The goal of creating this project was an opportunity to use ReactJS with ThreeJS
 
 The space theme of the app was chosen from my love of the subject of space. 
 
+You can visit it [here](https://georgecodehub.github.io/portfolio/).
+
 ### Tech Stack
 
 Front-end: ReactJS, Typescript, React-Three-Fiber
