@@ -114,9 +114,7 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 								flexDirection: "column"
 							}}
 						>
-							<div>
-								I'm looking for opportunities to work as a Fullstack or Machine Learning engineer at the moment.
-							</div>
+							<div>I'm looking for opportunities to work on AI, Machine Learning and 3D projects.</div>
 
 							<Controller
 								rules={{ required: true }}
