@@ -25,7 +25,7 @@ import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import "./Navbar.scss";
 
 const onResumeButton = () => {
-	window.open(process.env.REACT_APP_RESUME_FILE, "_blank");
+	window.open("https://drive.google.com/file/d/11-GkAqhYuh1uAuOoLcuUD71gTE_6suq9/view", "_blank");
 };
 
 const breakpointsNavBarTriangles = {
