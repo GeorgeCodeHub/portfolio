@@ -194,17 +194,15 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 							</IconButton>
 						</div>
 						<div style={{ marginLeft: "auto", marginRight: 16 }}>
-							<Tooltip title="Feature currently unavailable" placement="top" arrow>
-								<LoadingButton
-									type="submit"
-									variant="contained"
-									loading={messageStatus.status}
-									endIcon={<SendIcon />}
-									loadingPosition="end"
-								>
-									SEND
-								</LoadingButton>
-							</Tooltip>
+							<LoadingButton
+								type="submit"
+								variant="contained"
+								loading={messageStatus.status}
+								endIcon={<SendIcon />}
+								loadingPosition="end"
+							>
+								SEND
+							</LoadingButton>
 						</div>
 					</DialogActions>
 				</form>
