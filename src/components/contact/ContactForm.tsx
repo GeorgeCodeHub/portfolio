@@ -16,12 +16,13 @@ import IconButton from "@mui/material/IconButton";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertColor, AlertProps } from "@mui/material/Alert";
 
+import Palette from "../../utils/Palette";
+import { baseHTTP } from "../../utils/consts";
+
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import SendIcon from "@mui/icons-material/Send";
-
-import Palette from "../../utils/Palette";
 
 import "./Contact.scss";
 
@@ -92,7 +93,7 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 					onSubmit={handleSubmit((data) => {
 						setMessageStatus({ flag: "info", status: true });
 						axios
-							.post("https://georgecodehub-portfolio-server.herokuapp.com/contact/", {
+							.post(baseHTTP + "/contact/", {
 								name: `${data.Email} - ${data.Name}`,
 								email: data.Email,
 								message: data.Message

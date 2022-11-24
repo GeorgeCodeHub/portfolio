@@ -14,6 +14,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { Canvas } from "@react-three/fiber";
 import { Html, Stars, useContextBridge } from "@react-three/drei";
 
+import { projectFilters } from "../utils/dataSet";
+import { baseHTTP } from "../utils/consts";
+
 import StarsCube from "../utils/StarsCube";
 
 import HomeView from "./home/HomeView";
@@ -22,8 +25,6 @@ import ExperienceView from "./experience/ExperienceView";
 import EducationView from "./education/EducationView";
 import SkillsView from "./skills/SkillsView";
 import ProjectsView from "./projects/ProjectsView";
-
-import { projectFilters } from "../utils/dataSet";
 
 export const DatasetContext = React.createContext<any>(null);
 
@@ -116,7 +117,7 @@ function CanvasView() {
 	};
 
 	useEffect(() => {
-		axios.get("https://georgecodehub-portfolio-server.herokuapp.com/api/get_all").then(({ data }) => {
+		axios.get(baseHTTP + "/api/get_all").then(({ data }) => {
 			data.jobs = data.jobs.map((job: any) => ({ ...job, speed: 0.05, offset: random(0, Math.PI * 4) }));
 
 			data.skills = data.skills.map((item: any, index: number) => ({
