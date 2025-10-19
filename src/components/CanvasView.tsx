@@ -10,6 +10,7 @@ import {
 	projectsData,
 	technicalSkillsData
 } from "../utils/dataSet";
+import { Dataset, ProjectOrbitItem, SkillOrbitItem } from "../utils/types";
 
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
@@ -17,7 +18,6 @@ import { makeStyles } from "@mui/styles";
 import { Canvas } from "@react-three/fiber";
 import { JourneyStepsContext } from "../App";
 import StarsCube from "../utils/StarsCube";
-import { Dataset, ProjectOrbitItem, SkillOrbitItem } from "../utils/types";
 import AboutView from "./about/AboutView";
 import EducationView from "./education/EducationView";
 import ExperienceView from "./experience/ExperienceView";
