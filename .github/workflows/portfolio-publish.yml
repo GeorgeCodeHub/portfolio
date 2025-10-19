@@ -5,34 +5,33 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: write
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        # Node 16 is used to match the project's dependencies. Consider upgrading to 18.x in the future.
-        node-version: 16.x
-        cache: npm
-        cache-dependency-path: package-lock.json
-    - name: Install dependencies
-      run: npm ci
-    - name: Build
-      run: npm run build
-    - name: Deploy 🚀
-      if: github.event_name == 'push'
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: build # The folder the action should deploy.
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          # Node 16 is used to match the project's dependencies. Consider upgrading to 18.x in the future.
+          node-version: 16.x
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Deploy 🚀
+        if: github.event_name == 'push'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build # The folder the action should deploy.
