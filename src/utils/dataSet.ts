@@ -1,72 +1,95 @@
+import { CertificateItem, DegreeItem, JobItem, RawProjectItem, TechnicalSkillItem } from "./types";
+
 const random = (a: number, b: number) => a + Math.random() * b;
 
-export const jobsList = [
+export const jobsList: JobItem[] = [
 	{
 		id: 1,
 		positionTitle: "Software Engineer",
-		companyTitle: "EmDOT",
+		companyTitle: "Power Factors",
 		description:
-			"I use ReactJS, NodeJS, Javascript, Typescript and other tools to develop flexible and expansive web applications that are used by administrators and operators in many companies. The usage of maps, tables and forms are some of the essential elements that consist them.",
-		dateFrom: "12/12/2021",
-		dateTo: "12/12/2022",
+			"Develop complex dashboards and tools to provide users with clear flows and tools for energy establishment and management.",
+		dateFrom: "10/2025",
+		dateTo: "Present",
 		speed: random(0.05, 0.07),
 		offset: random(0, Math.PI * 4)
 	},
 	{
 		id: 2,
-		positionTitle: "Computer Operator",
-		companyTitle: "Military Service",
+		positionTitle: "Freelance Software Engineer",
+		companyTitle: "Self-Employed",
 		description:
-			"During my military services, I was assigned to cover secretarial services and computer operations. I used managing tools to schedule tasks for the higher ups of the military camp.",
-		dateFrom: "1/7/2018",
-		dateTo: "1/2/2019",
+			"- Developed projects related with IoT and automation\n- Developed high end dashboards for B2B products\n- Developed numerous applications for both Web and Mobile",
+		dateFrom: "03/2021",
+		dateTo: "Present",
 		speed: random(0.05, 0.07),
 		offset: random(0, Math.PI * 4)
 	},
 	{
 		id: 3,
-		positionTitle: "Internship",
-		companyTitle: "EYDAP",
+		positionTitle: "Software Engineer",
+		companyTitle: "Accepted",
 		description:
-			"During my internship, I was responsible for maintaining the telecommunications of the company and installing new network systems. I covered positions as a network and computer technician and provided support.",
-		dateFrom: "1/4/2017",
-		dateTo: "1/9/2017",
+			"Develop multi-page tools and interfaces for numerous high-end and upcoming companies for energy solutions.",
+		dateFrom: "05/2023",
+		dateTo: "10/2025",
 		speed: random(0.05, 0.07),
 		offset: random(0, Math.PI * 4)
 	},
 	{
 		id: 4,
-		positionTitle: "Research Assistant",
-		companyTitle: "University of Thessaly",
+		positionTitle: "Software Engineer",
+		companyTitle: "EmDoT SA",
 		description:
-			"During my studies at the University of Thessaly I took part to various projects in my university. Some of those projects where related to educational games that taught children how physics work. In addition, workshops were done to fellow students to learn about technologies and tools outside of the universities curriculum.",
-		dateFrom: "1/10/2014",
-		dateTo: "1/10/2017",
+			"- Led the development of numerous projects, resulting in automated and precise monitoring systems for clients.\n- Developed updated versions of company tools using NodeJS, Express, ReactJS, React Native, and .NET.\n- Mentored engineers by introducing new technologies to the team.\n- Participated in presentations, providing technical answers.",
+		dateFrom: "12/2019",
+		dateTo: "05/2023",
+		speed: random(0.05, 0.07),
+		offset: random(0, Math.PI * 4)
+	},
+	{
+		id: 5,
+		positionTitle: "Military Services",
+		companyTitle: "Hellenic Navy",
+		description: "Mandatory military service.",
+		dateFrom: "02/2018",
+		dateTo: "02/2019",
+		speed: random(0.05, 0.07),
+		offset: random(0, Math.PI * 4)
+	},
+	{
+		id: 6,
+		positionTitle: "Support Engineer",
+		companyTitle: "EYDAP",
+		description:
+			"Maintained the company's telecommunications and installed new network systems. Covered roles as a network and computer technician and provided end-user support.",
+		dateFrom: "04/2017",
+		dateTo: "09/2017",
 		speed: random(0.05, 0.07),
 		offset: random(0, Math.PI * 4)
 	}
 ];
 
-export const degreesList = [
+export const degreesList: DegreeItem[] = [
 	{
 		title: "MSC. Software Development and AI",
 		school: "University of Piraeus",
 		description:
 			"I had the chance of learning technologies and methodologies about Adaptive Teaching Systems, Computer Vision 3D Applications Development, Intelligent Virtual Environments, Machine Learning and Pattern Recognition, Social Network Analysis and Speech, Sound Recognition systems",
-		dateStart: new Date(2019, 11, 1),
-		dateEnd: new Date(2021, 11, 1)
+		dateFrom: new Date(2019, 11, 1),
+		dateTo: new Date(2021, 11, 1)
 	},
 	{
 		title: "BS. Informatics Engineering T.E.",
 		school: "University of Thessaly",
 		description:
 			"I was able to learn the fundamentals about Computer Science and Engineering. I took part to research and development teams to develop applications and tools related to management and teaching.",
-		dateStart: new Date(2011, 10, 1),
-		dateEnd: new Date(2017, 12, 1)
+		dateFrom: new Date(2011, 10, 1),
+		dateTo: new Date(2017, 12, 1)
 	}
 ];
 
-export const certificateList = [
+export const certificateList: CertificateItem[] = [
 	{
 		title: "Next.js & React - The Complete Guide",
 		school: "Udemy",
@@ -106,39 +129,28 @@ export const certificateList = [
 	}
 ];
 
-export const technicalSkillsData: any[] = [
+export const technicalSkillsData: TechnicalSkillItem[] = [
 	{
 		title: "Front-End",
-		techItems: ["HTML", "CSS", "Javascript", "Typescript", "ReactJS", "NextJS", "Redux"]
+		technologies: ["HTML", "CSS", "Typescript", "ReactJS", "React Native", "NextJS", "Redux"]
 	},
 	{
 		title: "Back-End",
-		techItems: ["PostgreSQL", "Firebase", "Javascript", "NodeJS", "ExpressJS", "Python", "FastAPI", "Django"]
+		technologies: ["PostgreSQL", "Firebase", "Typescript", "NodeJS", "ExpressJS", ".NET", "Python", "FastAPI", "Django"]
 	},
 	{
 		title: "Machine Learning",
-		techItems: ["Python", "Numpy", "Pandas", "Scikit-learn", "OpenCV", "Keras", "Tensorflow"]
+		technologies: ["Python", "Pandas", "OpenCV", "Keras", "Tensorflow"]
 	},
 	{
 		title: "Game Dev",
-		techItems: ["C#", "Unity3D", "Blender3D"]
+		technologies: ["C#", "Unity3D", "Blender3D"]
 	}
 ];
 
-export const projectFilters = [
-	"Featured",
-	"Python",
-	"Javascript",
-	"Typescript",
-	"C#",
-	"PostgreSQL",
-	"Firebase",
-	"ReactJS",
-	"Tensorflow",
-	"Unity3D"
-];
+export const projectFilters = ["Featured", "Python", "Typescript", "C#", "ReactJS", "Unity3D"];
 
-export const projectsData: any[] = [
+export const projectsData: RawProjectItem[] = [
 	{
 		title: "Air Pollution Prediction",
 		featured: true,
@@ -179,20 +191,6 @@ export const projectsData: any[] = [
 			"https://raw.githubusercontent.com/GeorgeCodeHub/Neural-Networks-for-digit-speech-recognition/main/Screenshots/MFCC-Features.png"
 		],
 		githubURL: "https://github.com/GeorgeCodeHub/Neural-Networks-for-digit-speech-recognition",
-		runningAppURL: ""
-	},
-	{
-		title: "E-learning Mock Up App",
-		featured: false,
-		description:
-			"A project showcasing the use of UML diagrams for the creation of a an e-learning app for both teachers and students. Numerous diagrams were created to define the parameters of the app.",
-		technologies: ["Firebase", "ReactJS", "Javascript"],
-		images: [
-			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-mock-up/master/Screenshots/Use-Case-Diagram.png",
-			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-mock-up/master/Screenshots/New-Assignment-Description.PNG",
-			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-mock-up/master/Screenshots/Algorithms.PNG"
-		],
-		githubURL: "https://github.com/GeorgeCodeHub/e-learning-mock-up",
 		runningAppURL: ""
 	},
 	{
@@ -258,15 +256,15 @@ export const projectsData: any[] = [
 		title: "Personal Landing Page",
 		featured: true,
 		description:
-			"Yes the page that you are looking at is one of my most proud projects I have created. Utilizing the ThreeJS library I was able to use 3D models on the browser and create this application you are currently using. I hope you like it as much as I liked making it.",
+			"Yes, the page that you are looking at is one of my most proud projects I have created. Utilizing the ThreeJS library I was able to use 3D models on the browser and create this application you are currently using. I hope you like it as much as I liked making it.",
 		technologies: ["ReactJS", "Typescript", "Blender3D"],
 		images: [
-			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/1.login.PNG",
-			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/4.Main.PNG",
-			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/9.LearnerVisual.PNG",
-			"https://raw.githubusercontent.com/GeorgeCodeHub/e-learning-platform/main/Screenshots/20.Finish.PNG"
+			"https://raw.githubusercontent.com/GeorgeCodeHub/portfolio/refs/heads/main/Screenshots/experience-view.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/portfolio/refs/heads/main/Screenshots/education-view.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/portfolio/refs/heads/main/Screenshots/skills.png",
+			"https://raw.githubusercontent.com/GeorgeCodeHub/portfolio/refs/heads/main/Screenshots/projects-view.png"
 		],
-		githubURL: "https://github.com/GeorgeCodeHub/e-learning-platform",
-		runningAppURL: ""
+		githubURL: "https://github.com/GeorgeCodeHub/portfolio",
+		runningAppURL: "https://georgecodehub.github.io/portfolio/"
 	}
 ];

@@ -1,19 +1,15 @@
-import React, { useEffect, useReducer } from "react";
+import "./styles/App.scss";
 
-// Error handler
-import { ErrorBoundary } from "react-error-boundary";
-
-import useMediaQuery from "@mui/material/useMediaQuery";
-
-import { Loader } from "@react-three/drei";
 import * as THREE from "three";
 
-import ErrorFallBackView from "./components/error/ErrorFallBackView";
+import React, { useReducer } from "react";
 
 import CanvasView from "./components/CanvasView";
+// Error handler
+import { Loader } from "@react-three/drei";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallBackView from "./components/error/ErrorFallBackView";
 import NavBar from "./components/navbar/NavBar";
-
-import "./styles/App.scss";
 
 const defaultJourneyStep = {
 	key: "Home",
@@ -26,8 +22,6 @@ const defaultJourneyStep = {
 export const JourneyStepsContext = React.createContext<any>(null);
 
 const stepsReducer = (state: any, action: { type: any; payload: any }) => {
-	localStorage.setItem("lastViewedStep", action.type);
-
 	// If screen is mobile then use other cameras
 	if (action.payload) {
 		switch (action.type) {
@@ -143,14 +137,7 @@ const stepsReducer = (state: any, action: { type: any; payload: any }) => {
 };
 
 function App() {
-	const isScreenMobile = useMediaQuery("(max-width:500px)");
-
 	const [journeyStep, dispatchJourneyStep] = useReducer(stepsReducer, defaultJourneyStep);
-
-	useEffect(() => {
-		const lastViewedStep = localStorage.getItem("lastViewedStep");
-		if (lastViewedStep) dispatchJourneyStep({ type: lastViewedStep, payload: isScreenMobile });
-	}, [isScreenMobile]);
 
 	return (
 		<JourneyStepsContext.Provider value={{ journeyStep, dispatchJourneyStep }}>

@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from "react";
+import "./Projects.scss";
 
-// Context
-import { JourneyStepsContext } from "../../App";
-import { DatasetContext } from "../CanvasView";
-
-import { useFrame } from "@react-three/fiber";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
 
-import LoadingPanel from "../../utils/LoadingPanel";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import React, { useEffect, useState } from "react";
 
-import SolarSystem from "./SolarSystem";
-import Satellite from "./Satellite";
-
+import { useFrame } from "@react-three/fiber";
+import { JourneyStepsContext } from "../../App";
 import { satelliteArray } from "../../utils/3DModelsSatellites";
+import LoadingPanel from "../../utils/LoadingPanel";
+import { RawProjectItem } from "../../utils/types";
+import { DatasetContext } from "../CanvasView";
+import Satellite from "./Satellite";
+import SolarSystem from "./SolarSystem";
 
-import "./Projects.scss";
+// Context
 
 function ProjectsView({
 	selectedFilter,
@@ -73,8 +72,8 @@ function ProjectsView({
 			<SolarSystem />
 
 			{dataset.projects
-				.filter((item: { isFeatured: boolean; technologies: string[] }) => {
-					if (selectedFilter === "Featured") return item.isFeatured;
+				.filter((item: RawProjectItem) => {
+					if (selectedFilter === "Featured") return item.featured;
 					else return item.technologies.some((item: string) => item === selectedFilter);
 				})
 				.map(

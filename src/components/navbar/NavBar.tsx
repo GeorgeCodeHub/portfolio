@@ -1,28 +1,24 @@
-import React, { useState, useEffect } from "react";
-
-import { JourneyStepsContext } from "../../App";
-
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Grid from "@mui/material/Grid";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import Tooltip from "@mui/material/Tooltip";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import IconButton from "@mui/material/IconButton";
-
-import { makeStyles } from "@mui/styles";
-
-import ThreeSixtyIcon from "@mui/icons-material/ThreeSixty";
-
-import HomeIcon from "@mui/icons-material/Home";
-import PersonIcon from "@mui/icons-material/Person";
-import AutoGraphIcon from "@mui/icons-material/AutoGraph";
-import CodeIcon from "@mui/icons-material/Code";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import SchoolIcon from "@mui/icons-material/School";
-import EmailIcon from "@mui/icons-material/Email";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
-
 import "./Navbar.scss";
+
+import React from "react";
+
+import AutoGraphIcon from "@mui/icons-material/AutoGraph";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import CodeIcon from "@mui/icons-material/Code";
+import EmailIcon from "@mui/icons-material/Email";
+import HomeIcon from "@mui/icons-material/Home";
+import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
+import PersonIcon from "@mui/icons-material/Person";
+import SchoolIcon from "@mui/icons-material/School";
+import ThreeSixtyIcon from "@mui/icons-material/ThreeSixty";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { makeStyles } from "@mui/styles";
+import { JourneyStepsContext } from "../../App";
 
 const onResumeButton = () => {
 	window.open("https://drive.google.com/file/d/11-GkAqhYuh1uAuOoLcuUD71gTE_6suq9/view", "_blank");
@@ -58,9 +54,6 @@ const useStyles = makeStyles(({ breakpoints }: any) => ({
 }));
 
 function NavBar() {
-	const [unlockedViewedStep, setUnlockedViewedStep] = useState(
-		parseInt(localStorage.getItem("unlockedViewedStep") as string)
-	);
 	const isScreenMobile = useMediaQuery("(max-width:500px)");
 
 	const classes = useStyles();
@@ -71,12 +64,6 @@ function NavBar() {
 		dispatchJourneyStep({ type: newValue, payload: isScreenMobile });
 	};
 
-	useEffect(() => {
-		if (!unlockedViewedStep || journeyStep.step > unlockedViewedStep) {
-			localStorage.setItem("unlockedViewedStep", journeyStep.step);
-			setUnlockedViewedStep(journeyStep.step);
-		}
-	}, [journeyStep, unlockedViewedStep]);
 
 	return (
 		<Grid container spacing={2} style={{ position: "fixed", bottom: 0, width: "100%", zIndex: 50000000 }}>
@@ -109,7 +96,6 @@ function NavBar() {
 								/>
 							</Tooltip>
 
-							{unlockedViewedStep >= 1 && (
 								<Tooltip title="About" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
@@ -118,8 +104,7 @@ function NavBar() {
 										icon={<PersonIcon style={{ paddingBottom: 6 }} />}
 									/>
 								</Tooltip>
-							)}
-							{unlockedViewedStep >= 2 && (
+			
 								<Tooltip title="Experience" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
@@ -128,8 +113,6 @@ function NavBar() {
 										icon={<AutoGraphIcon style={{ paddingBottom: 6 }} />}
 									/>
 								</Tooltip>
-							)}
-							{unlockedViewedStep >= 3 && (
 								<Tooltip title="Education" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
@@ -138,8 +121,6 @@ function NavBar() {
 										icon={<SchoolIcon style={{ paddingBottom: 6 }} />}
 									/>
 								</Tooltip>
-							)}
-							{unlockedViewedStep >= 4 && (
 								<Tooltip title="Skills" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
@@ -147,8 +128,6 @@ function NavBar() {
 										icon={<BarChartIcon style={{ paddingBottom: 6 }} />}
 									/>
 								</Tooltip>
-							)}
-							{unlockedViewedStep >= 5 && (
 								<Tooltip title="Projects" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
@@ -156,8 +135,6 @@ function NavBar() {
 										icon={<CodeIcon style={{ paddingBottom: 6 }} />}
 									/>
 								</Tooltip>
-							)}
-							{unlockedViewedStep >= 6 && (
 								<Tooltip title="Contact" classes={{ tooltip: classes.tooltip }}>
 									<BottomNavigationAction
 										classes={{ root: classes.root }}
@@ -165,7 +142,6 @@ function NavBar() {
 										icon={<EmailIcon style={{ paddingBottom: 6 }} />}
 									/>
 								</Tooltip>
-							)}
 						</BottomNavigation>
 					</Grid>
 					<Grid className="resume-button-container">

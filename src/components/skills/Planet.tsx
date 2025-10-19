@@ -1,18 +1,24 @@
-import React, { useState, useEffect, forwardRef, useMemo, useRef } from "react";
+import "../experience/Experience.scss";
 
-import { useFrame } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
 import * as THREE from "three";
 
-import { getRandomArbitrary } from "../../utils/mathUtils";
-import { planetsArray } from "../../utils/3DModelsPlanets";
+import React, { forwardRef, useEffect, useMemo, useRef, useState } from "react";
 
+import { Html } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { planetsArray } from "../../utils/3DModelsPlanets";
+import { getRandomArbitrary } from "../../utils/mathUtils";
+import { SkillOrbitItem } from "../../utils/types";
 import Ellipsis from "./Ellipsis";
 import SkillsCluster from "./SkillsCluster";
 
-import "../experience/Experience.scss";
+interface PlanetProps {
+	technicalSkillItem: SkillOrbitItem;
+	follow: boolean;
+	setFollow: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const Planet = forwardRef(({ technicalSkillItem, follow, setFollow }: any, ref: any) => {
+const Planet = forwardRef(({ technicalSkillItem, follow, setFollow }: PlanetProps, ref: any) => {
 	const [isSelected, setIsSelected] = useState(false);
 
 	const planetRef: any = useRef();

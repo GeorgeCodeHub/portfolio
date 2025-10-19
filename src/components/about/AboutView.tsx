@@ -1,31 +1,19 @@
-import React from "react";
+import { Html, PerspectiveCamera } from "@react-three/drei";
 
-import { JourneyStepsContext } from "../../App";
-
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
-import Link from "@mui/material/Link";
 import Button from "@mui/material/Button";
-import Grow from "@mui/material/Grow";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-
-import { PerspectiveCamera, Html } from "@react-three/drei";
-
-import Palette from "../../utils/Palette";
-
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Grid from "@mui/material/Grid";
+import Grow from "@mui/material/Grow";
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import React from "react";
+import { JourneyStepsContext } from "../../App";
 import ProfilePic from "../../images/profile-pic.png";
-
-const focusedTechnologies = [
-	{ name: "ReactJS", url: "https://reactjs.org/" },
-	{ name: "FastAPI", url: "https://fastapi.tiangolo.com/" },
-	{ name: "Tensorflow", url: "https://www.tensorflow.org/" },
-	{ name: "Pytorch", url: "https://pytorch.org/" }
-];
+import Palette from "../../utils/Palette";
 
 const breakpointsImage = {
 	width: {
@@ -114,21 +102,13 @@ function AboutView({
 									</Grid>
 									<Grid item xs={12} md={8} sx={breakpointsAboutText}>
 										<Typography variant="subtitle1" gutterBottom>
-											I am <b>George Karampelas</b>, a Full Stack Engineer and Machine Learning Practitioner eager to
-											always learn and work with new technologies. My path has taken me through many twists and turns.
-											From a game developer at a non-profit to a software lead in many companies. This has made me a
-											great advocate of communication, and teamwork.
+											I am <b>George Karampelas</b>, a Software Engineer eager to always learn and work with new
+											technologies. My path has taken me through many twists and turns. From a game developer at a
+											non-profit to a software lead in many companies. This has made me a great advocate of
+											communication, code practices and teamwork.
 										</Typography>
 										<Typography variant="subtitle1" gutterBottom>
 											Available remotely: UTC +2
-										</Typography>
-										<Typography variant="subtitle1" gutterBottom>
-											Current Focus:{" "}
-											{focusedTechnologies.map((tech) => (
-												<span key={tech.name}>
-													<Link href={tech.url}>{tech.name}</Link> {"// "}
-												</span>
-											))}
 										</Typography>
 									</Grid>
 								</Grid>

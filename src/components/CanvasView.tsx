@@ -1,30 +1,29 @@
-import React, { useState, useEffect, Suspense } from "react";
-
-import axios from "axios";
-
-import { animated, useSpring } from "react-spring";
-
-import { JourneyStepsContext } from "../App";
-
-import { makeStyles } from "@mui/styles";
-import Typography from "@mui/material/Typography";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-
-import { Canvas } from "@react-three/fiber";
 import { Html, Stars, useContextBridge } from "@react-three/drei";
+import React, { Suspense, useEffect, useState } from "react";
+import { animated, useSpring } from "react-spring";
+import {
+	certificateList,
+	degreesList,
+	jobsList,
+	projectFilters,
+	projectsData,
+	technicalSkillsData
+} from "../utils/dataSet";
 
-import { projectFilters } from "../utils/dataSet";
-import { baseHTTP } from "../utils/consts";
-
+import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
+import { Canvas } from "@react-three/fiber";
+import { JourneyStepsContext } from "../App";
 import StarsCube from "../utils/StarsCube";
-
-import HomeView from "./home/HomeView";
+import { Dataset, ProjectOrbitItem, SkillOrbitItem } from "../utils/types";
 import AboutView from "./about/AboutView";
-import ExperienceView from "./experience/ExperienceView";
 import EducationView from "./education/EducationView";
-import SkillsView from "./skills/SkillsView";
+import ExperienceView from "./experience/ExperienceView";
+import HomeView from "./home/HomeView";
 import ProjectsView from "./projects/ProjectsView";
+import SkillsView from "./skills/SkillsView";
 
 export const DatasetContext = React.createContext<any>(null);
 
@@ -79,7 +78,13 @@ function CanvasView() {
 
 	const [selectedFilter, setSelectedFilter] = useState("Featured");
 
-	const [dataset, setDataset] = useState({ certificates: [], degrees: [], jobs: [], projects: [], skills: [] });
+	const [dataset, setDataset] = useState<Dataset>({
+		certificates: [],
+		degrees: [],
+		jobs: [],
+		projects: [],
+		skills: []
+	});
 
 	const { journeyStep } = React.useContext(JourneyStepsContext);
 
@@ -117,40 +122,44 @@ function CanvasView() {
 	};
 
 	useEffect(() => {
-		axios.get(baseHTTP + "/api/get_all").then(({ data }) => {
-			data.jobs = data.jobs.map((job: any) => ({ ...job, speed: 0.05, offset: random(0, Math.PI * 4) }));
+		const skills: SkillOrbitItem[] = technicalSkillsData.map((item, index) => ({
+			...item,
+			id: index,
+			xRadius: (index + 2.5) * 4,
+			zRadius: (index + 2.5) * 4,
+			size: random(0.08, 0.2),
+			speed: random(0.05, 0.08),
+			offset: random(0, Math.PI * 4),
+			rotationSpeed: random(0.002, 0.003)
+		}));
 
-			data.skills = data.skills.map((item: any, index: number) => ({
+		const projects: ProjectOrbitItem[] = projectsData.map((item, index) => {
+			// 15 is the length of available items
+			if (selectedModelKey === 15 || selectedModelKey >= 15) selectedModelKey = 0;
+			else selectedModelKey++;
+
+			return {
 				...item,
 				id: index,
-				xRadius: (index + 2.5) * 4,
-				zRadius: (index + 2.5) * 4,
-				size: random(0.08, 0.2),
-				speed: random(0.05, 0.08),
+				selectedModelKey: selectedModelKey,
+				xRadius: random(1, 4) + 4,
+				zRadius: random(1, 4) + 4,
+				size: random(0.5, 1),
+				speed: random(0.02, 0.04),
 				offset: random(0, Math.PI * 4),
-				rotationSpeed: random(0.002, 0.003)
-			}));
-
-			data.projects = data.projects.map((item: any, index: any) => {
-				// 15 is the length of available items
-				if (selectedModelKey === 15 || selectedModelKey >= 15) selectedModelKey = 0;
-				else selectedModelKey++;
-
-				return {
-					...item,
-					id: index,
-					selectedModelKey: selectedModelKey,
-					xRadius: random(1, 4) + 4,
-					zRadius: random(1, 4) + 4,
-					size: random(0.5, 1),
-					speed: random(0.02, 0.04),
-					offset: random(0, Math.PI * 4),
-					rotationSpeed: random(0.008, 0.004)
-				};
-			});
-
-			setDataset(data);
+				rotationSpeed: random(0.008, 0.004)
+			};
 		});
+
+		const dataSet: Dataset = {
+			certificates: certificateList,
+			degrees: degreesList,
+			jobs: jobsList.map((job) => ({ ...job, speed: 0.05, offset: random(0, Math.PI * 4) })),
+			projects: projects,
+			skills: skills
+		};
+
+		setDataset(dataSet);
 	}, []);
 
 	return (

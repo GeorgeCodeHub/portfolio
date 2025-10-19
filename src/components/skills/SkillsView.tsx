@@ -1,25 +1,19 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import "./Skills.scss";
 
-// Context
-import { JourneyStepsContext } from "../../App";
-import { DatasetContext } from "../CanvasView";
-
-import useMediaQuery from "@mui/material/useMediaQuery";
-import CodeIcon from "@mui/icons-material/Code";
-
-import LoadingPanel from "../../utils/LoadingPanel";
-
-import { animated, useSprings } from "react-spring";
-
-import { useFrame } from "@react-three/fiber";
-import { Html, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
+import { Environment, Html } from "@react-three/drei";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { animated, useSprings } from "react-spring";
+
+import CodeIcon from "@mui/icons-material/Code";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useFrame } from "@react-three/fiber";
+import { JourneyStepsContext } from "../../App";
 import { Sun1 } from "../../utils/3DModelsPlanets";
-
+import { SkillOrbitItem } from "../../utils/types";
+import { DatasetContext } from "../CanvasView";
 import Planet from "./Planet";
-
-import "./Skills.scss";
 
 function SkillsView({
 	setChangedView
@@ -110,8 +104,6 @@ function SkillsView({
 		setChangedView({ duration: 200, isChanged: false });
 	}, [setChangedView]);
 
-	if (dataset?.skills.length === 0) return <LoadingPanel />;
-
 	return (
 		<>
 			<ambientLight intensity={0.02} />
@@ -142,27 +134,15 @@ function SkillsView({
 					setFollow(false);
 				}}
 			>
-				{dataset.skills.map(
-					(technicalSkillItem: {
-						id: number;
-						offset: number;
-						rotationSpeed: number;
-						size: number;
-						speed: number;
-						technologies: string[];
-						title: string;
-						xRadius: number;
-						zRadius: number;
-					}) => (
-						<Planet
-							ref={selectedPlanetRef}
-							technicalSkillItem={technicalSkillItem}
-							key={technicalSkillItem.id}
-							follow={follow}
-							setFollow={setFollow}
-						/>
-					)
-				)}
+				{dataset.skills.map((technicalSkillItem: SkillOrbitItem) => (
+					<Planet
+						ref={selectedPlanetRef}
+						technicalSkillItem={technicalSkillItem}
+						key={technicalSkillItem.id}
+						follow={follow}
+						setFollow={setFollow}
+					/>
+				))}
 			</group>
 			<Environment preset="warehouse" />
 		</>
