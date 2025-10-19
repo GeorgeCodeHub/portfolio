@@ -1,13 +1,14 @@
-import React from "react";
 import { useGLTF } from "@react-three/drei";
+import React from "react";
+import { publicPath } from "./publicPath";
 
-useGLTF.preload(process.env.PUBLIC_URL + "/models/SpaceBase.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/SpaceShip1.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/SpaceShip2.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/SpaceShip3.glb");
+useGLTF.preload(publicPath("/models/SpaceBase.glb"));
+useGLTF.preload(publicPath("/models/SpaceShip1.glb"));
+useGLTF.preload(publicPath("/models/SpaceShip2.glb"));
+useGLTF.preload(publicPath("/models/SpaceShip3.glb"));
 
 export const SpaceBase = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/SpaceBase.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/SpaceBase.glb"));
 
 	return (
 		<group ref={ref} {...props} dispose={null}>
@@ -27,7 +28,7 @@ export const SpaceBase = React.forwardRef((props: any, ref: any) => {
 });
 
 export const SpaceShip1 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/SpaceShip1.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/SpaceShip1.glb"));
 
 	return (
 		<group ref={ref} {...props} dispose={null}>
@@ -57,7 +58,7 @@ export const SpaceShip1 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const SpaceShip2 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/SpaceShip2.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/SpaceShip2.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<mesh geometry={nodes.Cube003.geometry} material={materials.SpaceBaseWhite} />
@@ -83,7 +84,7 @@ export const SpaceShip2 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const SpaceShip3 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/SpaceShip3.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/SpaceShip3.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<mesh geometry={nodes.Cube004.geometry} material={materials["SatelliteBase.001"]} />

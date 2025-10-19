@@ -1,30 +1,31 @@
-import React from "react";
 import { useGLTF } from "@react-three/drei";
+import React from "react";
+import { publicPath } from "./publicPath";
 
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Earth.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Moon.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet1.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet2.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet3.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet4.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet5.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet6.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet7.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet8.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet9.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet10.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet11.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet12.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet13.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet14.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet15.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet16.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Planet17.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Sun1.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Sun2.glb");
+useGLTF.preload(publicPath("/models/Earth.glb"));
+useGLTF.preload(publicPath("/models/Moon.glb"));
+useGLTF.preload(publicPath("/models/Planet1.glb"));
+useGLTF.preload(publicPath("/models/Planet2.glb"));
+useGLTF.preload(publicPath("/models/Planet3.glb"));
+useGLTF.preload(publicPath("/models/Planet4.glb"));
+useGLTF.preload(publicPath("/models/Planet5.glb"));
+useGLTF.preload(publicPath("/models/Planet6.glb"));
+useGLTF.preload(publicPath("/models/Planet7.glb"));
+useGLTF.preload(publicPath("/models/Planet8.glb"));
+useGLTF.preload(publicPath("/models/Planet9.glb"));
+useGLTF.preload(publicPath("/models/Planet10.glb"));
+useGLTF.preload(publicPath("/models/Planet11.glb"));
+useGLTF.preload(publicPath("/models/Planet12.glb"));
+useGLTF.preload(publicPath("/models/Planet13.glb"));
+useGLTF.preload(publicPath("/models/Planet14.glb"));
+useGLTF.preload(publicPath("/models/Planet15.glb"));
+useGLTF.preload(publicPath("/models/Planet16.glb"));
+useGLTF.preload(publicPath("/models/Planet17.glb"));
+useGLTF.preload(publicPath("/models/Sun1.glb"));
+useGLTF.preload(publicPath("/models/Sun2.glb"));
 
 export const Earth = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Earth.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Earth.glb"));
 
 	return (
 		<group ref={ref} {...props} dispose={null}>
@@ -39,7 +40,7 @@ export const Earth = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Moon = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Moon.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Moon.glb"));
 
 	return (
 		<group ref={ref} {...props} dispose={null}>
@@ -53,7 +54,7 @@ export const Moon = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet1 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet1.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet1.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -63,7 +64,7 @@ export const Planet1 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet2 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet2.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet2.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -78,7 +79,7 @@ export const Planet2 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet3 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet3.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet3.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -90,7 +91,7 @@ export const Planet3 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet4 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet4.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet4.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -113,7 +114,7 @@ export const Planet4 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet5 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet5.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet5.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -124,7 +125,7 @@ export const Planet5 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet6 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet6.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet6.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -136,7 +137,7 @@ export const Planet6 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet7 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet7.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet7.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -149,7 +150,7 @@ export const Planet7 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet8 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet8.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet8.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -162,7 +163,7 @@ export const Planet8 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet9 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet9.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet9.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -173,7 +174,7 @@ export const Planet9 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet10 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet10.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet10.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -184,7 +185,7 @@ export const Planet10 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet11 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet11.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet11.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -195,7 +196,7 @@ export const Planet11 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet12 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet12.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet12.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -206,7 +207,7 @@ export const Planet12 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet13 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet13.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet13.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -225,7 +226,7 @@ export const Planet13 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet14 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet14.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet14.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -239,7 +240,7 @@ export const Planet14 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet15 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet15.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet15.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -263,7 +264,7 @@ export const Planet15 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet16 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet16.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet16.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -279,7 +280,7 @@ export const Planet16 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Planet17 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Planet17.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Planet17.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -293,7 +294,7 @@ export const Planet17 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Sun1 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Sun1.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Sun1.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			{props.children}
@@ -305,7 +306,7 @@ export const Sun1 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Sun2 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Sun2.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Sun2.glb"));
 
 	return (
 		<group ref={ref} {...props} dispose={null}>

@@ -1,24 +1,25 @@
-import React from "react";
 import { useGLTF } from "@react-three/drei";
+import React from "react";
+import { publicPath } from "./publicPath";
 
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite1.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite2.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite3.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite4.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite5.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite6.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite7.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite8.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite9.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite10.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite11.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite12.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite13.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite14.glb");
-useGLTF.preload(process.env.PUBLIC_URL + "/models/Satellite15.glb");
+useGLTF.preload(publicPath("/models/Satellite1.glb"));
+useGLTF.preload(publicPath("/models/Satellite2.glb"));
+useGLTF.preload(publicPath("/models/Satellite3.glb"));
+useGLTF.preload(publicPath("/models/Satellite4.glb"));
+useGLTF.preload(publicPath("/models/Satellite5.glb"));
+useGLTF.preload(publicPath("/models/Satellite6.glb"));
+useGLTF.preload(publicPath("/models/Satellite7.glb"));
+useGLTF.preload(publicPath("/models/Satellite8.glb"));
+useGLTF.preload(publicPath("/models/Satellite9.glb"));
+useGLTF.preload(publicPath("/models/Satellite10.glb"));
+useGLTF.preload(publicPath("/models/Satellite11.glb"));
+useGLTF.preload(publicPath("/models/Satellite12.glb"));
+useGLTF.preload(publicPath("/models/Satellite13.glb"));
+useGLTF.preload(publicPath("/models/Satellite14.glb"));
+useGLTF.preload(publicPath("/models/Satellite15.glb"));
 
 export const Satellite1 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite1.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite1.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<group position={[1.01, 0, 0.03]} rotation={[Math.PI / 2, 0, -Math.PI / 2]} scale={[0.38, 0.05, 0.38]}>
@@ -42,7 +43,7 @@ export const Satellite1 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite2 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite2.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite2.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<group scale={[1, 0.75, 1]}>
@@ -62,7 +63,7 @@ export const Satellite2 = React.forwardRef((props: any, ref: any) => {
 	);
 });
 export const Satellite3 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite3.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite3.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<mesh
@@ -93,7 +94,7 @@ export const Satellite3 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite4 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite4.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite4.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<group position={[0, 4.19, 0]} scale={[1, 0.5, 1]}>
@@ -118,7 +119,7 @@ export const Satellite4 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite5 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite5.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite5.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<group position={[0, 0.1, 0]}>
@@ -142,7 +143,7 @@ export const Satellite5 = React.forwardRef((props: any, ref: any) => {
 	);
 });
 export const Satellite6 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite6.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite6.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<group position={[-4.95, 1.73, 0]} rotation={[0, 0, -Math.PI / 2]} scale={[0.08, 0.42, 0.08]}>
@@ -169,7 +170,7 @@ export const Satellite6 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite7 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite7.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite7.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<group position={[0.8, 1.81, 0]} rotation={[0, 0, -Math.PI / 4]} scale={[0.64, 0.32, 0.64]}>
@@ -191,7 +192,7 @@ export const Satellite7 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite8 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite8.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite8.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<mesh
@@ -221,7 +222,7 @@ export const Satellite8 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite9 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite9.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite9.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<group position={[-0.33, 7.14, 0.81]} rotation={[1.08, -0.19, 0.34]} scale={[0.08, 0.08, 0.08]}>
@@ -262,7 +263,7 @@ export const Satellite9 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite10 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite10.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite10.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<mesh
@@ -296,7 +297,7 @@ export const Satellite10 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite11 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite11.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite11.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<mesh geometry={nodes.Cylinder022.geometry} material={materials["SatelliteBase.001"]} />
@@ -329,7 +330,7 @@ export const Satellite11 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite12 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite12.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite12.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<group scale={[1.45, 1.82, 1]}>
@@ -367,7 +368,7 @@ export const Satellite12 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite13 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite13.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite13.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<mesh geometry={nodes.Cylinder053.geometry} material={materials.SatelliteGolden} />
@@ -398,7 +399,7 @@ export const Satellite13 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite14 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite14.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite14.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<mesh geometry={nodes.Cylinder058.geometry} material={materials["SatelliteBase.001"]} />
@@ -424,7 +425,7 @@ export const Satellite14 = React.forwardRef((props: any, ref: any) => {
 });
 
 export const Satellite15 = React.forwardRef((props: any, ref: any) => {
-	const { nodes, materials }: any = useGLTF(process.env.PUBLIC_URL + "/models/Satellite15.glb");
+	const { nodes, materials }: any = useGLTF(publicPath("/models/Satellite15.glb"));
 	return (
 		<group ref={ref} {...props} dispose={null}>
 			<mesh

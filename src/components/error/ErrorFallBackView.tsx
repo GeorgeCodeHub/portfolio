@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Grow from "@mui/material/Grow";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import { publicPath } from "../../utils/publicPath";
 
 const breakpointsCard = {
 	width: {
@@ -75,21 +76,16 @@ function ErrorFallBackView({
 				</Grow>
 			</div>
 			<div className="objects">
-				<img className="rocket" src={process.env.PUBLIC_URL + "/images/rocket.png"} alt="rocket" width="40px" />
+				<img className="rocket" src={publicPath("/images/rocket.png")} alt="rocket" width="40px" />
 				{/* <a href="https://www.flaticon.com/free-icons/space-shuttle" title="space shuttle icons">Space shuttle icons created by BZZRINCANTATION - Flaticon</a> */}
 				<div className="earth-moon">
-					<img className="earth" src={process.env.PUBLIC_URL + "/images/earth.png"} alt="earth" width="120px" />
+					<img className="earth" src={publicPath("/images/earth.png")} alt="earth" width="120px" />
 					{/* <a href="https://www.flaticon.com/free-icons/planet" title="planet icons">Planet icons created by BZZRINCANTATION - Flaticon</a> */}
-					<img className="moon" src={process.env.PUBLIC_URL + "/images/moon.png"} alt="moon" width="50px" />
+					<img className="moon" src={publicPath("/images/moon.png")} alt="moon" width="50px" />
 					{/* <a href="https://www.flaticon.com/free-icons/miscellaneous" title="miscellaneous icons">Miscellaneous icons created by BZZRINCANTATION - Flaticon</a> */}
 				</div>
 				<div className="astronaut-container">
-					<img
-						className="astronaut-animation"
-						src={process.env.PUBLIC_URL + "/images/astronaut.png"}
-						alt="test"
-						width="140px"
-					/>
+					<img className="astronaut-animation" src={publicPath("/images/astronaut.png")} alt="test" width="140px" />
 					{/* <a href="https://www.flaticon.com/free-icons/astronaut" title="astronaut icons">Astronaut icons created by BZZRINCANTATION - Flaticon</a> */}
 				</div>
 			</div>
