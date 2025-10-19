@@ -1,34 +1,17 @@
-import React, { useState } from "react";
-
-import axios from "axios";
-
-import { useForm, Controller } from "react-hook-form";
-
-import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
-
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import LoadingButton from "@mui/lab/LoadingButton";
-import IconButton from "@mui/material/IconButton";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert, { AlertColor, AlertProps } from "@mui/material/Alert";
-
-import Palette from "../../utils/Palette";
-import { baseHTTP } from "../../utils/consts";
-
-import TwitterIcon from "@mui/icons-material/Twitter";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import SendIcon from "@mui/icons-material/Send";
-
 import "./Contact.scss";
 
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
-	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActionArea from "@mui/material/CardActionArea";
+import CardContent from "@mui/material/CardContent";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+import Palette from "../../utils/Palette";
 
 const breakpointsCard = {
 	width: {
@@ -38,12 +21,6 @@ const breakpointsCard = {
 		lg: 720, // theme.breakpoints.up('lg')
 		xl: 750 // theme.breakpoints.up('xl')
 	}
-};
-
-const defaultValues = {
-	Name: "",
-	Email: "",
-	Message: ""
 };
 
 const BootstrapDialog = styled(Dialog)(({ theme }: any) => ({
@@ -56,27 +33,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }: any) => ({
 }));
 
 function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onContactBackDropClick: () => void }) {
-	const [messageStatus, setMessageStatus] = useState<{
-		flag: AlertColor;
-		status: boolean;
-	}>({ flag: "error", status: false });
-
-	const {
-		handleSubmit,
-		control,
-		formState: { errors }
-	} = useForm({ defaultValues });
-
 	const onSocialMediaClick = (url: string | URL) => {
 		window.open(url, "_blank");
-	};
-
-	const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-		if (reason === "clickaway") {
-			return;
-		}
-
-		setMessageStatus((state) => ({ ...state, status: false }));
 	};
 
 	return (
@@ -89,132 +47,60 @@ function ContactForm({ isOpen, onContactBackDropClick }: { isOpen: boolean; onCo
 				onBackdropClick={onContactBackDropClick}
 				style={{ zIndex: 999999999 }}
 			>
-				<form
-					onSubmit={handleSubmit((data) => {
-						setMessageStatus({ flag: "info", status: true });
-						axios
-							.post(baseHTTP + "/contact/", {
-								name: `${data.Email} - ${data.Name}`,
-								email: data.Email,
-								message: data.Message
-							})
-							.then(() => {
-								setMessageStatus({ flag: "success", status: true });
-							})
-							.catch(() => {
-								setMessageStatus({ flag: "error", status: true });
-							});
-					})}
-				>
-					<DialogContent className="contact-dialog-content" dividers sx={breakpointsCard}>
-						<Box
-							component="div"
-							sx={{
-								display: "flex",
-								flexDirection: "column"
-							}}
-						>
-							<div>I'm looking for opportunities to work on AI, Machine Learning and 3D projects.</div>
+				<DialogContent className="contact-dialog-content" dividers sx={breakpointsCard}>
+					<Box component="div" style={{ display: "flex", flexDirection: "column", rowGap: 8 }}>
+						<div>If you made it this far you have reached the end of the journey.</div>
+						<div>I hope you liked exploring the universe as much as I did when I first discovered it.</div>
+						<div>Feel free to reach out if you have any questions or just want to chat!</div>
+						<div>
+							This was your captain <strong>George</strong> signing off.
+						</div>
 
-							<Controller
-								rules={{ required: true }}
-								render={({ field }: any) => (
-									<TextField
-										{...field}
-										id="name"
-										label="Name"
-										variant="outlined"
-										margin="dense"
-										error={errors?.Name}
-										helperText={errors?.Name ? "No name was given" : ""}
-									/>
-								)}
-								name="Name"
-								control={control}
-							/>
-							<Controller
-								rules={{ required: true, pattern: /^\S+@\S+$/i }}
-								render={({ field }: any) => (
-									<TextField
-										{...field}
-										id="email"
-										label="Email"
-										variant="outlined"
-										margin="dense"
-										error={errors?.Email}
-										helperText={errors?.Email ? "Invalidate e-mail" : ""}
-									/>
-								)}
-								name="Email"
-								control={control}
-							/>
-							<Controller
-								rules={{ required: true }}
-								render={({ field }: any) => (
-									<TextField
-										{...field}
-										id="message"
-										label="Message"
-										variant="outlined"
-										margin="dense"
-										multiline
-										minRows={6}
-										maxRows={8}
-										error={errors?.Message}
-										helperText={errors?.Message ? "No message was given" : ""}
-									/>
-								)}
-								name="Message"
-								control={control}
-							/>
-						</Box>
-					</DialogContent>
-					<DialogActions className="contact-dialog-actions">
-						<div style={{ marginRight: "auto", marginLeft: 16 }}>
-							<IconButton
-								className="contact-social-media"
-								color="primary"
-								onClick={() => onSocialMediaClick("https://twitter.com/ge_karampelas")}
-							>
-								<TwitterIcon style={{ color: "#FFF" }} />
-							</IconButton>
-							<IconButton
-								className="contact-social-media"
-								color="primary"
-								onClick={() => onSocialMediaClick("https://github.com/GeorgeCodeHub")}
-							>
-								<GitHubIcon style={{ color: "#FFF" }} />
-							</IconButton>
-							<IconButton
-								className="contact-social-media"
-								color="primary"
-								onClick={() => onSocialMediaClick("https://www.linkedin.com/in/george-karampelas-453598137/")}
-							>
-								<LinkedInIcon style={{ color: "#FFF" }} />
-							</IconButton>
-						</div>
-						<div style={{ marginLeft: "auto", marginRight: 16 }}>
-							<LoadingButton
-								type="submit"
-								variant="contained"
-								loading={messageStatus.status}
-								endIcon={<SendIcon />}
-								loadingPosition="end"
-							>
-								SEND
-							</LoadingButton>
-						</div>
-					</DialogActions>
-				</form>
-				<Snackbar open={messageStatus.status} autoHideDuration={6000} onClose={handleClose}>
-					<Alert severity={messageStatus.flag}>
-						{messageStatus.flag === "success"
-							? "Message was sent successfully!"
-							: messageStatus.flag === "info"
-							? "Trying to make contact..."
-							: "Something went wrong. Please try again later!"}
-					</Alert>
-				</Snackbar>
+						<Grid container spacing={2} style={{ marginTop: 8 }}>
+							<Grid item xs={12} sm={6}>
+								<Card variant="outlined" style={{ background: "transparent" }}>
+									<CardActionArea
+										onClick={() => onSocialMediaClick("https://github.com/GeorgeCodeHub")}
+										aria-label="Open George's GitHub profile"
+									>
+										<CardContent>
+											<div style={{ display: "flex", alignItems: "center", columnGap: 8 }}>
+												<GitHubIcon fontSize="large" color="primary" />
+												<div>
+													<Typography variant="h6">GitHub</Typography>
+													<Typography variant="body2" color="text.secondary">
+														See my projects and code
+													</Typography>
+												</div>
+											</div>
+										</CardContent>
+									</CardActionArea>
+								</Card>
+							</Grid>
+
+							<Grid item xs={12} sm={6}>
+								<Card variant="outlined" style={{ background: "transparent" }}>
+									<CardActionArea
+										onClick={() => onSocialMediaClick("https://www.linkedin.com/in/george-karampelas-453598137/")}
+										aria-label="Open George's LinkedIn profile"
+									>
+										<CardContent>
+											<div style={{ display: "flex", alignItems: "center", columnGap: 8 }}>
+												<LinkedInIcon fontSize="large" color="primary" />
+												<div>
+													<Typography variant="h6">LinkedIn</Typography>
+													<Typography variant="body2" color="text.secondary">
+														Connect and say hello
+													</Typography>
+												</div>
+											</div>
+										</CardContent>
+									</CardActionArea>
+								</Card>
+							</Grid>
+						</Grid>
+					</Box>
+				</DialogContent>
 			</BootstrapDialog>
 		</Palette>
 	);
