@@ -1,16 +1,12 @@
-import React from "react";
+import "./ErrorFallBack.scss";
 
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Grow from "@mui/material/Grow";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-
-import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-
-import "./ErrorFallBack.scss";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Grow from "@mui/material/Grow";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 
 const breakpointsCard = {
 	width: {
@@ -66,9 +62,6 @@ function ErrorFallBackView({
 							If you return here again please try contacting me through the following methods:
 						</Typography>
 						<div style={{ display: "flex", justifyContent: "center" }}>
-							<IconButton onClick={() => onSocialMediaClick("https://twitter.com/ge_karampelas")}>
-								<TwitterIcon color="primary" />
-							</IconButton>
 							<IconButton onClick={() => onSocialMediaClick("https://github.com/GeorgeCodeHub")}>
 								<GitHubIcon color="primary" />
 							</IconButton>

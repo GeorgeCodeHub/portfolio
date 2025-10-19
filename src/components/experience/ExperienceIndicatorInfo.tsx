@@ -1,24 +1,14 @@
-import React from "react";
-
-import { format } from "date-fns";
-
-import { DialogTitleProps } from "../../utils/types";
-
-import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
-
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
 import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
-
 import CloseIcon from "@mui/icons-material/Close";
-
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 import Palette from "../../utils/Palette";
-
-import { datePatterns } from "../../utils/consts";
+import { DialogTitleProps } from "../../utils/types";
 
 const breakpointsCard = {
 	maxWidth: {
@@ -87,12 +77,7 @@ function ExperienceIndicatorInfo({
 				</DialogContent>
 				<DialogActions className="dialog-actions">
 					<Typography style={{ marginRight: "auto", marginLeft: 8, fontWeight: 500 }}>
-						{format(new Date(jobItem.dateFrom), datePatterns.monthYear)} -{" "}
-						{jobItem.dateTo ? (
-							format(new Date(jobItem.dateTo), datePatterns.monthYear)
-						) : (
-							<AllInclusiveIcon style={{ marginBottom: -6 }} />
-						)}
+						{jobItem.dateFrom} - {jobItem.dateTo ? jobItem.dateTo : <AllInclusiveIcon style={{ marginBottom: -6 }} />}
 					</Typography>
 					<Typography style={{ marginLeft: "auto", marginRight: 8 }}>{jobItem.companyTitle}</Typography>
 				</DialogActions>

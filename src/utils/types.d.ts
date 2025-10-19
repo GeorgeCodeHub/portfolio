@@ -38,7 +38,7 @@ export interface JobItem {
 	description: string;
 	// ExperienceView renders these as strings (e.g., "12/12/2021")
 	dateFrom: string;
-	dateTo: string;
+	dateTo?: string;
 	// Animation params
 	speed: number;
 	offset: number;
