@@ -21,8 +21,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          # Node 16 is used to match the project's dependencies. Consider upgrading to 18.x in the future.
-          node-version: 16.x
+          # Use Node 18 LTS for builds and deployment
+          node-version: 18.x
           cache: npm
           cache-dependency-path: package-lock.json
       - name: Install dependencies
